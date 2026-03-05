@@ -1,0 +1,716 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Yonathan Hary Hutagalung Portfolio</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="310d9bbc-d45b-81dd-8932-fe65491e18a1" class="page sans"><header><img class="page-cover-image" src="IMG_4752.jpeg" style="object-position:center 44.47%"/><h1 class="page-title" dir="auto">Yonathan Hary Hutagalung Portfolio</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-8015-92cf-f4e4891b77e7" class="">Data Science and Sustainable Energy Enthuiast | Tech Geek</p></div><div style="display:contents" dir="auto"><h1 id="8968e654-2fad-4ff4-8a06-cc1c4b89b0c8" class=""> Welcome to My Portfolio</h1></div><div style="display:contents" dir="auto"><blockquote id="d418c514-acbd-4285-86bd-fbb2d27dfa1e" class="">Data-driven analyst with MSc in Sustainable Energy Science and hands-on expertise in energy sector analysis and modelling. Combining technical foundation in Python, SQL, Tableau, and machine learning with domain knowledge in renewable energy feasibility studies, reservoir simulation, and energy economics.</blockquote></div><div style="display:contents" dir="auto"><hr id="f9034853-7a56-4b76-940d-f0c0481a88a1"/></div><div style="display:contents" dir="auto"><h1 id="46724bd5-79f4-4de9-ae35-09779a2d40f5" class=""> Contact Information</h1></div><div style="display:contents" dir="auto"><ul id="775050e8-da7e-4a59-b869-d728a5370b7f" class="bulleted-list"><li style="list-style-type:disc"><strong>Location:</strong> Jakarta, Indonesia</li></ul></div><div style="display:contents" dir="auto"><ul id="df00d669-b0eb-4557-9770-536b275f477c" class="bulleted-list"><li style="list-style-type:disc"><strong>Phone:</strong> 081281029151</li></ul></div><div style="display:contents" dir="auto"><ul id="c2d7cf9d-3a22-40b1-a04d-6fc9d50005a7" class="bulleted-list"><li style="list-style-type:disc"><strong>GitHub:</strong> <a href="https://github.com/yourusername">View Profile</a></li></ul></div><div style="display:contents" dir="auto"><ul id="e75b5852-8c60-4741-8968-5782868d1e67" class="bulleted-list"><li style="list-style-type:disc"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile">Connect with me</a></li></ul></div><div style="display:contents" dir="auto"><ul id="b1b01c1a-a36f-4951-8a35-06708f3ec7a7" class="bulleted-list"><li style="list-style-type:disc"><strong>Medium:</strong> <a href="https://medium.com/@yourprofile">Read my articles</a></li></ul></div><div style="display:contents" dir="auto"><hr id="722f40ed-44db-4463-a74a-68c7dd869fac"/></div><div style="display:contents" dir="auto"><h1 id="dbcd87e0-8c83-48c7-b1b9-3552c2b806e1" class="">Professional Experience</h1></div><div style="display:contents" dir="auto"><h2 id="6561d581-c90c-464c-a7a5-1aedbda762a0" class="">Sustainability Reporting Analyst (Volunteer)</h2></div><div style="display:contents" dir="auto"><p id="7890a74f-6cb8-49f4-a487-285efab73d4c" class=""><strong>eWasteRJ</strong> | Sept 2025 - Present</p></div><div style="display:contents" dir="auto"><ul id="440bc463-86a3-4be4-a4aa-2857688ffa7c" class="bulleted-list"><li style="list-style-type:disc">Quantified e-waste generation and economic recovery potential to guide circular economy policy and industry strategy</li></ul></div><div style="display:contents" dir="auto"><ul id="90b37fb1-63d6-41a9-80c6-999ef052aaa9" class="bulleted-list"><li style="list-style-type:disc">Generated reports related to sustainable-linked loans framework for green financing</li></ul></div><div style="display:contents" dir="auto"><h2 id="4bfa0f51-149b-41a9-b5ae-b5720d171c13" class="">Teaching Assistant</h2></div><div style="display:contents" dir="auto"><p id="f32b3cd8-0c0e-4aad-bdf2-ccf38a18e2d4" class=""><strong>Reykjavik University, Iceland</strong> | Aug 2023 – July 2024</p></div><div style="display:contents" dir="auto"><ul id="33b23845-7c63-4505-8954-c4faf6d6c827" class="bulleted-list"><li style="list-style-type:disc">Led technical curriculum development for geothermal reservoir modelling course</li></ul></div><div style="display:contents" dir="auto"><ul id="2d343b62-0164-432a-9114-3596b7e38912" class="bulleted-list"><li style="list-style-type:disc">Translated complex engineering concepts into applied learning modules using industry-standard simulation software (Leapfrog)</li></ul></div><div style="display:contents" dir="auto"><hr id="0ce77fd2-8fd2-44c8-8926-ac99c62dbba6"/></div><div style="display:contents" dir="auto"><h1 id="35bc344d-e455-41d7-8124-22272c2489d5" class="">Education</h1></div><div style="display:contents" dir="auto"><h2 id="5e1c71e6-31b0-4f7b-af6b-0546b35e2277" class="">Data Science Bootcamp</h2></div><div style="display:contents" dir="auto"><p id="c3cccadc-858e-43c3-81fc-0d79095dc20b" class=""><strong>Purwadhika Digital Technology School</strong> | Sept 2025 – March 2026 (Expected)</p></div><div style="display:contents" dir="auto"><p id="ec265843-d23b-4650-bb01-226209c43cd1" class=""><strong>Focus Areas:</strong></p></div><div style="display:contents" dir="auto"><ul id="95748763-af7d-451e-984d-a3a5ae9219be" class="bulleted-list"><li style="list-style-type:disc">Python (Pandas, NumPy)</li></ul></div><div style="display:contents" dir="auto"><ul id="b11f88f7-218a-4fcf-a72b-5555766b7440" class="bulleted-list"><li style="list-style-type:disc">Machine Learning (Scikit-Learn)</li></ul></div><div style="display:contents" dir="auto"><ul id="cb86e327-11e8-4ab0-9857-5ae11337203b" class="bulleted-list"><li style="list-style-type:disc">SQL &amp; Business Intelligence (Tableau)</li></ul></div><div style="display:contents" dir="auto"><p id="410cfcdd-41c8-491c-8c0b-f7d5097ae8f0" class=""><strong>Key Projects:</strong></p></div><div style="display:contents" dir="auto"><ul id="c8fff56d-0a93-41a0-b391-b6b56e38175a" class="bulleted-list"><li style="list-style-type:disc">Electricity Generation Mix Calculator</li></ul></div><div style="display:contents" dir="auto"><ul id="3262db47-1be8-4636-8f8c-2a2e09fdb980" class="bulleted-list"><li style="list-style-type:disc">Backpackers-segmented Bangkok Airbnb analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="64890d09-2b72-4ad6-8e82-6aa871e5c826" class="bulleted-list"><li style="list-style-type:disc">ML-based feasibility assessment for oil-gas well conversion to geothermal</li></ul></div><div style="display:contents" dir="auto"><ul id="2264c28a-45cb-4887-b580-6751d55208af" class="bulleted-list"><li style="list-style-type:disc">Portugal Hotel Cancellation Prediction</li></ul></div><div style="display:contents" dir="auto"><h2 id="35b29eb2-df75-403e-9d5d-c3afbfcd1a17" class="">MSc Sustainable Energy Science</h2></div><div style="display:contents" dir="auto"><p id="9c416116-a840-48ea-9171-4f118c6fd11f" class=""><strong>Reykjavik University, Iceland</strong> | July 2022 – June 2024 | <strong>Grade: 8.77/10</strong></p></div><div style="display:contents" dir="auto"><p id="5b2e806c-50cb-43ad-93d7-7da6f9ea0170" class=""><strong>Highlights:</strong></p></div><div style="display:contents" dir="auto"><ul id="0a6a6f39-9ac0-4432-9735-c14aa91c13b9" class="bulleted-list"><li style="list-style-type:disc">Conducted techno-economic studies for geothermal power plant (NZ) and rural microgrids (Ghana)</li></ul></div><div style="display:contents" dir="auto"><ul id="30d59d9c-5185-4827-b189-57dced082813" class="bulleted-list"><li style="list-style-type:disc">Selected for EU COST Action summer study (Ljubljana)</li></ul></div><div style="display:contents" dir="auto"><ul id="ba1b7e97-b294-46cf-b5a1-f150043e210d" class="bulleted-list"><li style="list-style-type:disc">Presented prototype on geothermal waste heat recovery</li></ul></div><div style="display:contents" dir="auto"><ul id="aee28dda-c083-4f60-a0ed-ddb976f7ea8c" class="bulleted-list"><li style="list-style-type:disc">Session Facilitator at Iceland Geothermal Conference 2024</li></ul></div><div style="display:contents" dir="auto"><h2 id="e9632353-51ef-46c5-bbae-33a307c5677f" class="">BSc Geology</h2></div><div style="display:contents" dir="auto"><p id="ead6c024-1def-40dc-911e-63c0fe9db913" class=""><strong>University of Canterbury, New Zealand</strong> | Oct 2018 – Feb 2022</p></div><div style="display:contents" dir="auto"><p id="4824fc8a-cf0a-48ba-98d8-78022aeba1a0" class=""><strong>Focus:</strong> Geostatistics, Basin Analysis, and Structural Geology</p></div><div style="display:contents" dir="auto"><p id="844488e1-b1f8-4433-aab8-bb00888b7863" class=""><strong>Leadership:</strong> Secretary, UC International Student Council</p></div><div style="display:contents" dir="auto"><hr id="c54bad0f-848c-43be-99dc-f9ff29276df7"/></div><div style="display:contents" dir="auto"><h1 id="1a9dbd92-e510-4015-8ae9-acc1c2176ac3" class="">Featured Projects</h1></div><div style="display:contents" dir="auto"><h2 id="f49590fb-7cf6-4c48-a918-2ce0b1dfcd0e" class="">Geothermal Asset Transition Tool</h2></div><div style="display:contents" dir="auto"><p id="8910cfdc-ea54-4cfa-9f35-faf2764333df" class=""><strong>Tech Stack:</strong> XGBoost, Streamlit, Python</p></div><div style="display:contents" dir="auto"><p id="e97c8bd5-21a3-4b70-bfef-1edbf5c66994" class="">Built and deployed a classification model to assess abandoned oil wells for renewable energy conversion, automating asset viability screening.</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8017-bdfc-e0fa9fe3e633"><div class="source">https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification</div></figure></div><div style="display:contents" dir="auto"><h2 id="fa16bb69-47cf-4c73-9c0b-b41652630c6a" class="">Energy Demand Forecasting Engine</h2></div><div style="display:contents" dir="auto"><p id="333ba7cc-5f7b-4257-bf49-4e2d1f050333" class=""><strong>Tech Stack:</strong> Python, Scikit-Learn, Jupyter notebook</p></div><div style="display:contents" dir="auto"><p id="6e1801c2-87fb-468e-976c-5721c2d908a5" class="">Developed a predictive model for household consumption using behavioral data; optimized feature engineering to identify key usage drivers for efficiency planning.</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-80d1-9c4a-c3649a3fdd14"><div class="source">https://github.com/YonathanHH/Household_Energy_Consumption_end_to_end_Portfolio</div></figure></div><div style="display:contents" dir="auto"><h2 id="310d9bbc-d45b-8013-acfa-e4585f2db576" class="">Bank Marketing Campaign - Term Deposits Prediction</h2></div><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-801c-90c3-c84d094962da" class=""><strong>Tech Stack: </strong>Python, Streamlit, Tableau, Jupyter Notebook</p></div><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-809d-b13b-e402059d7978" class="">Developed a end-to-end explanatory data analysis, BI dashboard, classification model and deployable streamlit apps for Portugese Bank Marketing campaign. Additional treatment was added to the dataset collected during 2008 Financial crisis.</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8098-a031-de2e4cccec81"><div class="source">https://github.com/jcdspurwadhika/JCDSJKTPM-34_Alpha</div></figure></div><div style="display:contents" dir="auto"><hr id="6e3987d6-ddab-416f-a476-3ffa9061d6b7"/></div><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-80b8-ac67-c13f1f8f7ac6" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="9fefcdc7-9778-4998-933c-206455dae6c0" class="">Project Portfolio</h1></div><div style="display:contents" dir="auto"><h2 id="42933365-fa2d-4ac7-a94e-d1f8c9fa2414" class="">Python Applications</h2></div><div style="display:contents" dir="auto"><h3 id="afb3ef00-397a-4296-a72f-5b61310b06ee" class="">Python Learning Application</h3></div><div style="display:contents" dir="auto"><p id="f25a4326-19d7-400d-a92c-6e5009f95d32" class="">An interactive Python learning application designed to teach Python programming fundamentals through terminal-based exercises, case studies, and quizzes.</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8086-9ea7-d48c23aec81b"><div class="source">https://github.com/YonathanHH/Python_Learning_Application</div></figure></div><div style="display:contents" dir="auto"><h3 id="cf75ab4a-4732-4bc8-9ee5-95776e0412f1" class="">Electricity Mix Generator</h3></div><div style="display:contents" dir="auto"><p id="c3b526ce-7aa9-495a-a98f-222fec40cf8e" class="">A Python-based application designed to track, analyze, and visualize electricity generation data across different regions and energy sources.</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-801c-a97c-e1e37ac34eb4"><div class="source">https://github.com/YonathanHH/Electricity_Mix_Generator</div></figure></div><div style="display:contents" dir="auto"><hr id="0e013812-407d-42eb-9c72-ace51e3ff0c0"/></div><div style="display:contents" dir="auto"><h2 id="edbb7ea4-1c88-48a4-918a-70632cdca1b3" class="">Data Analysis Projects</h2></div><div style="display:contents" dir="auto"><h3 id="2ba04fa8-f4e2-4a19-ba54-6bd0dfaf0900" class="">Airbnb Bangkok Listings Analysis</h3></div><div style="display:contents" dir="auto"><p id="0f867a13-300d-4aa9-9beb-71bc611db86d" class="">Analyzed Airbnb listings in Bangkok to help hosts optimize their listing performance and competitiveness. Focus on attracting backpacker accommodation segment in Bangkok.</p></div><div style="display:contents" dir="auto"><p id="8dff3d8c-35c0-47df-a6ff-b7e3f90e5f40" class=""><strong>Key Deliverables:</strong></p></div><div style="display:contents" dir="auto"><ul id="56b20283-6e9d-45bf-ad60-a8fa7d244049" class="bulleted-list"><li style="list-style-type:disc">Market segmentation analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="72d14e5e-e4a8-47b7-8bfb-6b8555494e29" class="bulleted-list"><li style="list-style-type:disc">Price optimization recommendations</li></ul></div><div style="display:contents" dir="auto"><ul id="5a85551b-4b18-4563-99f4-cfc4b8533a58" class="bulleted-list"><li style="list-style-type:disc">Competitive positioning insights</li></ul></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8070-9a56-ebf21df5af5d"><div class="source">https://github.com/YonathanHH/DataAnalysis_BangkokAirBNB_Backpackers</div></figure></div><div style="display:contents" dir="auto"><h3 id="318d9bbc-d45b-8057-a234-f2d9d8a32bb9" class=""><strong>Global Powerplant Insight - World Renewable Energy Transition</strong>s</h3></div><div style="display:contents" dir="auto"><p id="318d9bbc-d45b-80b4-ad82-f8057519e654" class="">Create a tidy Jupyter notebook showcasing how the renewable energy progress in the world in 2021 (Dataset collection) and generate a Dashboard using Tableau for further insights</p></div><div style="display:contents" dir="auto"><p id="318d9bbc-d45b-8032-937f-fac208722df6" class=""><strong>Key Deliverables:</strong></p></div><div style="display:contents" dir="auto"><ul id="318d9bbc-d45b-807a-8c82-cd72e44b98b5" class="bulleted-list"><li style="list-style-type:disc">Tidy jupyter notebook including explanatory data analysis and geospatial using plotly</li></ul></div><div style="display:contents" dir="auto"><ul id="318d9bbc-d45b-802e-97b3-e4b0cec55508" class="bulleted-list"><li style="list-style-type:disc">Research dashboard for global renewable energy metrics</li></ul></div><div style="display:contents" dir="ltr"><figure id="318d9bbc-d45b-80ef-ac3b-d6735ee81bf6"><div class="source">https://github.com/YonathanHH/Global_Powerplant_EDA</div></figure></div><div style="display:contents" dir="auto"><hr id="52eea11b-d040-4904-a1e5-9a6b216f1e54"/></div><div style="display:contents" dir="auto"><p id="318d9bbc-d45b-803b-a6a9-db70459712c0" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="83aa86f7-9d48-4c50-809e-f9cffe2fdcee" class="">Data Science &amp; Machine Learning</h2></div><div style="display:contents" dir="auto"><h3 id="068b9ae1-a9f1-4a1c-a10e-ada17eafd917" class="">Hotel Booking Cancellation Prediction</h3></div><div style="display:contents" dir="auto"><p id="e14a2386-54c7-42f3-82ac-12c8bf481e3b" class=""><strong>Type:</strong> Classification | <strong>Capstone Project</strong></p></div><div style="display:contents" dir="auto"><p id="bdf56a3c-29d7-4aa9-931b-da54cc03105e" class="">Developed a machine learning model to predict whether customers are likely to cancel their hotel bookings at a Portuguese hotel.</p></div><div style="display:contents" dir="auto"><p id="63df0dff-bc72-4bda-888c-95b226cf9cc7" class=""><strong>Technologies:</strong> Python, Scikit-Learn, XGBoost, Data Preprocessing</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8017-b6ca-c9c4359eea62"><div class="source">https://github.com/YonathanHH/Predicting_Hotel_Cancellations_in_Portugal</div></figure></div><div style="display:contents" dir="auto"><h3 id="3330bfd6-3137-4dfd-8772-a5a254495fc4" class="">Diabetes Prediction</h3></div><div style="display:contents" dir="auto"><p id="49ffc471-c6f5-438b-97d0-c7e73f34321f" class=""><strong>Type:</strong> Regression</p></div><div style="display:contents" dir="auto"><p id="aa3b6b34-0b59-4ae5-b48e-c9c53a0cb2a9" class="">Predicting diabetes probability using age, gender, BMI, blood pressure, cholesterol and other health metrics.</p></div><div style="display:contents" dir="auto"><p id="ba71592a-0038-4c70-b9e9-8d5737e2ef10" class=""><strong>Key Skills:</strong> Feature engineering, Statistical modeling, Health data analysis</p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8086-9b92-d97890d7d2a7"><div class="source">https://github.com/YonathanHH/Diabetes_Prediction_Regression_Problem</div></figure></div><div style="display:contents" dir="auto"><h3 id="ecfa7c74-912a-4b3c-bf09-047c8f425f21" class="">ML-Driven Feasibility Assessment for Oil &amp; Gas to Geothermal Conversion</h3></div><div style="display:contents" dir="auto"><p id="36ad9b53-ede3-4444-9bcf-d9643c349c7f" class=""><strong>Type:</strong> Classification | <strong>End-to-End Project</strong></p></div><div style="display:contents" dir="auto"><p id="3b3d428c-92d7-479d-9cb9-51334b898613" class="">Complete data science project developing and deploying a machine learning classification model to predict the feasibility of converting abandoned oil and gas wells into geothermal energy production assets.</p></div><div style="display:contents" dir="auto"><p id="9358ee7d-2132-4a22-969e-34eca688b661" class=""><strong>Highlights:</strong></p></div><div style="display:contents" dir="auto"><ul id="e050a063-3941-4051-b355-4ef06625c253" class="bulleted-list"><li style="list-style-type:disc">End-to-end ML pipeline</li></ul></div><div style="display:contents" dir="auto"><ul id="87dd7984-d7f5-4a7b-883a-d920439fdd9f" class="bulleted-list"><li style="list-style-type:disc">Streamlit deployment</li></ul></div><div style="display:contents" dir="auto"><ul id="5e09840b-c3bd-478a-81bf-e459738213f1" class="bulleted-list"><li style="list-style-type:disc">XGBoost classification</li></ul></div><div style="display:contents" dir="auto"><ul id="a32b9952-3a7c-4816-89b4-3897dfb25780" class="bulleted-list"><li style="list-style-type:disc">Energy sector domain application</li></ul></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8040-bee7-c9de76fd5810"><div class="source">https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification</div></figure></div><div style="display:contents" dir="auto"><h3 id="c3548e25-e1a2-42e0-907b-15fa854e5360" class="">Household Energy Consumption Predictor</h3></div><div style="display:contents" dir="auto"><p id="79783775-1a11-44bb-a578-b897f8594f66" class=""><strong>Type:</strong> Regression | <strong>End-to-End Portfolio</strong></p></div><div style="display:contents" dir="auto"><p id="646b3588-5c5b-4c7a-9ec5-d19e52f10a0a" class="">Regression problem to predict household energy consumption based on usage behavior.</p></div><div style="display:contents" dir="auto"><p id="1c8df710-43b8-4ed5-9236-ae91b4888a24" class=""><strong>Key Components:</strong></p></div><div style="display:contents" dir="auto"><ul id="78628eaf-c6bf-4e25-8de9-21e2c1127647" class="bulleted-list"><li style="list-style-type:disc">Feature engineering for behavioral patterns</li></ul></div><div style="display:contents" dir="auto"><ul id="a5ddba13-fe22-4feb-b89d-89c86dcbc30b" class="bulleted-list"><li style="list-style-type:disc">Time series analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="02f6e88f-294f-46ea-927b-19faa8d302d1" class="bulleted-list"><li style="list-style-type:disc">Consumption forecasting</li></ul></div><div style="display:contents" dir="auto"><ul id="0a074261-bbe2-4994-be71-71ac3095d513" class="bulleted-list"><li style="list-style-type:disc">Model deployment</li></ul></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-807d-b08b-d82a30c79265"><div class="source">https://github.com/YonathanHH/Household_Energy_Consumption_end_to_end_Portfolio</div></figure></div><div style="display:contents" dir="auto"><hr id="b6d69732-49f7-48c9-9746-f6c295f57319"/></div><div style="display:contents" dir="auto"><h2 id="a6aed197-42dd-4fbe-8d8c-735e7de33595" class="">Research Projects</h2></div><div style="display:contents" dir="auto"><h3 id="d727dcdc-2785-469c-8cf6-6ef476dabc9f" class="">E-Waste Generation Modeling: Indonesian Data Center Sector</h3></div><div style="display:contents" dir="auto"><p id="b7d8e720-55e7-407a-bfd0-7488ffbd2fb9" class=""><strong>Domain:</strong> Sustainability &amp; Circular Economy</p></div><div style="display:contents" dir="auto"><p id="2c6eec4a-a21b-4ca6-b98e-a4d6fc75b302" class="">Quantifying electronic waste from data centers in Indonesia using the Sales-Lifespan Distribution Model with Weibull probability distributions.</p></div><div style="display:contents" dir="auto"><p id="ce5fe51d-355a-4187-b766-0f710bb576af" class=""><strong>Methodology:</strong></p></div><div style="display:contents" dir="auto"><ul id="9b541e6f-9c1c-4d14-b890-442f8848c902" class="bulleted-list"><li style="list-style-type:disc">Segmented modeling by operator tier (hyperscale vs. enterprise)</li></ul></div><div style="display:contents" dir="auto"><ul id="b88ae8ab-25d4-4e34-b4d9-92667f1eaf9e" class="bulleted-list"><li style="list-style-type:disc">Accounted for divergent refresh cycles driven by regulatory, economic, and energy cost factors</li></ul></div><div style="display:contents" dir="auto"><ul id="564d47e8-5fb6-4f78-984a-ae2bd7d01bbd" class="bulleted-list"><li style="list-style-type:disc">Policy recommendation generation</li></ul></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-8001-adad-c5bb7356ce35"><div class="source">https://github.com/YonathanHH/weibull-ewaste-modeling-indonesia</div></figure></div><div style="display:contents" dir="auto"><h3 id="ec23a422-b9be-4c3a-a35a-315533e96bd1" class="">WaveThesis - Modeling Permeable Aquifers at Basaltic Lava Flow Contact Zones</h3></div><div style="display:contents" dir="auto"><p id="3973b356-5c99-42d9-ad82-d2642093202e" class=""><strong>Domain:</strong> Geothermal Energy | <strong>Master&#x27;s Thesis</strong></p></div><div style="display:contents" dir="auto"><p id="cba89103-6922-41cb-9df5-3e8a7df9e7ef" class="">Complete numerical modeling workflow and Python scripts for investigating permeable aquifers at the contact zones of basaltic lava flows.</p></div><div style="display:contents" dir="auto"><p id="21ad0367-83da-4c77-9f01-0eb6cd87585f" class=""><strong>Thesis Title:</strong> &quot;Investigation of Modeling Permeable Aquifers at the Contact Zones of Basaltic Lava Flows&quot;</p></div><div style="display:contents" dir="auto"><p id="6012d20c-a413-4e48-8898-b341738f12f5" class=""><strong>Institution:</strong> <a href="http://M.Sc">M.Sc</a>. in Sustainable Energy Science, Reykjavík University, June 2024</p></div><div style="display:contents" dir="auto"><p id="739331c0-3476-4fa4-ba13-41fea08125ed" class=""><strong>Key Contributions:</strong></p></div><div style="display:contents" dir="auto"><ul id="a36479f1-901a-4534-83ce-e6ff7ce3f566" class="bulleted-list"><li style="list-style-type:disc">Numerical modeling of hydrogeological systems</li></ul></div><div style="display:contents" dir="auto"><ul id="afd2afe9-50f9-40e1-926f-c0e4b60eba73" class="bulleted-list"><li style="list-style-type:disc">Python-based simulation workflows</li></ul></div><div style="display:contents" dir="auto"><ul id="d841b086-0b44-43a5-b424-5ca2499ab87a" class="bulleted-list"><li style="list-style-type:disc">Geothermal reservoir characterization</li></ul></div><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-808d-baa0-cd5f1220438c" class="">Link: <a href="https://skemman.is/handle/1946/47702">https://skemman.is/handle/1946/47702</a></p></div><div style="display:contents" dir="auto"><hr id="5fcbe955-309f-4a9d-95e0-a5dc99d95480"/></div><div style="display:contents" dir="auto"><h1 id="8653751f-b9c3-42f1-8bad-7e9a4a07108d" class="">Technical Skills</h1></div><div style="display:contents" dir="auto"><h2 id="cea6b037-a94d-4e06-b161-763d73034988" class="">Data Science &amp; Analytics</h2></div><div style="display:contents" dir="auto"><ul id="71a2c6c0-5062-42c4-bcba-19d49c71784b" class="bulleted-list"><li style="list-style-type:disc"><strong>Programming:</strong> Python (pandas, numpy, scikit-learn, statsmodels)</li></ul></div><div style="display:contents" dir="auto"><ul id="8fbdc694-d118-4e9d-a210-992322137d84" class="bulleted-list"><li style="list-style-type:disc"><strong>Databases:</strong> SQL (MySQL, BigQuery)</li></ul></div><div style="display:contents" dir="auto"><ul id="9773d277-0f0f-41f7-908b-7dbe4fbb33f5" class="bulleted-list"><li style="list-style-type:disc"><strong>Machine Learning:</strong> Classification, Regression, Clustering, XGBoost</li></ul></div><div style="display:contents" dir="auto"><ul id="cbc1efb6-1b71-488e-aaef-bbcef9120adb" class="bulleted-list"><li style="list-style-type:disc"><strong>Visualization:</strong> Tableau, PowerBI, Matplotlib, Seaborn</li></ul></div><div style="display:contents" dir="auto"><ul id="00e16a74-abec-48c4-a298-d58e73c93144" class="bulleted-list"><li style="list-style-type:disc"><strong>Data Engineering:</strong> ETL pipelines, Web scraping, REST APIs</li></ul></div><div style="display:contents" dir="auto"><ul id="2a1cf4aa-86c5-4826-8194-28617ec712dc" class="bulleted-list"><li style="list-style-type:disc"><strong>Statistical Methods:</strong> Statistical modelling, Hypothesis testing</li></ul></div><div style="display:contents" dir="auto"><h2 id="987bfae9-e7a4-45fe-8f36-e4af1ef86f28" class="">Tools &amp; Platforms</h2></div><div style="display:contents" dir="auto"><ul id="e77a1004-d109-44a2-b4c1-4b2884607ba5" class="bulleted-list"><li style="list-style-type:disc"><strong>Cloud:</strong> Google Cloud (BigQuery, Colab)</li></ul></div><div style="display:contents" dir="auto"><ul id="102e8087-59bb-403b-8b4f-365575864a5a" class="bulleted-list"><li style="list-style-type:disc"><strong>Development:</strong> Jupyter Notebook, VS Code, GitHub</li></ul></div><div style="display:contents" dir="auto"><ul id="24502b24-cb62-4598-ba19-0c57de50fe1b" class="bulleted-list"><li style="list-style-type:disc"><strong>Deployment:</strong> Streamlit (model deployment)</li></ul></div><div style="display:contents" dir="auto"><ul id="ab12a614-f169-4ee8-92dd-e5b8433213ae" class="bulleted-list"><li style="list-style-type:disc"><strong>BI Tools:</strong> Looker, Tableau</li></ul></div><div style="display:contents" dir="auto"><h2 id="4683f56b-d13c-45ff-9b66-d110fadb498b" class="">Domain Expertise</h2></div><div style="display:contents" dir="auto"><ul id="11bbd99e-4006-48b9-a30c-f33519d0423e" class="bulleted-list"><li style="list-style-type:disc"><strong>GIS &amp; Geospatial:</strong> QGIS, ArcGIS, Spatial analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="34b95f9f-73be-4d81-9c2a-0a6ee515a066" class="bulleted-list"><li style="list-style-type:disc"><strong>Energy Sector:</strong> Geothermal reservoir modeling (AUTOUGH2, Leapfrog Geo)</li></ul></div><div style="display:contents" dir="auto"><ul id="d5de4554-5473-4e4c-93ae-70e11c02b00c" class="bulleted-list"><li style="list-style-type:disc"><strong>Economics:</strong> Energy economics, Feasibility studies, Financial modelling</li></ul></div><div style="display:contents" dir="auto"><ul id="310d9bbc-d45b-8010-99bc-ff0c4d93b790" class="bulleted-list"><li style="list-style-type:disc"><strong>Geology: </strong>Field Mapping, Structural Mapping, Laboratory Work</li></ul></div><div style="display:contents" dir="auto"><ul id="310d9bbc-d45b-80c1-9067-f89e6eb0145c" class="bulleted-list"><li style="list-style-type:disc"><strong>Geochemistry: </strong>PHREEQC and WATCH for geochemical testing and analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="b0b7fd99-87fc-440b-b319-3c647bec6065" class="bulleted-list"><li style="list-style-type:disc"><strong>Sustainability:</strong> E-waste analysis, Circular economy, Green financing</li></ul></div><div style="display:contents" dir="auto"><h2 id="3d598b0f-ac65-4839-8a8c-5cb05fa9f90d" class="">Soft Skills</h2></div><div style="display:contents" dir="auto"><ul id="d8bf3a9c-7b0f-428e-998f-48a7c525ab77" class="bulleted-list"><li style="list-style-type:disc">Stakeholder communication</li></ul></div><div style="display:contents" dir="auto"><ul id="4abeabf7-7e2c-4259-9da8-44e3937a162a" class="bulleted-list"><li style="list-style-type:disc">Cross-functional team leadership</li></ul></div><div style="display:contents" dir="auto"><ul id="ef4c2621-abcd-4a7b-93ad-dfb5fb495263" class="bulleted-list"><li style="list-style-type:disc">Technical documentation</li></ul></div><div style="display:contents" dir="auto"><ul id="d96d9764-7e7c-4c9c-994e-1c470a936bbe" class="bulleted-list"><li style="list-style-type:disc">Business analysis</li></ul></div><div style="display:contents" dir="auto"><ul id="6054be3c-8e8f-4318-a1fe-3fc52ac4ced8" class="bulleted-list"><li style="list-style-type:disc">Research design</li></ul></div><div style="display:contents" dir="auto"><h2 id="caec08a7-8a95-439d-8fba-c7d53ca7bafd" class="">Languages</h2></div><div style="display:contents" dir="auto"><ul id="2bab32b1-197e-4262-a26c-0479e6f04b17" class="bulleted-list"><li style="list-style-type:disc"><strong>Indonesian:</strong> Native</li></ul></div><div style="display:contents" dir="auto"><ul id="66af8cfd-f530-4514-a3b8-566288744749" class="bulleted-list"><li style="list-style-type:disc"><strong>English:</strong> Professional proficiency</li></ul></div><div style="display:contents" dir="auto"><hr id="68fb19ad-cf1b-4975-acb3-509afb64696d"/></div><div style="display:contents" dir="auto"><h1 id="fb147326-fe6e-44d4-9992-52a7167637de" class="">🎯 Areas of Interest</h1></div><div style="display:contents" dir="auto"><ul id="0e23ee0d-afd3-42dc-bee3-2f10a3cbc924" class="bulleted-list"><li style="list-style-type:disc">Renewable Energy &amp; Geothermal Systems</li></ul></div><div style="display:contents" dir="auto"><ul id="28df6c71-daba-44ce-b233-189919f5721d" class="bulleted-list"><li style="list-style-type:disc">Sustainability Analytics &amp; ESG Reporting</li></ul></div><div style="display:contents" dir="auto"><ul id="26b40594-531a-4b12-8447-1a856bff0e66" class="bulleted-list"><li style="list-style-type:disc">Energy Transition &amp; Asset Optimization</li></ul></div><div style="display:contents" dir="auto"><ul id="881d02a3-3aba-4235-b1d4-11fdb704e4aa" class="bulleted-list"><li style="list-style-type:disc">Machine Learning</li></ul></div><div style="display:contents" dir="auto"><ul id="310d9bbc-d45b-8019-90aa-cc4fc4adc305" class="bulleted-list"><li style="list-style-type:disc">Data and Business Analyst</li></ul></div><div style="display:contents" dir="auto"><ul id="e6b2df03-3448-4909-ae06-4df21a61befc" class="bulleted-list"><li style="list-style-type:disc">Circular Economy &amp; E-Waste Management</li></ul></div><div style="display:contents" dir="auto"><ul id="14ee7d46-eca0-4e18-aae6-54635e922d60" class="bulleted-list"><li style="list-style-type:disc">Data-Driven Policy Development</li></ul></div><div style="display:contents" dir="auto"><hr id="0eb99cbd-0fbc-4131-a054-2f630203b07d"/></div><div style="display:contents" dir="auto"><h1 id="6fb2005e-7bf7-41a6-86cc-f98dd337e6be" class="">📚 References</h1></div><div style="display:contents" dir="auto"><p id="5d7501ae-c485-4df8-a6db-afa1ee27e346" class=""><strong>Dr Juliet Ann Newson</strong></p></div><div style="display:contents" dir="auto"><p id="82ea6f66-afda-4f33-a645-32ccb477446a" class="">Iceland School of Energy Director</p></div><div style="display:contents" dir="auto"><p id="93103ef0-cfbb-4564-8916-d6d844aa2915" class="">📧 <a href="mailto:julietn@ru.is">julietn@ru.is</a> | ☎️ +354 599 6393</p></div><div style="display:contents" dir="auto"><p id="b2418707-3868-4d68-9bd4-a62643df391b" class=""><strong>Ben Kennedy PhD</strong></p></div><div style="display:contents" dir="auto"><p id="bd4d5e51-40f3-4c80-8655-719555b6330a" class="">Volcanology Senior Lecturer of Geology, University of Canterbury</p></div><div style="display:contents" dir="auto"><p id="ac2afc1c-6a92-4d5e-8e79-71e9d690eb3a" class="">📧 <a href="mailto:ben.kennedy@canterbury.ac.nz">ben.kennedy@canterbury.ac.nz</a></p></div><div style="display:contents" dir="auto"><hr id="a1a8c344-8303-4bf7-946c-df0b616b2320"/></div><div style="display:contents" dir="auto"><h1 id="ec39933e-a382-4387-a011-ef6853d34007" class="">💡 Let&#x27;s Connect!</h1></div><div style="display:contents" dir="auto"><p id="827dc178-05f0-40fd-9003-76af5d314cb4" class="">I&#x27;m actively seeking opportunities in data science and sustainability analytics where I can leverage my unique combination of technical skills and domain expertise in energy systems. Feel free to reach out to discuss potential collaborations or opportunities!</p></div><div style="display:contents" dir="auto"><ul id="b6db7bfd-3619-4afd-aa5a-9c95c05bb8a0" class="toggle"><li><details open=""><summary>📥 Download Resume</summary><div style="display:contents" dir="auto"><p id="2ad7913f-ce9e-4a31-8231-f65e7df0295f" class="">See attachment below: </p></div><div style="display:contents" dir="ltr"><figure id="310d9bbc-d45b-80ad-8c9c-d81d3420546e"><div class="source"><a href="Yonathan_Hary_Hutagalung_CV.pdf">Yonathan_Hary_Hutagalung_CV.pdf</a></div></figure></div></details></li></ul></div><div style="display:contents" dir="auto"><p id="310d9bbc-d45b-80e1-b321-cfc17ea84320" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
