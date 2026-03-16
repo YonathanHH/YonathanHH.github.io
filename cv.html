@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<!--
+   ______                            __
+  / ____/___  ____ ___  ____  __  __/ /____  _____
+ / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+\____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                    /_/
+        Created with Perplexity Computer
+        https://www.perplexity.ai/computer
+-->
+<meta name="generator" content="Perplexity Computer">
+<meta name="author" content="Perplexity Computer">
+<meta property="og:see_also" content="https://www.perplexity.ai/computer">
+<link rel="author" href="https://www.perplexity.ai/computer">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Yonathan Hary Hutagalung</title>
+  <meta name="description" content="Curriculum Vitae of Yonathan Hary Hutagalung — Data Scientist, Geothermal Energy Specialist.">
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .cv-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-6);
+      padding: var(--space-10) 0 var(--space-16);
+    }
+
+    /* ─── SIDEBAR ─── */
+    .cv-sidebar {
+      position: sticky;
+      top: calc(48px + var(--space-4));
+      height: fit-content;
+    }
+
+    .cv-sidebar-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: var(--space-4);
+    }
+
+    .cv-sidebar-card .panel-header {
+      background: var(--color-surface-offset);
+    }
+
+    .cv-sidebar-body {
+      padding: var(--space-4);
+    }
+
+    .cv-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-2);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-divider);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+    }
+
+    .cv-contact-item:last-child { border-bottom: none; }
+
+    .cv-contact-label {
+      color: var(--color-text-faint);
+      min-width: 52px;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .cv-contact-val {
+      color: var(--color-text-muted);
+      word-break: break-all;
+    }
+
+    .cv-contact-val a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+
+    .cv-contact-val a:hover {
+      color: var(--color-primary-hover);
+    }
+
+    /* Sidebar nav */
+    .cv-nav-list {
+      list-style: none;
+      padding: var(--space-2);
+    }
+
+    .cv-nav-list a {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: all var(--transition-interactive);
+    }
+
+    .cv-nav-list a:hover {
+      color: var(--color-primary);
+      background: var(--color-primary-dim);
+    }
+
+    .cv-nav-list a .nav-num {
+      color: var(--color-text-faint);
+      font-size: 0.7em;
+    }
+
+    /* ─── MAIN CONTENT ─── */
+    .cv-main {}
+
+    .cv-section {
+      margin-bottom: var(--space-12);
+    }
+
+    /* Experience / Education entries */
+    .cv-entry {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: var(--space-5);
+      margin-bottom: var(--space-4);
+      transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+    }
+
+    .cv-entry:hover {
+      border-left-color: var(--color-primary-hover);
+      box-shadow: -2px 0 16px rgba(255,102,0,0.15);
+    }
+
+    .cv-entry--edu {
+      border-left-color: var(--color-blue);
+    }
+
+    .cv-entry--edu:hover {
+      border-left-color: var(--color-blue);
+      box-shadow: -2px 0 16px rgba(79,195,247,0.15);
+    }
+
+    .cv-entry-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-4);
+      margin-bottom: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .cv-entry-title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text-bright);
+      letter-spacing: 0.02em;
+    }
+
+    .cv-entry-date {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .cv-entry-org {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      margin-bottom: var(--space-3);
+      letter-spacing: 0.04em;
+    }
+
+    .cv-entry--edu .cv-entry-org {
+      color: var(--color-blue);
+    }
+
+    .cv-entry-grade {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+      border: 1px solid rgba(0,255,65,0.3);
+      background: var(--color-accent-dim);
+      padding: 2px var(--space-2);
+      border-radius: var(--radius-sm);
+      margin-left: var(--space-2);
+    }
+
+    .cv-entry-bullets {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cv-entry-bullets li {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      padding: var(--space-1) 0;
+      padding-left: var(--space-4);
+      position: relative;
+      max-width: 70ch;
+    }
+
+    .cv-entry-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--color-primary);
+      font-size: 0.75em;
+      top: calc(var(--space-1) + 3px);
+    }
+
+    .cv-entry--edu .cv-entry-bullets li::before {
+      color: var(--color-blue);
+    }
+
+    /* Skills table */
+    .skills-section-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .skill-group-title {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+    }
+
+    .skill-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-1) 0;
+      border-bottom: 1px solid var(--color-divider);
+      gap: var(--space-3);
+    }
+
+    .skill-row:last-child { border-bottom: none; }
+
+    .skill-name {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+
+    .skill-dots {
+      display: flex;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
+    .skill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 1px;
+      background: var(--color-border-bright);
+    }
+
+    .skill-dot.filled { background: var(--color-primary); }
+    .skill-dot.filled.blue { background: var(--color-blue); }
+    .skill-dot.filled.green { background: var(--color-accent); }
+
+    /* References */
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .ref-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+    }
+
+    .ref-name {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      color: var(--color-text-bright);
+      margin-bottom: var(--space-1);
+    }
+
+    .ref-title {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-3);
+      line-height: 1.4;
+    }
+
+    .ref-contact a {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-primary);
+      text-decoration: none;
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .cv-layout {
+        grid-template-columns: 1fr;
+      }
+      .cv-sidebar {
+        position: static;
+      }
+      .skills-section-grid {
+        grid-template-columns: 1fr;
+      }
+      .ref-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="./index.html" class="header-logo">
+      <svg class="logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="YHH logo">
+        <rect width="28" height="28" fill="#0f0f0f" rx="2"/>
+        <rect x="0.5" y="0.5" width="27" height="27" rx="1.5" stroke="#ff6600" stroke-opacity="0.6"/>
+        <text x="4" y="19" font-family="monospace" font-size="11" font-weight="700" fill="#ff6600">YHH</text>
+      </svg>
+      <span class="logo-text">Yonathan HH</span>
+    </a>
+    <div class="header-ticker" aria-hidden="true">
+      <span class="ticker-item"><span class="ticker-label">FILE </span><span class="ticker-val">CURRICULUM_VITAE.TXT</span></span>
+      <span class="ticker-item"><span class="ticker-label">LAST UPDATE </span><span class="ticker-val">2026</span></span>
+      <span class="ticker-item"><span class="ticker-label">GPA </span><span class="ticker-val ticker-up">8.77/10</span></span>
+    </div>
+    <nav class="site-nav" id="siteNav">
+      <a href="./index.html" class="nav-link">Home</a>
+      <a href="./cv.html" class="nav-link active">CV</a>
+      <a href="./portfolio.html" class="nav-link">Portfolio</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="status-bar">
+  <span><span class="s-label">VIEWING </span><span class="s-orange">CURRICULUM VITAE</span></span>
+  <span><span class="s-label">SECTIONS </span><span class="s-val">SUMMARY · EXPERIENCE · EDUCATION · SKILLS · REFERENCES</span></span>
+</div>
+
+<main>
+  <div class="page-container">
+    <div class="cv-layout">
+
+      <!-- ═══ SIDEBAR ══════════════════════════════════ -->
+      <aside class="cv-sidebar">
+        <!-- Identity -->
+        <div class="cv-sidebar-card">
+          <div class="panel-header">
+            <div class="panel-title-row">
+              <div class="panel-dot green"></div>
+              <span class="panel-label">IDENTITY</span>
+            </div>
+          </div>
+          <div class="cv-sidebar-body">
+            <div style="font-family:var(--font-display);font-size:var(--text-lg);color:var(--color-primary);font-weight:700;margin-bottom:var(--space-1);">Yonathan Hary<br>Hutagalung</div>
+            <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-4);">Data Scientist · Geothermal Energy Analyst</div>
+            <div class="cv-contact-item"><span class="cv-contact-label">LOC</span><span class="cv-contact-val">Jakarta, Indonesia</span></div>
+            <div class="cv-contact-item"><span class="cv-contact-label">PHONE</span><span class="cv-contact-val">081281029151</span></div>
+            <div class="cv-contact-item"><span class="cv-contact-label">EMAIL</span><span class="cv-contact-val"><a href="mailto:yonathanhary1@gmail.com">yonathanhary1@gmail.com</a></span></div>
+            <div class="cv-contact-item"><span class="cv-contact-label">GITHUB</span><span class="cv-contact-val"><a href="https://github.com/YonathanHH" target="_blank" rel="noopener noreferrer">YonathanHH</a></span></div>
+            <div class="cv-contact-item"><span class="cv-contact-label">LINKEDIN</span><span class="cv-contact-val"><a href="https://www.linkedin.com/in/yonathan-hary-hutagalung/" target="_blank" rel="noopener noreferrer">yonathan-hary-hutagalung</a></span></div>
+            <div class="cv-contact-item"><span class="cv-contact-label">MEDIUM</span><span class="cv-contact-val"><a href="https://medium.com/@yonathanhary" target="_blank" rel="noopener noreferrer">@yonathanhary</a></span></div>
+          </div>
+        </div>
+
+        <!-- Page nav -->
+        <div class="cv-sidebar-card">
+          <div class="panel-header">
+            <div class="panel-title-row">
+              <div class="panel-dot orange"></div>
+              <span class="panel-label">SECTIONS</span>
+            </div>
+          </div>
+          <ul class="cv-nav-list">
+            <li><a href="#summary"><span class="nav-num">01 /</span> Summary</a></li>
+            <li><a href="#experience"><span class="nav-num">02 /</span> Experience</a></li>
+            <li><a href="#education"><span class="nav-num">03 /</span> Education</a></li>
+            <li><a href="#skills"><span class="nav-num">04 /</span> Skills</a></li>
+            <li><a href="#interests"><span class="nav-num">05 /</span> Interests</a></li>
+            <li><a href="#references"><span class="nav-num">06 /</span> References</a></li>
+          </ul>
+        </div>
+
+        <!-- Languages -->
+        <div class="cv-sidebar-card">
+          <div class="panel-header">
+            <div class="panel-title-row">
+              <div class="panel-dot" style="background:var(--color-yellow)"></div>
+              <span class="panel-label">LANGUAGES</span>
+            </div>
+          </div>
+          <div class="cv-sidebar-body">
+            <div class="skill-row"><span class="skill-name">Indonesian</span><span style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-accent);">Native</span></div>
+            <div class="skill-row"><span class="skill-name">English</span><span style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--color-primary);">Professional</span></div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ═══ MAIN ══════════════════════════════════════ -->
+      <div class="cv-main">
+
+        <!-- 01 SUMMARY -->
+        <section class="cv-section" id="summary">
+          <div class="section-header">
+            <span class="section-tag">01</span>
+            <h2 class="section-title">Profile Summary</h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-body">
+              <p style="font-family:var(--font-sans);font-size:var(--text-base);color:var(--color-text);line-height:1.8;max-width:70ch;">
+                Data-driven analyst with MSc in Sustainable Energy Science and hands-on expertise in energy sector analysis and modelling. Brings combined technical foundation in Python, SQL, Tableau, and machine learning with domain knowledge in renewable energy feasibility studies, reservoir simulation, and energy economics. Proven ability to translate complex technical requirements into actionable business insights across multidisciplinary teams.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 02 EXPERIENCE -->
+        <section class="cv-section" id="experience">
+          <div class="section-header">
+            <span class="section-tag orange">02</span>
+            <h2 class="section-title">Work Experience</h2>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Sustainability Reporting Analyst (Volunteer)</div>
+              <div class="cv-entry-date">Sept 2025 – Present</div>
+            </div>
+            <div class="cv-entry-org">eWasteRJ</div>
+            <ul class="cv-entry-bullets">
+              <li>Quantified e-waste generation and economic recovery potential to guide circular economy policy and industry strategy.</li>
+              <li>Generated report related to sustainable-linked loans framework for green financing.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Teaching Assistant</div>
+              <div class="cv-entry-date">Aug 2023 – Jul 2024</div>
+            </div>
+            <div class="cv-entry-org">Reykjavik University, Iceland</div>
+            <ul class="cv-entry-bullets">
+              <li>Led technical curriculum development for geothermal reservoir modelling course, translating complex engineering concepts into applied learning modules using industry-standard simulation software (Leapfrog).</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Key Projects -->
+        <section class="cv-section">
+          <div class="section-header">
+            <span class="section-tag green">KEY</span>
+            <h2 class="section-title">Key Technical Projects</h2>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Geothermal Asset Transition Tool</div>
+              <div style="display:flex;gap:var(--space-1);">
+                <span class="tag tag-orange">XGBoost</span>
+                <span class="tag tag-dim">Streamlit</span>
+              </div>
+            </div>
+            <ul class="cv-entry-bullets">
+              <li>Built and deployed a classification model (XGBoost + Streamlit) to assess abandoned oil wells for renewable energy conversion, automating asset viability screening. <a href="https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;">[GitHub ↗]</a></li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Energy Demand Forecasting Engine</div>
+              <div style="display:flex;gap:var(--space-1);">
+                <span class="tag tag-blue">Regression</span>
+                <span class="tag tag-dim">Python</span>
+              </div>
+            </div>
+            <ul class="cv-entry-bullets">
+              <li>Developed a predictive model for household consumption using behavioral data; optimized feature engineering to identify key usage drivers for efficiency planning. <a href="https://github.com/YonathanHH/Household_Energy_Consumption_end_to_end_Portfolio" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;">[GitHub ↗]</a></li>
+            </ul>
+          </div>
+
+          <div class="cv-entry">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Bank Marketing Campaign — Term Deposits Prediction</div>
+              <div style="display:flex;gap:var(--space-1);">
+                <span class="tag tag-orange">Classification</span>
+                <span class="tag tag-dim">Tableau</span>
+              </div>
+            </div>
+            <ul class="cv-entry-bullets">
+              <li>End-to-end EDA, BI dashboard, classification model and deployable Streamlit app for Portuguese Bank Marketing campaign (2008 Financial Crisis dataset). <a href="https://github.com/jcdspurwadhika/JCDSJKTPM-34_Alpha" target="_blank" rel="noopener noreferrer" style="color:var(--color-primary);text-decoration:none;">[GitHub ↗]</a></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 03 EDUCATION -->
+        <section class="cv-section" id="education">
+          <div class="section-header">
+            <span class="section-tag" style="background:var(--color-blue);">03</span>
+            <h2 class="section-title">Education</h2>
+            <div class="section-line"></div>
+          </div>
+
+          <div class="cv-entry cv-entry--edu">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">Data Science Bootcamp</div>
+              <div class="cv-entry-date">Sept 2025 – Mar 2026 (Exp)</div>
+            </div>
+            <div class="cv-entry-org">Purwadhika Digital Technology School</div>
+            <ul class="cv-entry-bullets">
+              <li>Intensive job-ready curriculum: Python (Pandas, NumPy), Machine Learning (Scikit-Learn), SQL, Business Intelligence (Tableau).</li>
+              <li>Projects: Electricity Generation Mix Calculator, Bangkok Airbnb analysis, Oil-Gas → Geothermal ML feasibility, Portugal Hotel Cancellation Prediction.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry cv-entry--edu">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">MSc Sustainable Energy Science <span class="cv-entry-grade">GPA 8.77 / 10</span></div>
+              <div class="cv-entry-date">Jul 2022 – Jun 2024</div>
+            </div>
+            <div class="cv-entry-org">Reykjavik University, Iceland</div>
+            <ul class="cv-entry-bullets">
+              <li>Techno-economic study for a geothermal power plant (NZ) and rural microgrids (Ghana): demand forecasting, cost modelling, and stakeholder assessment.</li>
+              <li>Research Exchange: Selected for EU COST Action summer study (Ljubljana) — presented prototype on geothermal waste heat recovery.</li>
+              <li>Session Facilitator at Iceland Geothermal Conference 2024.</li>
+            </ul>
+          </div>
+
+          <div class="cv-entry cv-entry--edu">
+            <div class="cv-entry-head">
+              <div class="cv-entry-title">BSc Geology</div>
+              <div class="cv-entry-date">Oct 2018 – Feb 2022</div>
+            </div>
+            <div class="cv-entry-org">University of Canterbury, New Zealand</div>
+            <ul class="cv-entry-bullets">
+              <li>Focus: Geostatistics, Basin Analysis, and Structural Geology.</li>
+              <li>Leadership: Secretary, UC International Student Council.</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- 04 SKILLS -->
+        <section class="cv-section" id="skills">
+          <div class="section-header">
+            <span class="section-tag green">04</span>
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="skills-section-grid">
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-row"><div class="panel-dot orange"></div><span class="panel-label">Data Science &amp; Analytics</span></div>
+              </div>
+              <div class="panel-body">
+                <div class="skill-row"><span class="skill-name">Python (Pandas, NumPy, Sklearn)</span><div class="skill-dots"><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Machine Learning (XGBoost)</span><div class="skill-dots"><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Statistical Modelling</span><div class="skill-dots"><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">ETL Pipelines / REST APIs</span><div class="skill-dots"><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Web Scraping</span><div class="skill-dots"><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot filled"></div><div class="skill-dot"></div><div class="skill-dot"></div></div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-row"><div class="panel-dot" style="background:var(--color-blue)"></div><span class="panel-label">Databases &amp; Cloud</span></div>
+              </div>
+              <div class="panel-body">
+                <div class="skill-row"><span class="skill-name">SQL (MySQL, BigQuery)</span><div class="skill-dots"><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Google Cloud (BigQuery, Colab)</span><div class="skill-dots"><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Streamlit (Deployment)</span><div class="skill-dots"><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">GitHub / VS Code</span><div class="skill-dots"><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Tableau / Looker / PowerBI</span><div class="skill-dots"><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot filled blue"></div><div class="skill-dot"></div></div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-row"><div class="panel-dot green"></div><span class="panel-label">Domain / GeoScience</span></div>
+              </div>
+              <div class="panel-body">
+                <div class="skill-row"><span class="skill-name">Geothermal Reservoir Modeling</span><div class="skill-dots"><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div></div></div>
+                <div class="skill-row"><span class="skill-name">AUTOUGH2 / Leapfrog Geo</span><div class="skill-dots"><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">GIS (QGIS, ArcGIS)</span><div class="skill-dots"><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Energy Economics / Feasibility</span><div class="skill-dots"><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">PHREEQC / WATCH</span><div class="skill-dots"><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot filled green"></div><div class="skill-dot"></div><div class="skill-dot"></div></div></div>
+              </div>
+            </div>
+
+            <div class="panel">
+              <div class="panel-header">
+                <div class="panel-title-row"><div class="panel-dot" style="background:var(--color-yellow)"></div><span class="panel-label">Soft Skills</span></div>
+              </div>
+              <div class="panel-body">
+                <div class="skill-row"><span class="skill-name">Stakeholder Communication</span><div class="skill-dots"><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Cross-functional Team Leadership</span><div class="skill-dots"><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Technical Documentation</span><div class="skill-dots"><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Business Analysis</span><div class="skill-dots"><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot"></div></div></div>
+                <div class="skill-row"><span class="skill-name">Research Design</span><div class="skill-dots"><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot filled" style="background:var(--color-yellow)"></div><div class="skill-dot"></div></div></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- 05 INTERESTS -->
+        <section class="cv-section" id="interests">
+          <div class="section-header">
+            <span class="section-tag yellow">05</span>
+            <h2 class="section-title">Areas of Interest</h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="panel">
+            <div class="panel-body" style="display:flex;flex-wrap:wrap;gap:var(--space-2);">
+              <span class="tag tag-green">Renewable Energy &amp; Geothermal Systems</span>
+              <span class="tag tag-green">Sustainability Analytics &amp; ESG</span>
+              <span class="tag tag-orange">Energy Transition &amp; Asset Optimization</span>
+              <span class="tag tag-orange">Machine Learning</span>
+              <span class="tag tag-blue">Data &amp; Business Analytics</span>
+              <span class="tag tag-blue">Circular Economy &amp; E-Waste</span>
+              <span class="tag tag-dim">Data-Driven Policy Development</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 06 REFERENCES -->
+        <section class="cv-section" id="references">
+          <div class="section-header">
+            <span class="section-tag">06</span>
+            <h2 class="section-title">References</h2>
+            <div class="section-line"></div>
+          </div>
+          <div class="ref-grid">
+            <div class="ref-card">
+              <div class="ref-name">Dr Juliet Ann Newson</div>
+              <div class="ref-title">Iceland School of Energy Director<br>Reykjavik University</div>
+              <div class="ref-contact">
+                <a href="mailto:julietn@ru.is">julietn@ru.is</a>
+                <a href="tel:+3545996393">+354 599 6393</a>
+              </div>
+            </div>
+            <div class="ref-card">
+              <div class="ref-name">Ben Kennedy PhD</div>
+              <div class="ref-title">Volcanology Senior Lecturer of Geology<br>University of Canterbury</div>
+              <div class="ref-contact">
+                <a href="mailto:ben.kennedy@canterbury.ac.nz">ben.kennedy@canterbury.ac.nz</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /cv-main -->
+    </div><!-- /cv-layout -->
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div style="color:var(--color-primary);font-weight:600;margin-bottom:var(--space-1);">YONATHAN HARY HUTAGALUNG</div>
+      <div>Data Science &amp; Geothermal Energy · Jakarta, Indonesia</div>
+    </div>
+    <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;align-items:center;">
+      <a href="https://github.com/YonathanHH" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/yonathan-hary-hutagalung/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:yonathanhary1@gmail.com">yonathanhary1@gmail.com</a>
+    </div>
+    <div>
+      <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" style="color:var(--color-text-faint);">
+        Created with Perplexity Computer
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const navToggle = document.getElementById('navToggle');
+const siteNav   = document.getElementById('siteNav');
+navToggle.addEventListener('click', () => {
+  const open = siteNav.classList.toggle('open');
+  navToggle.setAttribute('aria-expanded', open);
+});
+</script>
+</body>
+</html>
