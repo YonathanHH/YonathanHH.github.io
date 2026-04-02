@@ -266,7 +266,7 @@
     </a>
     <div class="header-ticker" aria-hidden="true">
       <span class="ticker-item"><span class="ticker-label">FILE </span><span class="ticker-val">PROJECT_PORTFOLIO.DB</span></span>
-      <span class="ticker-item"><span class="ticker-label">TOTAL </span><span class="ticker-val">12 REPOS</span></span>
+      <span class="ticker-item"><span class="ticker-label">TOTAL </span><span class="ticker-val">14 REPOS</span></span>
       <span class="ticker-item"><span class="ticker-label">CATEGORIES </span><span class="ticker-val">ML · PYTHON APPS · DATA ANALYSIS · RESEARCH</span></span>
     </div>
     <nav class="site-nav" id="siteNav">
@@ -299,9 +299,9 @@
             </div>
           </div>
           <div class="panel-body" style="padding:var(--space-2);">
-            <button class="filter-btn active" data-filter="all">All Projects <span class="filter-count">12</span></button>
-            <button class="filter-btn" data-filter="featured">Featured <span class="filter-count">3</span></button>
-            <button class="filter-btn" data-filter="ml">ML / Classification <span class="filter-count">4</span></button>
+            <button class="filter-btn active" data-filter="all">All Projects <span class="filter-count">14</span></button>
+            <button class="filter-btn" data-filter="featured">Featured <span class="filter-count">5</span></button>
+            <button class="filter-btn" data-filter="ml">ML / Classification <span class="filter-count">6</span></button>
             <button class="filter-btn" data-filter="python">Python Apps <span class="filter-count">2</span></button>
             <button class="filter-btn" data-filter="analysis">Data Analysis <span class="filter-count">2</span></button>
             <button class="filter-btn" data-filter="research">Research <span class="filter-count">2</span></button>
@@ -326,6 +326,8 @@
             <span class="tag tag-dim">Plotly</span>
             <span class="tag tag-dim">AUTOUGH2</span>
             <span class="tag tag-dim">Leapfrog</span>
+            <span class="tag tag-dim">HuggingFace</span>
+            <span class="tag tag-dim">LSTM</span>
           </div>
         </div>
       </aside>
@@ -658,6 +660,13 @@
               </div>
             </div>
           </article>
+         <!-- Category divider: Deep Learning -->
+         <div class="cat-header" style="margin-top:var(--space-4);">
+            <span class="section-tag" style="background:var(--color-purple);">DL</span>
+            <span class="cat-label">Deep Learning Projects</span>
+           <div class="cat-line"></div>
+         </div>
+         
 
           <!-- Category divider: Research -->
           <div class="cat-header" style="margin-top:var(--space-4);">
@@ -666,6 +675,85 @@
             <div class="cat-line"></div>
           </div>
 
+         <!-- PROJ-013 -->
+          <article class="proj-card" id="proj-013" data-cat="featured ml" data-tags="huggingface transformers computer-vision satellite cnn">
+           <div class="proj-card-header">
+             <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+               <span class="tag tag-orange">Computer Vision</span>
+               <span class="tag tag-green">Deep Learning</span>
+               <span class="tag tag-dim">Satellite Imagery</span>
+             </div>
+             <span class="proj-id">PROJ-013</span>
+           </div>
+           <div class="proj-card-body">
+             <div class="proj-main">
+               <h3 class="proj-title">EuroSAT Land Classification</h3>
+               <div class="proj-type">Image Classification · Remote Sensing</div>
+               <p class="proj-desc">Multi-class land use classification using EuroSAT satellite imagery dataset powered by HuggingFace Transformers. 10-class land cover identification from Sentinel-2 RGB satellite data using pre-trained Vision Transformer models.</p>
+               <div class="proj-stack">
+                 <span class="tag tag-dim">HuggingFace</span>
+                 <span class="tag tag-dim">Transformers</span>
+                 <span class="tag tag-dim">Python</span>
+                 <span class="tag tag-dim">Sentinel-2</span>
+                 <span class="tag tag-dim">EuroSAT</span>
+               </div>
+               <div class="proj-highlights" style="margin-top:var(--space-3);">
+                 <ul>
+                   <li>10-class land cover classification</li>
+                   <li>HuggingFace Vision Transformer (ViT)</li>
+                   <li>Sentinel-2 satellite RGB imagery</li>
+                   <li>Transfer learning fine-tuning pipeline</li>
+                 </ul>
+               </div>
+             </div>
+             <div class="proj-actions">
+               <a href="https://github.com/YonathanHH/EuroSatRGB-LandClassification" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                 GitHub
+               </a>
+             </div>
+            </div>
+          </article>
+
+<!-- PROJ-014 -->
+          <article class="proj-card" id="proj-014" data-cat="featured ml" data-tags="lstm time-series python finance idx stocks">
+           <div class="proj-card-header">
+             <div style="display:flex;gap:var(--space-2);flex-wrap:wrap;">
+               <span class="tag tag-blue">Time Series</span>
+               <span class="tag tag-green">Deep Learning</span>
+               <span class="tag tag-dim">Finance</span>
+             </div>
+             <span class="proj-id">PROJ-014</span>
+            </div>
+            <div class="proj-card-body">
+             <div class="proj-main">
+               <h3 class="proj-title">LSTM IDX Stocks Forecaster</h3>
+               <div class="proj-type">Time Series Forecasting · Financial Analytics</div>
+               <p class="proj-desc">Long Short-Term Memory (LSTM) deep learning model for forecasting IDX (Indonesian Stock Exchange) stock prices. Sequence modeling for multi-step ahead prediction of Indonesian equities with sliding window preprocessing.</p>
+               <div class="proj-stack">
+                 <span class="tag tag-dim">LSTM</span>
+                 <span class="tag tag-dim">Python</span>
+                 <span class="tag tag-dim">TensorFlow</span>
+                 <span class="tag tag-dim">Pandas</span>
+                 <span class="tag tag-dim">IDX Data</span>
+               </div>
+               <div class="proj-highlights blue" style="margin-top:var(--space-3);">
+                 <ul>
+                   <li>Multi-step ahead stock price forecasting</li>
+                   <li>LSTM sequence modeling architecture</li>
+                   <li>Sliding window preprocessing pipeline</li>
+                   <li>Indonesian Stock Exchange (IDX) equities</li>
+                 </ul>
+               </div>
+             </div>
+             <div class="proj-actions">
+               <a href="https://github.com/YonathanHH/IDX_LSTM_Forecaster" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+                 <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub
+               </a>
+             </div>
+           </div>
+          </article>
           <!-- PROJ-010 -->
           <article class="proj-card" id="proj-010" data-cat="research" data-tags="python sustainability ewaste weibull indonesia">
             <div class="proj-card-header">
