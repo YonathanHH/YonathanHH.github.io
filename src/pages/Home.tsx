@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowRight, Mail, MapPin, Briefcase, GraduationCap, Linkedin } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Briefcase, GraduationCap, Linkedin, PenTool } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { skills } from '../data/skills';
@@ -133,15 +133,26 @@ export default function Home() {
             <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
               I'm currently open to new opportunities in data science, machine learning, and energy analytics. Feel free to reach out if you'd like to collaborate or just say hi!
             </p>
-            <a
-              href="https://www.linkedin.com/in/yonathanhary/"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex justify-center items-center px-8 py-4 rounded-lg bg-white text-[var(--color-primary)] font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
-            >
-              <Linkedin className="mr-2" size={24} />
-              Connect on LinkedIn
-            </a>
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+              <a
+                href="https://www.linkedin.com/in/yonathanhary/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex justify-center items-center px-8 py-4 rounded-lg bg-white text-[var(--color-primary)] font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+              >
+                <Linkedin className="mr-2" size={24} />
+                Connect on LinkedIn
+              </a>
+              <a
+                href="https://medium.com/@yonathanhary1"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex justify-center items-center px-8 py-4 rounded-lg border-2 border-white text-white font-bold text-lg hover:bg-white/10 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
+              >
+                <PenTool className="mr-2" size={24} />
+                Read My Blog
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
