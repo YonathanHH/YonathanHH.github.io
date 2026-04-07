@@ -46,7 +46,7 @@ export const projects: Project[] = [
     stack: ["Python", "CLI", "OOP"],
     github: "https://github.com/YonathanHH/Python_Learning_Application",
     description: "Designed and built an interactive Python learning application delivered entirely through the terminal, offering exercises, case studies, and quizzes.",
-    image: "https://images.unsplash.com/photo-1526379095098-d400fd0bfce8?q=80&w=800&auto=format&fit=crop",
+    image: "https://www.logo.wine/a/logo/Python_(programming_language)/Python_(programming_language)-Logo.wine.svg",
   },
   {
     id: "PROJ-005",
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     stack: ["Python", "Plotly", "Pandas"],
     github: "https://github.com/YonathanHH/Electricity_Mix_Generator",
     description: "Build a Python application that ingests, processes, and visualizes electricity generation data across different regions and energy source types.",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop",
+    image: "/elec_mix.png",
   },
   {
     id: "PROJ-006",
