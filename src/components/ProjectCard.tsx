@@ -8,8 +8,18 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-white dark:bg-[#22211e] rounded-xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/50 transition-all duration-300 shadow-sm hover:shadow-md"
+      className="flex flex-col h-full bg-white dark:bg-[#22211e] rounded-xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/50 transition-all duration-300 shadow-sm hover:shadow-md group"
     >
+      <div className="relative h-48 w-full overflow-hidden">
+        <img 
+          src={project.image} 
+          alt={project.title} 
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+      </div>
+      
       <div className="p-6 flex-grow flex flex-col">
         <div className="flex justify-between items-start mb-4">
           <span className="text-xs font-semibold tracking-wider text-[var(--color-primary)] uppercase">

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Github, Linkedin, PenTool } from 'lucide-react';
 import { useState } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -46,11 +46,14 @@ export default function Navbar() {
               </Link>
             ))}
             <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-gray-300 dark:border-gray-700">
-              <a href="https://github.com/YonathanHH" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+              <a href="https://github.com/YonathanHH" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/yonathanhary/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+              <a href="https://www.linkedin.com/in/yonathanhary/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors" aria-label="LinkedIn">
                 <Linkedin size={20} />
+              </a>
+              <a href="https://medium.com/@yonathanhary1" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors" aria-label="Medium Blog">
+                <PenTool size={20} />
               </a>
             </div>
           </div>
@@ -86,6 +89,17 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
+            <div className="flex items-center space-x-6 px-3 py-4 mt-2 border-t border-[var(--color-primary)]/10">
+              <a href="https://github.com/YonathanHH" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+                <Github size={24} />
+              </a>
+              <a href="https://www.linkedin.com/in/yonathanhary/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+                <Linkedin size={24} />
+              </a>
+              <a href="https://medium.com/@yonathanhary1" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+                <PenTool size={24} />
+              </a>
+            </div>
           </div>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, PenTool } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -17,6 +17,10 @@ export default function Footer() {
           <a href="https://www.linkedin.com/in/yonathanhary/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
             <span className="sr-only">LinkedIn</span>
             <Linkedin size={20} />
+          </a>
+          <a href="https://medium.com/@yonathanhary1" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
+            <span className="sr-only">Medium</span>
+            <PenTool size={20} />
           </a>
           <a href="mailto:yonathanhary1@gmail.com" className="text-gray-500 hover:text-[var(--color-primary)] transition-colors">
             <span className="sr-only">Email</span>
