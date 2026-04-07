@@ -16,7 +16,7 @@ export default function Biography() {
               <strong>Yonathan Hary Hutagalung</strong> is a data scientist and geothermal energy researcher with an MSc in Sustainable Energy from Reykjavík University and a BSc in Geology. 
             </p>
             <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-6">
-              He bridges two domains — rigorous geoscience and applied machine learning — delivering end-to-end data science projects from EDA through model deployment. 
+              He bridges two domains: extennsive geothermal exposure and applied machine learning delivering end-to-end data science projects from EDA through model deployment. 
             </p>
             <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-6">
               His work spans energy sector ML tools, deep learning for remote sensing, financial time series forecasting, and sustainability research.
