@@ -9,15 +9,15 @@ export default function Projects() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="mb-16"
+        className="mb-12 sm:mb-16"
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">All Projects</h1>
-        <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">All Projects</h1>
+        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
           A comprehensive portfolio of my work spanning machine learning, deep learning, data analysis, and software engineering.
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {projects.map((project, index) => (
           <ProjectCard key={project.id} project={project} index={index} />
         ))}

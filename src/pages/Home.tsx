@@ -11,18 +11,16 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-40 px-4 sm:px-6 lg:px-8 w-full overflow-hidden">
+      <section className="relative pt-24 pb-32 md:pt-32 md:pb-40 px-4 sm:px-6 lg:px-8 w-full overflow-hidden min-h-[90svh] flex items-center">
         {/* Background Image with Flip */}
         <div 
-          className="absolute inset-0 z-0 scale-x-[-1]"
+          className="absolute inset-0 z-0 scale-x-[-1] bg-cover bg-[position:70%_center] md:bg-center"
           style={{
             backgroundImage: "url('/hero-bg.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
           }}
         />
-        {/* 50% Black Overlay */}
-        <div className="absolute inset-0 z-0 bg-black/50" />
+        {/* Gradient Overlay for better readability on mobile and desktop */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40 md:from-black/80 md:via-black/50 md:to-black/20" />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
@@ -31,23 +29,23 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-white">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-4 sm:mb-6 text-white">
               Bridging <span className="text-teal-300">Geoscience</span> and <span className="text-teal-300">Machine Learning</span>
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-10 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-8 sm:mb-10 leading-relaxed">
               I'm Yonathan Hary Hutagalung, a Data Scientist and Geothermal Energy Researcher delivering end-to-end data science projects from EDA through model deployment.
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/projects"
-                className="inline-flex items-center px-6 py-3 rounded-lg bg-[var(--color-primary)] text-white font-medium hover:bg-[#015257] transition-colors"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-[var(--color-primary)] text-white font-medium hover:bg-[#015257] transition-colors w-full sm:w-auto"
               >
                 View Projects
                 <ArrowRight className="ml-2" size={20} />
               </Link>
               <a
                 href="#contact"
-                className="inline-flex items-center px-6 py-3 rounded-lg border-2 border-white text-white font-medium hover:bg-white/10 transition-colors"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-white text-white font-medium hover:bg-white/10 transition-colors w-full sm:w-auto"
               >
                 Contact Me
               </a>
@@ -139,7 +137,7 @@ export default function Home() {
               href="https://www.linkedin.com/in/yonathanhary/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center px-8 py-4 rounded-lg bg-white text-[var(--color-primary)] font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="inline-flex justify-center items-center px-8 py-4 rounded-lg bg-white text-[var(--color-primary)] font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 w-full sm:w-auto"
             >
               <Linkedin className="mr-2" size={24} />
               Connect on LinkedIn
