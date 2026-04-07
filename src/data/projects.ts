@@ -18,7 +18,7 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification",
     description: "Built and deployed a classification model (XGBoost and Streamlit) to assess abandoned oil wells for renewable energy conversion, automating asset viability screening.",
     featured: true,
-    image: "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?q=80&w=800&auto=format&fit=crop",
+    image: "/image/geothermal.png",
   },
   {
     id: "PROJ-002",
@@ -28,7 +28,7 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Household_Energy_Consumption_end_to_end_Portfolio",
     description: "Built a scikit-learn regression model trained on features including household size, temperature, AC usage, and peak-hour consumption, then deployed it as a live Streamlit web app.",
     featured: true,
-    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=800&auto=format&fit=crop",
+    image: "/image/household.png",
   },
   {
     id: "PROJ-003",
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     stack: ["Python", "XGBoost", "Scikit-Learn", "Streamlit", "Tableau"],
     github: "https://github.com/jcdspurwadhika/JCDSJKTPM-34_Alpha",
     description: "Built a complete, team-based data science solution — including EDA, BI dashboard, classification model, and deployable Streamlit application — to predict term deposit subscription probability.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+    image: "/image/bank.png",
   },
   {
     id: "PROJ-004",
@@ -64,8 +64,7 @@ export const projects: Project[] = [
     stack: ["Python", "Pandas", "Plotly", "Tableau"],
     github: "https://github.com/YonathanHH/DataAnalysis_BangkokAirBNB_Backpackers",
     description: "Analyze Bangkok Airbnb listing data to uncover market segmentation patterns, pricing dynamics, and competitive positioning opportunities.",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=800&auto=format&fit=crop",
-  },
+    image: "/image/bangkok.png"},
   {
     id: "PROJ-007",
     title: "Global Powerplant Insight",
@@ -73,7 +72,7 @@ export const projects: Project[] = [
     stack: ["Python", "Plotly", "Jupyter Notebook", "Tableau"],
     github: "https://github.com/YonathanHH/Global_Powerplant_EDA",
     description: "Perform a comprehensive geospatial and statistical analysis of the global power plant database to visualize the state of renewable energy transitions.",
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80&w=800&auto=format&fit=crop",
+    image: "/image/global_powerplant.png",
   },
   {
     id: "PROJ-008",
@@ -82,7 +81,7 @@ export const projects: Project[] = [
     stack: ["Python", "XGBoost", "Scikit-Learn", "Pandas"],
     github: "https://github.com/YonathanHH/Predicting_Hotel_Cancellations_in_Portugal",
     description: "Build a machine learning classification model to predict whether a hotel booking is likely to be cancelled, using historical booking data.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop",
+    image: "/image/hotel.png",
   },
   {
     id: "PROJ-009",
@@ -100,7 +99,7 @@ export const projects: Project[] = [
     stack: ["Python", "Weibull Distribution", "Scipy"],
     github: "https://github.com/YonathanHH/weibull-ewaste-modeling-indonesia",
     description: "Develop a rigorous statistical model to quantify e-waste generation from Indonesia's data center sector, segmented by operator tier.",
-    image: "https://images.unsplash.com/photo-1550009158-9ebf6c8c7388?q=80&w=800&auto=format&fit=crop",
+    image: "/image/ewaste.png",
   },
   {
     id: "PROJ-011",
@@ -109,7 +108,7 @@ export const projects: Project[] = [
     stack: ["Python", "AUTOUGH2", "Leapfrog Geo"],
     github: "https://github.com/YonathanHH/WaveThesis",
     description: "Investigate the permeability structure and fluid flow behavior of permeable aquifers located at basaltic lava flow contact zones.",
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800&auto=format&fit=crop",
+    image: "/image/wave.png",
   },
   {
     id: "PROJ-012",
@@ -127,7 +126,7 @@ export const projects: Project[] = [
     stack: ["Python", "HuggingFace", "ViT", "Transformers"],
     github: "https://github.com/YonathanHH/EuroSatRGB-LandClassification",
     description: "Build a multi-class land cover classifier using the EuroSAT benchmark dataset derived from Sentinel-2 satellite imagery.",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
+    image: "/image/eurosat.png",
   },
   {
     id: "PROJ-014",
@@ -137,6 +136,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/IDX_LSTM_Forecaster",
     description: "Built and deployed an end-to-end LSTM model using KERAS on IDX/IHSG data, including a full data pipeline, resulting in a live stock forecaster.",
     featured: true,
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=800&auto=format&fit=crop",
+    image: "/image/lstm.png",
   }
 ];
