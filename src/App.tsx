@@ -10,6 +10,8 @@ import Home from './pages/Home';
 import Projects from './pages/Projects';
 import CV from './pages/CV';
 import Biography from './pages/Biography';
+import Articles from './pages/Articles';
+import ArticleDetail from './pages/ArticleDetail';
 
 export default function App() {
   return (
@@ -22,6 +24,8 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/biography" element={<Biography />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:id" element={<ArticleDetail />} />
           </Routes>
         </main>
         <Footer />
