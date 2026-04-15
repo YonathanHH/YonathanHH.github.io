@@ -43,6 +43,13 @@ export default function Home() {
                 View Projects
                 <ArrowRight className="ml-2" size={20} />
               </Link>
+              <Link
+                to="/articles"
+                className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-[var(--color-primary)] text-white font-medium hover:bg-[#015257] transition-colors w-full sm:w-auto"
+              >
+                View Articles!
+                <ArrowRight className="ml-2" size={20} />
+              </Link>
               <a
                 href="https://wa.me/6281281029151"
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg border-2 border-white text-white font-medium hover:bg-white/10 transition-colors w-full sm:w-auto"
