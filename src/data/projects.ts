@@ -55,7 +55,7 @@ export const projects: Project[] = [
     stack: ["Python", "Plotly", "Pandas"],
     github: "https://github.com/YonathanHH/Electricity_Mix_Generator",
     description: "Build a Python application that ingests, processes, and visualizes electricity generation data across different regions and energy source types.",
-    image: "/elec_mix.png",
+    image: "/image/elec_mix.png",
   },
   {
     id: "PROJ-006",
