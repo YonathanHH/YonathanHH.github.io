@@ -71,5 +71,31 @@ Indonesia's green finance architecture is more developed than its utilisation su
 Sustainability-Linked Loans are not a silver bullet for industrial decarbonization. But used strategically, they represent one of the few financing mechanisms currently available that aligns private capital incentives directly with national sustainability commitments. For Indonesia to meet its climate targets, green finance cannot remain the domain of large corporations with dedicated ESG teams. It needs to reach the industrial mainstream  	and SLLs, properly supported by policy clarity and capacity building, are one credible way to get there.
 
     `
+  },
+  {
+    id: "art-003",
+    title: "Investigation of modeling permeable aquifers at the contact zones of basaltic lava flows",
+    summary: "Masters thesis on how the undulating structure of basaltic lava flows in Reykjanes Peninsula reacted to isothermal injection",
+    date: "June 22, 2024",
+    readTime: "5 min read",
+    image: "/image/islands.png",
+    content: `
+# Introduction
+
+My thesis investigates how permeable aquifers that sit at the contact between basaltic lava flows behave when used for fluid injection or production. These contact zones are often the most permeable intervals in wells and are typically not flat but have a hummocky, undulating geometry, which is suspected to influence pressure response and flow paths in geothermal reservoirs. To explore this, I focused on synthetic representations of basalt-hosted aquifers inspired by field conditions in Iceland
+
+# Methodology
+I started by reviewing basaltic outcrops and geothermal context on the Reykjanes Peninsula in southwest Iceland and designed numerical experiments around those geological insights. The workflow used the AUTOUGH2 reservoir simulator together with PyTOUGH and TIM to build a sequence of models: a 1D radial model, a 2D rectangular model, and several 3D models that include both porous-media and MINC (dual-porosity) representations. Each model simulates injection from a central well into a permeable layer bounded by less permeable rock, and the results are checked using pressure transient analysis and comparison against Theis analytical solutions to ensure the models behave realistically.
+
+# Results
+The 2D rectangular model successfully reproduces the pressure behavior of the radial model, which gives confidence that the workflow and assumptions are reasonable before moving to 3D. In 3D, I represented the permeable aquifer as a grid of “mountains and valleys,” systematically varying the amplitude and wavelength of the undulating contact zone between basalt flows. These experiments show that aquifer geometry does affect injection behavior: cases with higher amplitude and shorter wavelength generally lead to lower injection pressures, although this is partly linked to a larger overall volume of permeable rock in those configurations. The models also reveal that geometry controls the direction and distribution of mass flow away from the well, which could matter for how pressure and temperature fronts propagate in real reservoirs.
+
+# Summary
+Overall, this work develops a practical modelling workflow and set of scripts that make it easier to construct, run, and visualize complex AUTOUGH2 models for basalt-hosted aquifers. The initial suite of radial, 2D, and 3D simulations demonstrates that the geometry of permeable layers at lava-flow contacts is not just a geometric detail but can measurably influence injection pressure and flow patterns. While the models are still simplified, they provide a structured starting point for more realistic studies of common permeable zones in basaltic geothermal systems.
+
+# Future potential work
+Future work can build on this by running a dedicated field campaign to map fresh basaltic surfaces using drones and then using those high-resolution surfaces directly in the numerical models, for example through Leapfrog Geothermal and TIM. The numerical models themselves could be refined with a finer and better-balanced grid, particularly in the vertical direction, to reduce boundary effects and better capture subtle geometric features of the aquifer. There is also an opportunity to extend the framework beyond pure water injection, for instance by introducing salt-water and geochemical interactions so it can be applied to problems like carbon capture and storage in basalt-hosted reservoirs
+
+`
   }
 ];
