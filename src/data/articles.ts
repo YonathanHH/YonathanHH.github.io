@@ -15,7 +15,7 @@ export const articles: Article[] = [
     summary: "What my Energy Economics project taught me about microgrids in rural sub-saharan village",
     date: "April 9, 2026",
     readTime: "5 min read",
-    image: "/image/ewaste.png",
+    image: "https://miro.medium.com/v2/resize:fit:4800/format:webp/1*IyoqyYW4tb4cJB_N6ppwLg.png",
     content: `
 One of the projects I still think about from my master’s degree at Reykjavik University came from an Energy Economics course taught by Dr. Michael Moore. Officially, we were a group of four. In practice, though, most of the work was carried by two of us.
 
@@ -42,7 +42,7 @@ One surviving case study in our materials came from Rwamko Village in Rwanda, wh
     summary: "A case study on how to use sustainability-linked loans to drive industrial decarbonization in Indonesia.",
     date: "March 30, 2026",
     readTime: "8 min read",
-    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80&w=800&auto=format&fit=crop",
+    image: "/image/ewaste.png",
     content: `
 # Introduction
 
