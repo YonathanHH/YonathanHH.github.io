@@ -42,7 +42,7 @@ One surviving case study in our materials came from Rwamko Village in Rwanda, wh
     summary: "A case study on how to use sustainability-linked loans to drive industrial decarbonization in Indonesia.",
     date: "March 30, 2026",
     readTime: "8 min read",
-    image: "/image/ewaste.png",
+    image: "/image/ewaste1.png",
     content: `
 # Introduction
 
