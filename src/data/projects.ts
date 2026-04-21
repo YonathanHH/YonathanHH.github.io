@@ -112,12 +112,12 @@ export const projects: Project[] = [
   },
   {
     id: "PROJ-012",
-    title: "ML-Driven Feasibility Assessment",
+    title: "Toyota Kijang Innova Market Transition Analysis (2017–2026)",
     category: "ML · Energy Transition",
-    stack: ["Python", "XGBoost", "Scikit-Learn", "Streamlit"],
-    github: "https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification",
-    description: "Predicts the feasibility of converting abandoned oil and gas wells into geothermal energy production assets using a machine learning classification approach.",
-    image: "https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?q=80&w=800&auto=format&fit=crop",
+    stack: ["Python", "Scikit-Learn", "Streamlit"],
+    github: "https://github.com/YonathanHH/Innova_Market_Transition_Analysis",
+    description: "This project analyzes the market transition of Toyota Kijang Innova in Indonesia using official GAIKINDO wholesale data from 2017 to March 2026",
+    image: "/image/innova.png",
   },
   {
     id: "PROJ-013",
