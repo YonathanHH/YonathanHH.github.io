@@ -85,12 +85,12 @@ export const projects: Project[] = [
   },
   {
     id: "PROJ-009",
-    title: "Diabetes Prediction",
-    category: "ML · Health Analytics",
-    stack: ["Python", "Scikit-Learn", "Statsmodels", "Pandas"],
-    github: "https://github.com/YonathanHH/Diabetes_Prediction_Regression_Problem",
-    description: "Develop a regression-based predictive model to estimate diabetes probability using standard demographic and clinical health metrics.",
-    image: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?q=80&w=800&auto=format&fit=crop",
+    title: "Execution-Aware Ichimoku + EMA Backtest on Indonesian Commodity Stocks",
+    category: "Finantial Analytics · Quantitative Analysis",
+    stack: ["Python", "Yahoo finance", "Pandas"],
+    github: "https://github.com/YonathanHH/indonesia-commodity-trend-backtest",
+    description: "This project tests a long-only daily trend-following strategy on five Indonesian commodity and energy stocks: PTBA.JK, ANTM.JK, BRPT.JK, MDKA.JK, and PGAS.JK. The strategy combines Ichimoku Cloud trend confirmation, EMA 13/26 filtering, and commission-adjusted backtesting to see whether a simple rules-based system can survive realistic execution costs in the Indonesian market.",
+    image: "/image/backtest.png",
   },
   {
     id: "PROJ-010",
@@ -137,5 +137,15 @@ export const projects: Project[] = [
     description: "Built and deployed an end-to-end LSTM model using KERAS on IDX/IHSG data, including a full data pipeline, resulting in a live stock forecaster.",
     featured: true,
     image: "/image/lstm.png",
-  }
+  },
+  {
+    id: "PROJ-015",
+    title: "Kakanui - A GEOL351 Digital Field Case Study",
+    category: "Web Development · Geology",
+    stack: ["Typescript", "ReactJS"],
+    github: "https://github.com/YonathanHH/Kakanui_Geology",
+    description: "Built an interactive website to showcase geological field trip in Kakanui New Zealand.",
+    featured: true,
+    image: "/image/geol.png",
+  }  
 ];
