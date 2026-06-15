@@ -147,5 +147,15 @@ export const projects: Project[] = [
     description: "Built an interactive website to showcase geological field trip in Kakanui New Zealand.",
     featured: true,
     image: "/image/geol.png",
-  }  
+  },  
+  {
+    id: "PROJ-016",
+    title: "ESG & Financial Performance Analysis",
+    category: "Data Analysis · Machine Learning · Sustainability ",
+    stack: ["Python", "Streamlit", "Pandas", "scikit-learn"],
+    github: "https://github.com/YonathanHH/ESG_and_Financial_Relationship",
+    description: "analyzing ESG (Environmental, Social, Governance) metrics against financial performance across 1,000 global companies from 2015–2025, featuring multi-class classification, regression modeling, time series forecasting, and an interactive Streamlit dashboard.",
+    featured: true,
+    image: "/image/esg.png",
+  }
 ];
