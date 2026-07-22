@@ -216,7 +216,7 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/UK_Car_Price_Prediction",
     description: "An end-to-end Machine Learning project that predicts used car prices in the UK using a Medallion-inspired workflow consisting of Bronze, Silver, and Gold tiers.",
     featured: true,
-    image: "/image/uk_car.png",
+    image: "/image/uk_cars.jpg",
   },
   {
     id: "PROJ-023",
