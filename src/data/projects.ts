@@ -207,5 +207,25 @@ export const projects: Project[] = [
     description: "Genre & rating-based anime recommendation system using weighted cosine similarity, deployed on Streamlit. Dataset from Crunchyroll via Kaggle.",
     featured: true,
     image: "/image/anime.png",
+  },
+  {
+    id: "PROJ-022",
+    title: "UK Used Car Price Prediction",
+    category: "Data Analysis · Regression · Tier-based  ",
+    stack: ["Python", "Streamlit", "Pandas", "Fast-API"],
+    github: "https://github.com/YonathanHH/UK_Car_Price_Prediction",
+    description: "An end-to-end Machine Learning project that predicts used car prices in the UK using a Medallion-inspired workflow consisting of Bronze, Silver, and Gold tiers.",
+    featured: true,
+    image: "/image/uk_car.png",
+  },
+  {
+    id: "PROJ-023",
+    title: "Indonesian YouTube Sentiment Analysis",
+    category: "Data Analysis · NLP  ",
+    stack: ["Python", "IndoBERT", "TF-IDF", "HuggingFace Transformer"],
+    github: "https://github.com/YonathanHH/indonesian-youtube-sentiment-analysis",
+    description: "This project explores sentiment analysis on Indonesian YouTube comments using Natural Language Processing.",
+    featured: true,
+    image: "/image/indosent.png",
   }
 ];
