@@ -6,6 +6,7 @@
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import PortfolioChatbot from './components/PortfolioChatbot';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
 import CV from './pages/CV';
@@ -29,6 +30,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <PortfolioChatbot />
       </div>
     </Router>
   );
