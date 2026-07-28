@@ -247,4 +247,5 @@ export const projects: Project[] = [
     description: "An end-to-end AI automation workflow built with n8n, Google Gemini, Google Sheets, and Slack that automatically transforms the latest Rumah123 property articles into Instagram-ready weekly marketing content.",
     featured: true,
     image: "/image/rumah123.png",
-];
+  }
+  ];
