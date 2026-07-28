@@ -227,5 +227,24 @@ export const projects: Project[] = [
     description: "This project explores sentiment analysis on Indonesian YouTube comments using Natural Language Processing.",
     featured: true,
     image: "/image/indosent.png",
-  }
+  },
+  {
+    id: "PROJ-024",
+    title: "Lee Kuan Yew RAG Chatbot",
+    category: "AI · RAG · ChatBot",
+    stack: ["Flowise", "API", "Gemini"],
+    github: "https://github.com/YonathanHH/lee-kuan-yew-rag-chatbot/tree/main",
+    description: "A Retrieval Augmented Generation (RAG) chatbot built with Flowise Cloud and Google Gemini. The chatbot answers questions about Lee Kuan Yew using information retrieved from the book Lee Kuan Yew: The Man and His Ideas.",
+    featured: true,
+    image: "/image/leekwan.png",
+  },
+  {
+    id: "PROJ-025",
+    title: "AI Powered Weekly Content Automation for Rumah123",
+    category: "AI · Slack · N8N Automation",
+    stack: ["n8n", "API", "Gemini"],
+    github: "https://github.com/YonathanHH/rumah123-ai-content-automation",
+    description: "An end-to-end AI automation workflow built with n8n, Google Gemini, Google Sheets, and Slack that automatically transforms the latest Rumah123 property articles into Instagram-ready weekly marketing content.",
+    featured: true,
+    image: "/image/rumah123.png",
 ];
