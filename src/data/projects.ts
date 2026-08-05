@@ -247,5 +247,15 @@ export const projects: Project[] = [
     description: "An end-to-end AI automation workflow built with n8n, Google Gemini, Google Sheets, and Slack that automatically transforms the latest Rumah123 property articles into Instagram-ready weekly marketing content.",
     featured: true,
     image: "/image/rumah123.png",
+  },
+  {
+    id: "PROJ-026",
+    title: "PyTOUGH Assistant",
+    category: "AI · RAG · ChatBot",
+    stack: ["Python", "API", "Gemini"],
+    github: "https://github.com/YonathanHH/pytough-assistant",
+    description: "Local-first RAG chatbot that answers questions about PyTOUGH (the Python library for the TOUGH2 geothermal reservoir simulator) from a curated Markdown knowledge base.",
+    featured: true,
+    image: "/image/pytough.png",
   }
   ];
