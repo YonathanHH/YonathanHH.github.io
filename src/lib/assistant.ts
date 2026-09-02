@@ -45,6 +45,12 @@ const MAX_ANSWER_CHARS = 560;
 const FALLBACK_TEXT =
   'I only know what is on this site — Yonathan’s background, projects, articles, skills, and CV. Try asking about geothermal work, machine learning projects, forecasting, education, or how to get in touch.';
 
+/**
+ * Words carrying no topic. Dropping them is not just tidiness: a word the
+ * corpus has never seen scores the *highest* possible IDF, so leaving
+ * "related" in "any projects related with financial" buries the one word that
+ * mattered and the question misses everything.
+ */
 const STOP_WORDS = new Set([
   'the', 'a', 'an', 'of', 'and', 'to', 'in', 'for', 'is', 'are', 'was', 'were',
   'he', 'his', 'him', 'she', 'her', 'they', 'them', 'what', 'who', 'how', 'why',
@@ -53,6 +59,13 @@ const STOP_WORDS = new Set([
   'can', 'could', 'would', 'show', 'any', 'some', 'there', 'from', 'at', 'by',
   'be', 'been', 'as', 'or', 'if', 'so', 'give', 'know', 'anything', 'more',
   'much', 'many', 'please', 'here', 'like', 'want', 'us', 'we',
+  // Relational filler — the connective tissue of a question, never its subject.
+  'related', 'relating', 'relate', 'regarding', 'concerning', 'involving',
+  'involve', 'involved', 'using', 'use', 'used', 'kind', 'type', 'sort',
+  'similar', 'area', 'areas', 'field', 'topic', 'topics', 'thing', 'things',
+  'stuff', 'other', 'another', 'also', 'get', 'got', 'see', 'look', 'looking',
+  'find', 'need', 'something', 'anyone', 'include', 'including', 'maybe',
+  'good', 'best', 'great', 'nice', 'well', 'made', 'make',
 ]);
 
 /**
@@ -72,8 +85,23 @@ const SYNONYM_GROUPS: string[][] = [
   ['contact', 'email', 'linkedin', 'hire', 'reach', 'connect', 'whatsapp', 'recruiter'],
   ['project', 'portfolio', 'built', 'build', 'app', 'application', 'repo', 'github'],
   ['geology', 'geoscience', 'geological', 'basin', 'structural', 'reservoir'],
-  ['data', 'analytics', 'analysis', 'analyst', 'science', 'scientist', 'dashboard'],
-  ['vision', 'image', 'satellite', 'remote', 'sensing', 'cnn'],
+  ['data', 'analytics', 'analysis', 'analyst', 'science', 'scientist'],
+  ['vision', 'computer', 'image', 'imagery', 'satellite', 'remote', 'sensing', 'cnn'],
+  ['financial', 'finance', 'financing', 'money', 'stock', 'trading', 'trade',
+   'investment', 'market', 'bank', 'banking', 'deposit', 'economics', 'fintech',
+   'price', 'pricing', 'quantitative', 'backtest'],
+  ['nlp', 'sentiment', 'text', 'language', 'linguistic', 'comment', 'opinion'],
+  ['recommendation', 'recommender', 'recommend', 'collaborative', 'filtering',
+   'movielens', 'netflix', 'anime', 'personalization'],
+  ['chatbot', 'chat', 'rag', 'llm', 'assistant', 'retrieval', 'agent', 'bot', 'gemini'],
+  ['dashboard', 'tableau', 'powerbi', 'visualization', 'visualisation', 'report',
+   'reporting', 'looker', 'bi'],
+  ['geospatial', 'gis', 'qgis', 'arcgis', 'mapping', 'spatial', 'geographic'],
+  ['churn', 'customer', 'crm', 'retention', 'segmentation', 'behavior', 'behaviour'],
+  ['classification', 'classify', 'regression', 'clustering', 'supervised'],
+  ['automation', 'automate', 'workflow', 'n8n', 'slack', 'scheduling'],
+  ['esg', 'green', 'circular', 'waste', 'decarbonization', 'emission', 'environmental'],
+  ['deployment', 'deploy', 'streamlit', 'production', 'pipeline'],
 ];
 
 /**
@@ -95,15 +123,29 @@ const PERSON_WORDS = [
   'profile', 'introduce',
 ];
 
+/** Plurals and tenses: "forecasting" and "forecaster" both reach "forecast". */
+const INFLECTIONAL = ['ings', 'ing', 'ers', 'er', 'ed', 'es', 's'];
+
 /**
- * Light suffix stripping so "forecasting" matches "Forecaster". The length
- * guard matters: without it "series" collapses to "ser" and collides with
- * "server" and "service".
+ * Word-family endings: "finance", "financing", and "financial" all reach
+ * "financ". Without this pass they are three unrelated tokens, and asking for
+ * "finance projects" finds only whichever one the page happens to spell that
+ * way — the exact bug this fixes.
  */
-function stem(word: string): string {
+const DERIVATIONAL = [
+  'ization', 'ational', 'ations', 'ation', 'ically', 'ality', 'ially', 'ical',
+  'ance', 'ence', 'ment', 'ness', 'ity', 'ial', 'al', 'e',
+];
+
+/**
+ * The length guard is what keeps this safe: a root shorter than four
+ * characters is rejected and the next suffix tried, so "series" cannot
+ * collapse to "ser" and collide with "server" and "service".
+ */
+function strip(word: string, suffixes: string[]): string {
   if (word.length <= 4) return word;
 
-  for (const suffix of ['ings', 'ing', 'ers', 'er', 'ed', 'es', 's']) {
+  for (const suffix of suffixes) {
     if (word.endsWith(suffix)) {
       const root = word.slice(0, -suffix.length);
       if (root.length >= 4) return root;
@@ -111,6 +153,10 @@ function stem(word: string): string {
   }
 
   return word;
+}
+
+function stem(word: string): string {
+  return strip(strip(word, INFLECTIONAL), DERIVATIONAL);
 }
 
 function tokenize(text: string): string[] {
@@ -240,40 +286,48 @@ function bm25(index: SearchIndex, terms: QueryTerm[], position: number): number 
  * question only if it contains the question's rarer terms. Synonym matches
  * count half, since they are our substitution, not the visitor's word.
  */
-function coverage(index: SearchIndex, terms: QueryTerm[], position: number): number {
+function relevance(
+  index: SearchIndex,
+  terms: QueryTerm[],
+  position: number,
+): { coverage: number; matched: number } {
   const asked = terms.filter((term) => term.weight === 1);
-  if (!asked.length) return 0;
+  if (!asked.length) return { coverage: 0, matched: 0 };
 
   const frequencies = index.frequencies[position];
 
-  let matched = 0;
+  let covered = 0;
   let total = 0;
+  let matched = 0;
 
   for (const { term } of asked) {
     const weight = idf(index, term);
     total += weight;
 
     if (frequencies.has(term)) {
-      matched += weight;
+      covered += weight;
+      matched += 1;
     } else {
       const related = SYNONYMS.get(term);
-      if (related && [...related].some((other) => frequencies.has(other))) matched += weight * 0.5;
+      if (related && [...related].some((other) => frequencies.has(other))) covered += weight * 0.5;
     }
   }
 
-  return total ? matched / total : 0;
+  return { coverage: total ? covered / total : 0, matched };
 }
 
-type Hit = { doc: Doc; score: number; coverage: number };
+/** `matched` counts the visitor's own words the document contains, which is
+ *  the difference between "no strong match" and "nothing at all". */
+type Hit = { doc: Doc; score: number; coverage: number; matched: number };
 
-function search(terms: QueryTerm[], limit = 8): Hit[] {
+function search(terms: QueryTerm[], limit = 12): Hit[] {
   const index = getIndex();
 
   return index.docs
     .map((doc, position) => ({
       doc,
       score: bm25(index, terms, position),
-      coverage: coverage(index, terms, position),
+      ...relevance(index, terms, position),
     }))
     .filter((hit) => hit.score > 0)
     .sort((a, b) => b.score - a.score)
@@ -412,6 +466,26 @@ function projectBullet(project: Project): string {
   return `**${project.title}** — ${truncate(firstSentence(project.description), 150)}`;
 }
 
+/**
+ * The themes the portfolio actually covers, counted from the category field
+ * rather than written down here — so this stays true as projects are added.
+ */
+function projectThemes(limit: number): { label: string; count: number }[] {
+  const counts = new Map<string, number>();
+
+  for (const project of projects) {
+    for (const part of project.category.split('·')) {
+      const label = part.trim();
+      if (label) counts.set(label, (counts.get(label) ?? 0) + 1);
+    }
+  }
+
+  return [...counts]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([label, count]) => ({ label, count }));
+}
+
 /* ---------------------------------------------------------------------- */
 /* Answer composers                                                       */
 /* ---------------------------------------------------------------------- */
@@ -439,33 +513,60 @@ function answerFromArticle(article: Article, doc: Doc, terms: QueryTerm[]): Assi
   };
 }
 
-function listProjects(terms: QueryTerm[], hits: Hit[]): AssistantReply {
-  const matches = relevantHits(hits, 'project')
+function listProjects(terms: QueryTerm[], hits: Hit[], hasTopic: boolean): AssistantReply {
+  const strong = relevantHits(hits, 'project');
+
+  // Failing the confidence floor is not the same as matching nothing: a
+  // document that contains the visitor's word is still worth naming, as long
+  // as the answer says it is a near miss rather than a fit.
+  const partial = hits.filter((hit) => hit.doc.kind === 'project' && hit.matched > 0);
+  const ranked = strong.length ? strong : partial;
+
+  const matches = ranked
     .slice(0, MAX_LIST_ITEMS)
     .map((hit) => projectById(hit.doc.refId))
     .filter((project): project is Project => Boolean(project));
 
   // One clearly-named project deserves its own answer, not a list of one.
-  if (matches.length === 1) return answerFromProject(matches[0], terms);
+  if (strong.length && matches.length === 1) return answerFromProject(matches[0], terms);
 
-  if (!matches.length) {
-    const featured = projects.filter((project) => project.featured).slice(0, 3);
-
+  if (matches.length) {
     return {
       text: [
-        `Yonathan has ${projects.length} projects in the portfolio, spanning machine learning, energy analytics, and business intelligence. Three he features:`,
-        bullets(featured.map(projectBullet)),
-        'Ask about a theme — geothermal, forecasting, computer vision, dashboards — to narrow it down.',
+        strong.length
+          ? `${matches.length} of Yonathan’s ${projects.length} projects fit that best:`
+          : `Nothing matches that exactly, but these come closest:`,
+        bullets(matches.map(projectBullet)),
       ].join('\n\n'),
       route: '/projects',
       routeLabel: 'Browse projects',
     };
   }
 
+  // Asked about a topic that is genuinely not here. Say so, and say what is.
+  if (hasTopic) {
+    return {
+      text: [
+        `I don’t see a project on that. The ${projects.length} projects here cluster around:`,
+        bullets(
+          projectThemes(6).map(
+            ({ label, count }) => `**${label}** — ${count} project${count === 1 ? '' : 's'}`,
+          ),
+        ),
+      ].join('\n\n'),
+      route: '/projects',
+      routeLabel: 'Browse projects',
+    };
+  }
+
+  const featured = projects.filter((project) => project.featured).slice(0, 3);
+  const themes = projectThemes(3).map((theme) => theme.label.toLowerCase());
+
   return {
     text: [
-      `${matches.length} of Yonathan’s ${projects.length} projects fit that best:`,
-      bullets(matches.map(projectBullet)),
+      `Yonathan has ${projects.length} projects in the portfolio, mostly ${themes.join(', ')}. Three he features:`,
+      bullets(featured.map(projectBullet)),
+      'Ask about a theme — geothermal, forecasting, financial analytics, recommenders — to narrow it down.',
     ].join('\n\n'),
     route: '/projects',
     routeLabel: 'Browse projects',
@@ -499,19 +600,24 @@ function listArticles(terms: QueryTerm[], hits: Hit[]): AssistantReply {
 function answerSkills(terms: QueryTerm[]): AssistantReply {
   const asked = new Set(terms.filter((term) => term.weight === 1).map((term) => term.term));
 
-  let best: { group: string; item: string; items: string[]; ratio: number } | null = null;
+  let best: { group: string; item: string; items: string[]; score: number } | null = null;
 
   for (const [group, items] of Object.entries(skills)) {
     for (const item of items) {
       const tokens = tokenize(item);
       if (!tokens.length) continue;
 
-      // A ratio, not a hit count: "Python (pandas, numpy, scikit-learn)"
-      // contains "learn", but someone asking about deep learning means the
-      // entry that is *mostly* those words.
-      const ratio = tokens.filter((token) => asked.has(token)).length / tokens.length;
+      const matched = tokens.filter((token) => asked.has(token));
 
-      if (ratio >= 0.5 && (!best || ratio > best.ratio)) best = { group, item, items, ratio };
+      // Judged from the question's side first — "SQL" is a complete question
+      // about "SQL (MySQL, BigQuery)" even though it is a third of the entry.
+      // The entry's own density only breaks ties, which is what stops
+      // "deep learning" from landing on "Python (…scikit-learn)".
+      const answered = matched.length / asked.size;
+      if (answered < 0.5) continue;
+
+      const score = answered + 0.25 * (matched.length / tokens.length);
+      if (!best || score > best.score) best = { group, item, items, score };
     }
   }
 
@@ -697,7 +803,9 @@ export function askAssistant(query: string): AssistantReply {
   const hits = search(terms);
   // No topic left after the scaffolding — "what projects does he have?" — so
   // there is nothing to rank, and the list answers fall back to highlights.
-  const topicHits = topicTokens.length ? search(topics) : [];
+  // The window is wide here: a list answer must see every project that fits,
+  // and synonyms alone can fill a narrow one with near misses.
+  const topicHits = topicTokens.length ? search(topics, 24) : [];
 
   // The best-scoring document that actually covers the question. Taking
   // hits[0] instead would let a long, term-rich article outrank the one entry
@@ -727,7 +835,7 @@ export function askAssistant(query: string): AssistantReply {
 
   if (CONTACT.test(normalized)) return answerContact();
   if (ARTICLES.test(normalized)) return listArticles(topics, topicHits);
-  if (PROJECTS.test(normalized)) return listProjects(topics, topicHits);
+  if (PROJECTS.test(normalized)) return listProjects(topics, topicHits, topicTokens.length > 0);
   if (SKILLS.test(normalized)) return answerSkills(terms);
   if (EDUCATION.test(normalized)) return answerFromCv('education', terms);
   if (EXPERIENCE.test(normalized)) return answerFromCv('experience', terms);

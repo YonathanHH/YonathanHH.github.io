@@ -30,6 +30,17 @@ const questions = [
   'what projects does he have',
   'Tell me about the PyTOUGH assistant',
   'Where is he from?',
+  // Topic queries: filler words must not sink them, and a topic that is not
+  // in the portfolio must be admitted rather than answered with the featured three.
+  'Is there any projects related with financial?',
+  'Does he have any finance projects?',
+  'computer vision projects',
+  'show me NLP projects',
+  'any chatbot or RAG projects?',
+  'recommendation system projects',
+  'geospatial projects',
+  'projects using Streamlit',
+  'does he have any blockchain projects?',
 ];
 
 for (const question of questions) {
