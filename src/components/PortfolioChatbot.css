@@ -207,3 +207,89 @@
     display: none;
   }
 }
+.portfolio-chatbot__typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding: 0.15rem 0;
+}
+
+.portfolio-chatbot__typing span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.45;
+  animation: portfolio-chatbot-bounce 1.25s infinite ease-in-out;
+}
+
+.portfolio-chatbot__typing span:nth-child(2) {
+  animation-delay: 0.18s;
+}
+
+.portfolio-chatbot__typing span:nth-child(3) {
+  animation-delay: 0.36s;
+}
+
+@keyframes portfolio-chatbot-bounce {
+  0%, 70%, 100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  35% {
+    transform: translateY(-0.28rem);
+    opacity: 0.95;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-chatbot__typing span {
+    animation: none;
+  }
+}
+
+.portfolio-chatbot__markdown > :first-child {
+  margin-top: 0;
+}
+
+.portfolio-chatbot__markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.portfolio-chatbot__markdown p {
+  margin: 0 0 0.6rem;
+}
+
+.portfolio-chatbot__markdown ul,
+.portfolio-chatbot__markdown ol {
+  margin: 0 0 0.6rem;
+  padding-left: 1.15rem;
+  list-style: revert;
+}
+
+.portfolio-chatbot__markdown li {
+  margin-bottom: 0.2rem;
+}
+
+.portfolio-chatbot__markdown strong {
+  font-weight: 700;
+}
+
+.portfolio-chatbot__markdown code {
+  font-size: 0.86em;
+  padding: 0.1rem 0.28rem;
+  border-radius: 0.3rem;
+  background: rgba(1, 105, 111, 0.12);
+}
+
+.portfolio-chatbot__markdown a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-chatbot__markdown a:hover {
+  text-decoration-thickness: 2px;
+}

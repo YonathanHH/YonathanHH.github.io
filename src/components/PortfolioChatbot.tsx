@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { MessageCircle, Send, X, ArrowUpRight, Sparkles, RotateCcw } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { chatbotFaq, type ChatbotFaqItem } from '../data/chatbotFaq';
+import ReactMarkdown from 'react-markdown';
+import { askAssistant, warmAssistant } from '../lib/assistant';
 import './PortfolioChatbot.css';
 
 type Message = {
@@ -25,33 +26,21 @@ const welcomeMessage: Message = {
   text: 'Hi — I can help you explore Yonathan’s background, projects, articles, skills, and CV.',
 };
 
-function normalizeText(text: string) {
-  return text.toLowerCase().replace(/[^\w\s]/g, ' ').replace(/\s+/g, ' ').trim();
+/** Long enough to read as a reply rather than a lookup, short enough not to
+ *  make the visitor wait for a search that already finished. */
+const THINKING_MS = 260;
+
+function makeId(prefix: string) {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
 }
 
-function scoreFaq(query: string, item: ChatbotFaqItem) {
-  const normalizedQuery = normalizeText(query);
-
-  return item.keywords.reduce((score, keyword) => {
-    const normalizedKeyword = normalizeText(keyword);
-
-    if (normalizedQuery === normalizedKeyword) return score + 6;
-    if (normalizedQuery.includes(normalizedKeyword)) return score + 3;
-
-    const keywordWords = normalizedKeyword.split(' ');
-    const matchedWords = keywordWords.filter((word) => normalizedQuery.includes(word)).length;
-
-    return score + matchedWords;
-  }, 0);
-}
-
-function getBestMatch(query: string) {
-  const ranked = chatbotFaq
-    .map((item) => ({ item, score: scoreFaq(query, item) }))
-    .sort((a, b) => b.score - a.score);
-
-  return ranked[0];
-}
+// Answers link out to repositories, LinkedIn, and email; those should not
+// replace the page the visitor is reading.
+const markdownComponents = {
+  a: ({ node: _node, ...props }: { node?: unknown } & React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
+    <a {...props} target="_blank" rel="noreferrer" />
+  ),
+};
 
 export default function PortfolioChatbot() {
   const navigate = useNavigate();
@@ -60,11 +49,13 @@ export default function PortfolioChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
+  const [isThinking, setIsThinking] = useState(false);
 
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
   const inputRef = useRef<HTMLInputElement | null>(null);
   const messagesRef = useRef<HTMLDivElement | null>(null);
   const panelRef = useRef<HTMLElement | null>(null);
+  const replyTimerRef = useRef<number | null>(null);
 
   const suggestionPrompts = useMemo(() => starterPrompts, []);
 
@@ -76,12 +67,24 @@ export default function PortfolioChatbot() {
     }
   }, [isOpen]);
 
+  // The input is disabled while the reply is composed, which drops focus.
+  // Take it back so a visitor can keep typing without reaching for the mouse.
+  useEffect(() => {
+    if (isOpen && !isThinking) inputRef.current?.focus();
+  }, [isOpen, isThinking]);
+
   useEffect(() => {
     messagesRef.current?.scrollTo({
       top: messagesRef.current.scrollHeight,
       behavior: 'smooth',
     });
-  }, [messages]);
+  }, [messages, isThinking]);
+
+  // Build the search index as soon as the panel opens, so the first question
+  // is answered from a warm index rather than paying to build one.
+  useEffect(() => {
+    if (isOpen) warmAssistant();
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -99,43 +102,42 @@ export default function PortfolioChatbot() {
     setIsOpen(false);
   }, [location.pathname]);
 
-  const addBotMessage = (message: Message) => {
+  // Drop a pending reply when the component goes away.
+  useEffect(() => () => {
+    if (replyTimerRef.current) window.clearTimeout(replyTimerRef.current);
+  }, []);
+
+  const appendMessage = useCallback((message: Message) => {
     setMessages((prev) => [...prev, message]);
-  };
+  }, []);
 
-  const respond = (query: string) => {
-    const trimmed = query.trim();
-    if (!trimmed) return;
+  const respond = useCallback(
+    (query: string) => {
+      const trimmed = query.trim();
+      if (!trimmed || isThinking) return;
 
-    const userMessage: Message = {
-      id: `user-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-      role: 'user',
-      text: trimmed,
-    };
+      appendMessage({ id: makeId('user'), role: 'user', text: trimmed });
+      setInput('');
+      setIsOpen(true);
+      setIsThinking(true);
 
-    setMessages((prev) => [...prev, userMessage]);
+      // The answer is already in hand; the pause is only so the reply does not
+      // land in the same frame as the question.
+      const reply = askAssistant(trimmed);
 
-    const bestMatch = getBestMatch(trimmed);
-
-    const botMessage: Message =
-      bestMatch && bestMatch.score >= 2
-        ? {
-            id: `bot-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-            role: 'bot',
-            text: bestMatch.item.answer,
-            route: bestMatch.item.route,
-            routeLabel: bestMatch.item.routeLabel,
-          }
-        : {
-            id: `bot-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-            role: 'bot',
-            text: 'I’m best at helping with Yonathan’s background, projects, articles, skills, and CV. Try asking about geothermal work, machine learning projects, forecasting, or experience.',
-          };
-
-    window.setTimeout(() => addBotMessage(botMessage), 180);
-    setInput('');
-    setIsOpen(true);
-  };
+      replyTimerRef.current = window.setTimeout(() => {
+        setIsThinking(false);
+        appendMessage({
+          id: makeId('bot'),
+          role: 'bot',
+          text: reply.text,
+          route: reply.route,
+          routeLabel: reply.routeLabel,
+        });
+      }, THINKING_MS);
+    },
+    [appendMessage, isThinking],
+  );
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -149,6 +151,8 @@ export default function PortfolioChatbot() {
   };
 
   const resetConversation = () => {
+    if (replyTimerRef.current) window.clearTimeout(replyTimerRef.current);
+    setIsThinking(false);
     setMessages([welcomeMessage]);
     setInput('');
     inputRef.current?.focus();
@@ -202,6 +206,7 @@ export default function PortfolioChatbot() {
             className="portfolio-chatbot__messages"
             aria-live="polite"
             aria-atomic="false"
+            aria-busy={isThinking}
           >
             {messages.map((message) => (
               <div
@@ -212,7 +217,13 @@ export default function PortfolioChatbot() {
                     : 'portfolio-chatbot__message--user'
                 }`}
               >
-                <div>{message.text}</div>
+                {message.role === 'bot' ? (
+                  <div className="portfolio-chatbot__markdown">
+                    <ReactMarkdown components={markdownComponents}>{message.text}</ReactMarkdown>
+                  </div>
+                ) : (
+                  <div>{message.text}</div>
+                )}
 
                 {message.role === 'bot' && message.route && message.routeLabel && (
                   <button
@@ -226,6 +237,16 @@ export default function PortfolioChatbot() {
                 )}
               </div>
             ))}
+
+            {isThinking && (
+              <div className="portfolio-chatbot__message portfolio-chatbot__message--bot">
+                <span className="portfolio-chatbot__typing" role="status" aria-label="Thinking">
+                  <span />
+                  <span />
+                  <span />
+                </span>
+              </div>
+            )}
           </div>
 
           <div className="portfolio-chatbot__suggestions" aria-label="Suggested prompts">
@@ -235,6 +256,7 @@ export default function PortfolioChatbot() {
                 type="button"
                 className="portfolio-chatbot__chip"
                 onClick={() => respond(prompt)}
+                disabled={isThinking}
               >
                 <Sparkles size={14} />
                 <span>{prompt}</span>
@@ -251,12 +273,13 @@ export default function PortfolioChatbot() {
               onChange={(e) => setInput(e.target.value)}
               placeholder="Ask about projects, skills, or experience..."
               aria-label="Ask about Yonathan's portfolio"
+              disabled={isThinking}
             />
             <button
               type="submit"
               className="portfolio-chatbot__send"
               aria-label="Send message"
-              disabled={!input.trim()}
+              disabled={!input.trim() || isThinking}
             >
               <Send size={18} />
             </button>
