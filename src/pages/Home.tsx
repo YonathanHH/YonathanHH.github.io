@@ -74,13 +74,13 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {Object.entries(skills).map(([category, items], idx) => (
                 <div key={category} className="space-y-4">
-                  <h3 className="text-lg font-semibold text-[var(--color-primary)] border-b border-[var(--color-primary)]/20 pb-2">
+                  <h3 className="text-lg font-semibold text-[var(--color-primary-text)] border-b border-[var(--color-primary)]/20 pb-2">
                     {category}
                   </h3>
                   <ul className="space-y-2">
                     {items.map((item) => (
                       <li key={item} className="text-sm text-gray-600 dark:text-gray-400 flex items-start">
-                        <span className="mr-2 text-[var(--color-primary)]">•</span>
+                        <span className="mr-2 text-[var(--color-primary-text)]">•</span>
                         {item}
                       </li>
                     ))}
@@ -103,7 +103,7 @@ export default function Home() {
           </div>
           <Link
             to="/projects"
-            className="hidden md:inline-flex items-center text-[var(--color-primary)] font-medium hover:underline"
+            className="hidden md:inline-flex items-center text-[var(--color-primary-text)] font-medium hover:underline"
           >
             View all projects
             <ArrowRight className="ml-1" size={16} />
@@ -119,7 +119,7 @@ export default function Home() {
         <div className="mt-8 text-center md:hidden">
           <Link
             to="/projects"
-            className="inline-flex items-center text-[var(--color-primary)] font-medium hover:underline"
+            className="inline-flex items-center text-[var(--color-primary-text)] font-medium hover:underline"
           >
             View all projects
             <ArrowRight className="ml-1" size={16} />

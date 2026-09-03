@@ -310,6 +310,7 @@ export const projects: Project[] = [
     category: "ML · Sales Intelligence",
     stack: ["Python", "FastAPI", "React", "TypeScript"],
     github: "https://github.com/YonathanHH/marketplace-intelligence",
+    website: "https://web-487m-6onxdacos-yonathanhhs-projects.vercel.app/deep-dive",
     description: "A sales-intelligence platform for a classifieds marketplace that surfaces sellers already earning organic buyer demand, explains why each is an opportunity, estimates account value, and ranks who the ads team should call next — built end-to-end from synthetic data generation and leakage audit through opportunity model, REST API, and React dashboard.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/marketplace-intelligence",
   },

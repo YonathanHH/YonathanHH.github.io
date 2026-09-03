@@ -23,7 +23,7 @@ export default function CV() {
           return (
             <section key={section.id} className="mb-12 sm:mb-16">
               <div className="flex items-center mb-6 sm:mb-8 pb-2 border-b-2 border-[var(--color-primary)]/20">
-                <Icon className="text-[var(--color-primary)] mr-3" size={28} />
+                <Icon className="text-[var(--color-primary-text)] mr-3" size={28} />
                 <h2 className="text-xl sm:text-2xl font-bold">{section.heading}</h2>
               </div>
 
@@ -35,7 +35,7 @@ export default function CV() {
                   >
                     <div className="absolute w-4 h-4 bg-[var(--color-primary)] rounded-full -left-[9px] top-1"></div>
                     <h3 className="text-lg sm:text-xl font-bold">{entry.title}</h3>
-                    <p className="text-[var(--color-primary)] font-medium mb-2 text-sm sm:text-base">{entry.meta}</p>
+                    <p className="text-[var(--color-primary-text)] font-medium mb-2 text-sm sm:text-base">{entry.meta}</p>
                     <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
                       {entry.points.map((point) => (
                         <li key={point}>{point}</li>

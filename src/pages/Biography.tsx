@@ -30,7 +30,7 @@ export default function Biography() {
             ))}
 
             <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[var(--color-primary)]/20">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[var(--color-primary)]">
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[var(--color-primary-text)]">
                 {biography.profileSummaryHeading}
               </h3>
               <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">

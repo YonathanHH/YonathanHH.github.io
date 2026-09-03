@@ -21,7 +21,7 @@ export default function ArticleDetail() {
       >
         <Link
           to="/articles"
-          className="inline-flex items-center text-[var(--color-primary)] font-medium hover:underline mb-8"
+          className="inline-flex items-center text-[var(--color-primary-text)] font-medium hover:underline mb-8"
         >
           <ArrowLeft className="mr-2" size={20} />
           Back to Articles
@@ -54,7 +54,7 @@ export default function ArticleDetail() {
         </div>
 
         <div className="bg-white dark:bg-[#22211e] rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-[var(--color-primary)]/10">
-          <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-[var(--color-primary)] prose-a:text-[var(--color-primary)]">
+          <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:text-[var(--color-primary-text)] prose-a:text-[var(--color-primary-text)]">
             <Markdown>{article.content}</Markdown>
           </div>
         </div>

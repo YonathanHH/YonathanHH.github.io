@@ -3,13 +3,34 @@
 
 @theme {
   --color-primary: #01696f;
+  --color-primary-hover: #015257;
   --color-bg-light: #f7f6f2;
   --color-bg-dark: #171614;
+  --color-surface-dark: #22211e;
   --color-text-light: #28251d;
   --color-text-dark: #f7f6f2;
+
+  /* Text and icons only. The brand teal is dense enough to read on the light
+     ground (6.1:1) but only reaches 2.7:1 on the dark one, so the dark scheme
+     gets a lighter tint of the same hue. Backgrounds keep --color-primary,
+     which is what white text is contrast-checked against. */
+  --color-primary-text: #01696f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary-text: #58b8bd;
+  }
 }
 
 @layer base {
+  /* Tell the browser the page handles both schemes itself. Without this Chrome
+     applies its own auto-dark transform over the palette, and native controls
+     (the search field, scrollbars) keep rendering light on the dark ground. */
+  :root {
+    color-scheme: light dark;
+  }
+
   body {
     background-color: var(--color-bg-light);
     color: var(--color-text-light);
@@ -20,5 +41,34 @@
       background-color: var(--color-bg-dark);
       color: var(--color-text-dark);
     }
+  }
+
+  /* A single, consistent focus ring for every interactive element. Keyboard
+     users get a visible target; pointer users are not shown an outline. */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  }
+
+  /* Images that fail to load (external OpenGraph cards, remote logos) sit on a
+     tinted placeholder instead of a broken-icon on white. */
+  img {
+    background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

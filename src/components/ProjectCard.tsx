@@ -1,28 +1,44 @@
 import { ExternalLink, Github } from 'lucide-react';
 import { Project } from '../data/projects';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 
 export default function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const reduceMotion = useReducedMotion();
+  // Cap the stagger: with 30+ cards in the grid an uncapped index * delay left
+  // the last card waiting seconds before it appeared.
+  const delay = reduceMotion ? 0 : Math.min(index, 6) * 0.06;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="flex flex-col h-full bg-white dark:bg-[#22211e] rounded-xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/50 transition-all duration-300 shadow-sm hover:shadow-md group"
+    <motion.article
+      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '0px 0px -80px 0px' }}
+      transition={{ duration: 0.4, delay }}
+      className="flex flex-col h-full bg-white dark:bg-[#22211e] rounded-xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/50 transition-colors duration-300 shadow-sm hover:shadow-md group"
     >
       <div className="relative h-48 w-full overflow-hidden">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        <img
+          src={project.image}
+          alt=""
+          width={640}
+          height={384}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+        {project.website && (
+          <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-primary)] px-2.5 py-1 text-xs font-semibold text-white shadow-sm">
+            <span aria-hidden="true" className="size-1.5 rounded-full bg-white" />
+            Live demo
+          </span>
+        )}
       </div>
-      
+
       <div className="p-6 flex-grow flex flex-col">
-        <div className="flex justify-between items-start mb-4">
-          <span className="text-xs font-semibold tracking-wider text-[var(--color-primary)] uppercase">
+        <div className="flex justify-between items-start gap-3 mb-4">
+          <span className="text-xs font-semibold tracking-wider text-[var(--color-primary-text)] uppercase">
             {project.category}
           </span>
           <div className="flex items-center gap-3 shrink-0">
@@ -33,7 +49,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
                 rel="noreferrer"
                 aria-label={`Open the live app for ${project.title}`}
                 title="Live app"
-                className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+                className="text-gray-400 hover:text-[var(--color-primary-text)] transition-colors"
               >
                 <ExternalLink size={20} />
               </a>
@@ -42,34 +58,34 @@ export default function ProjectCard({ project, index }: { project: Project; inde
               href={project.github}
               target="_blank"
               rel="noreferrer"
-              aria-label={`View ${project.title} on GitHub`}
+              aria-label={`View ${project.title} source on GitHub`}
               title="Source code"
-              className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+              className="text-gray-400 hover:text-[var(--color-primary-text)] transition-colors"
             >
               <Github size={20} />
             </a>
           </div>
         </div>
-        
-        <h3 className="text-xl font-bold mb-3 text-[var(--color-text-light)] dark:text-[var(--color-text-dark)]">
+
+        <h3 className="text-xl font-bold mb-3 text-[var(--color-text-light)] dark:text-[var(--color-text-dark)] text-balance">
           {project.title}
         </h3>
-        
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 flex-grow">
+
+        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 flex-grow line-clamp-4">
           {project.description}
         </p>
-        
-        <div className="flex flex-wrap gap-2 mt-auto">
+
+        <ul className="flex flex-wrap gap-2 mt-auto">
           {project.stack.map((tech) => (
-            <span
+            <li
               key={tech}
-              className="px-2.5 py-1 text-xs font-medium bg-[var(--color-primary)]/10 text-[var(--color-primary)] rounded-md"
+              className="px-2.5 py-1 text-xs font-medium bg-[var(--color-primary)]/10 text-[var(--color-primary-text)] rounded-md"
             >
               {tech}
-            </span>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
