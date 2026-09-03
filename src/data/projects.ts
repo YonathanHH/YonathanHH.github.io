@@ -19,7 +19,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Geothermal_OilGas_Well_Rep_Classification",
     website: "https://geothermaloilgaswellrepclassification.streamlit.app/",
     description: "Built and deployed a classification model (XGBoost and Streamlit) to assess abandoned oil wells for renewable energy conversion, automating asset viability screening.",
-    featured: true,
     image: "/image/geothermal.png",
   },
   {
@@ -30,7 +29,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Household_Energy_Consumption_end_to_end_Portfolio",
     website: "https://householdelectricityconsumption.streamlit.app/",
     description: "Built a scikit-learn regression model trained on features including household size, temperature, AC usage, and peak-hour consumption, then deployed it as a live Streamlit web app.",
-    featured: true,
     image: "/image/household.png",
   },
   {
@@ -143,7 +141,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/IDX_LSTM_Forecaster",
     website: "https://idxlstmforecaster-byhary.streamlit.app/",
     description: "Built and deployed an end-to-end LSTM model using KERAS on IDX/IHSG data, including a full data pipeline, resulting in a live stock forecaster.",
-    featured: true,
     image: "/image/lstm.png",
   },
   {
@@ -154,7 +151,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Kakanui_Geology",
     website: "https://kakanui-geology.vercel.app",
     description: "Built an interactive website to showcase geological field trip in Kakanui New Zealand.",
-    featured: true,
     image: "/image/geol.png",
   },  
   {
@@ -165,7 +161,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/ESG_and_Financial_Relationship",
     website: "https://esgfin-relation.streamlit.app/",
     description: "analyzing ESG (Environmental, Social, Governance) metrics against financial performance across 1,000 global companies from 2015–2025, featuring multi-class classification, regression modeling, time series forecasting, and an interactive Streamlit dashboard.",
-    featured: true,
     image: "/image/esg.png",
   },
   {
@@ -187,7 +182,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/collaborative-filtering-movielens",
     website: "https://collabfilterhary.streamlit.app/",
     description: "Collaborative filtering recommender system built on the MovieLens 1M dataset.",
-    featured: true,
     image: "/image/movielens.png",
   },
   {
@@ -197,7 +191,6 @@ export const projects: Project[] = [
     stack: ["Python", "Streamlit", "Pandas", "scikit-learn"],
     github: "https://github.com/YonathanHH/netflix-cbf-recommender",
     description: "a Content-Based Filtering (CBF) Recommendation System built on the Netflix Movies Dataset using TF-IDF Vectorization and Cosine Similarity.",
-    featured: true,
     image: "/image/netflix.png",
   },
   {
@@ -208,7 +201,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/Geothermal-Power-Predictor-App",
     website: "https://geothermalpp.streamlit.app/",
     description: "The project is based on a physics-informed synthetic geothermal dataset and includes both the deployment app and the Jupyter notebook workflow used for data preparation, model training, and evaluation.",
-    featured: true,
     image: "/image/geothermal1.png",
   },
   {
@@ -219,7 +211,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/anime-recommender-port-hary",
     website: "https://anime-recommender-port.streamlit.app/",
     description: "Genre & rating-based anime recommendation system using weighted cosine similarity, deployed on Streamlit. Dataset from Crunchyroll via Kaggle.",
-    featured: true,
     image: "/image/anime.png",
   },
   {
@@ -229,7 +220,6 @@ export const projects: Project[] = [
     stack: ["Python", "Streamlit", "Pandas", "Fast-API"],
     github: "https://github.com/YonathanHH/UK_Car_Price_Prediction",
     description: "An end-to-end Machine Learning project that predicts used car prices in the UK using a Medallion-inspired workflow consisting of Bronze, Silver, and Gold tiers.",
-    featured: true,
     image: "/image/uk_cars.jpg",
   },
   {
@@ -239,7 +229,6 @@ export const projects: Project[] = [
     stack: ["Python", "IndoBERT", "TF-IDF", "HuggingFace Transformer"],
     github: "https://github.com/YonathanHH/indonesian-youtube-sentiment-analysis",
     description: "This project explores sentiment analysis on Indonesian YouTube comments using Natural Language Processing.",
-    featured: true,
     image: "/image/indosent.png",
   },
   {
@@ -249,7 +238,6 @@ export const projects: Project[] = [
     stack: ["Flowise", "API", "Gemini"],
     github: "https://github.com/YonathanHH/lee-kuan-yew-rag-chatbot/tree/main",
     description: "A Retrieval Augmented Generation (RAG) chatbot built with Flowise Cloud and Google Gemini. The chatbot answers questions about Lee Kuan Yew using information retrieved from the book Lee Kuan Yew: The Man and His Ideas.",
-    featured: true,
     image: "/image/leekwan.png",
   },
   {
@@ -259,7 +247,6 @@ export const projects: Project[] = [
     stack: ["n8n", "API", "Gemini"],
     github: "https://github.com/YonathanHH/rumah123-ai-content-automation",
     description: "An end-to-end AI automation workflow built with n8n, Google Gemini, Google Sheets, and Slack that automatically transforms the latest Rumah123 property articles into Instagram-ready weekly marketing content.",
-    featured: true,
     image: "/image/rumah123.png",
   },
   {
@@ -269,7 +256,6 @@ export const projects: Project[] = [
     stack: ["Python", "API", "Gemini"],
     github: "https://github.com/YonathanHH/pytough-assistant",
     description: "Local-first RAG chatbot that answers questions about PyTOUGH (the Python library for the TOUGH2 geothermal reservoir simulator) from a curated Markdown knowledge base.",
-    featured: true,
     image: "/image/pytough.png",
   },
   {
@@ -291,7 +277,6 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/SFO-business-dashboard",
     website: "https://sfo-business-dashboard.vercel.app",
     description: "An interactive business intelligence dashboard for San Francisco International Airport landing operations (2005–2018), covering traffic trends, the Boeing/Airbus duopoly, carrier fleets, route geography, and executive insights — all computed client-side.",
-    featured: true,
     image: "https://opengraph.githubassets.com/1/YonathanHH/SFO-business-dashboard",
   },
   {
@@ -312,6 +297,7 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/marketplace-intelligence",
     website: "https://web-487m-6onxdacos-yonathanhhs-projects.vercel.app/deep-dive",
     description: "A sales-intelligence platform for a classifieds marketplace that surfaces sellers already earning organic buyer demand, explains why each is an opportunity, estimates account value, and ranks who the ads team should call next — built end-to-end from synthetic data generation and leakage audit through opportunity model, REST API, and React dashboard.",
+    featured: true,
     image: "https://opengraph.githubassets.com/1/YonathanHH/marketplace-intelligence",
   },
   {

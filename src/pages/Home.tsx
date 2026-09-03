@@ -98,7 +98,7 @@ export default function Home() {
           <div>
             <h2 className="text-3xl font-bold mb-4">Featured Projects</h2>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl">
-              A selection of my most impactful work spanning energy sector ML tools, deep learning for remote sensing, and financial time series forecasting.
+              A selection of my most impactful work: an end-to-end churn platform built on a Medallion data pipeline, a physics-informed geothermal reservoir digital twin, and a marketplace sales-intelligence product served through its own API and dashboard.
             </p>
           </div>
           <Link
