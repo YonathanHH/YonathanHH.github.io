@@ -25,14 +25,30 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           <span className="text-xs font-semibold tracking-wider text-[var(--color-primary)] uppercase">
             {project.category}
           </span>
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
-          >
-            <Github size={20} />
-          </a>
+          <div className="flex items-center gap-3 shrink-0">
+            {project.website && (
+              <a
+                href={project.website}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open the live app for ${project.title}`}
+                title="Live app"
+                className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+              >
+                <ExternalLink size={20} />
+              </a>
+            )}
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`View ${project.title} on GitHub`}
+              title="Source code"
+              className="text-gray-400 hover:text-[var(--color-primary)] transition-colors"
+            >
+              <Github size={20} />
+            </a>
+          </div>
         </div>
         
         <h3 className="text-xl font-bold mb-3 text-[var(--color-text-light)] dark:text-[var(--color-text-dark)]">
