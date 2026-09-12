@@ -40,7 +40,7 @@ export default function Home() {
                 to="/projects"
                 className="inline-flex justify-center items-center px-6 py-3 rounded-lg bg-[var(--color-primary)] text-white font-medium hover:bg-[#015257] transition-colors w-full sm:w-auto"
               >
-                View Projects
+                View Projects!
                 <ArrowRight className="ml-2" size={20} />
               </Link>
               <Link
