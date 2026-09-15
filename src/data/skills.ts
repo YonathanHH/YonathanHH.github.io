@@ -1,13 +1,40 @@
 export const skills = {
   "Programming & Data": [
-    "Python (pandas, numpy, matplotlib, scikit-learn)",
-    "Machine Learning (scikit-learn, PyTorch, Keras)",
-    "Deep Learning",
+    "Python (pandas, numpy, matplotlib, seaborn)",
     "SQL (MySQL, PostgreSQL)",
     "Statistical modelling",
     "Time-series modelling",
     "Data analysis & visualization (Tableau, Power BI)",
     "Streamlit",
+    "Web scraping",
+    "ETL pipelines",
+  ],
+
+  "AI & Machine Learning": [
+    "Machine Learning (scikit-learn)",
+    "Deep Learning (PyTorch, Keras)",
+    "Natural Language Processing (NLP)",
+    "Computer Vision",
+    "Transformers",
+    "Large Language Models (LLMs)",
+    "Retrieval-Augmented Generation (RAG)",
+    "Embeddings & Vector Search",
+    "LSTM",
+    "Convolutional Neural Networks (CNNs)",
+  ],
+
+  "Data Engineering & Databases": [
+    "PostgreSQL",
+    "MySQL",
+    "ClickHouse",
+    "DuckDB",
+    "Kafka",
+    "Debezium",
+    "Redis",
+    "Change Data Capture (CDC)",
+    "OLAP / analytical databases",
+    "ETL / ELT pipelines",
+    "Data pipelines & event streaming",
   ],
 
   "Geothermal & Subsurface": [
@@ -32,14 +59,13 @@ export const skills = {
     "Git",
     "GitHub",
     "VS Code",
-    "Web scraping",
-    "ETL pipelines",
   ],
 
   "Energy & Research": [
     "Energy systems analysis",
     "Energy economics",
     "Energy financial modelling",
+    "Sustainability research",
     "Research design",
     "Technical documentation",
   ],
