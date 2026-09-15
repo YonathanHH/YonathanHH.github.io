@@ -326,5 +326,5 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/LiqLab",
     description: "Liquidation-map research and backtesting for crypto perpetuals, built entirely on free public data. No API key, no exchange account, no paid data feed.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/LiqLab",
-  },
+  }
 ];
