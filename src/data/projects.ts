@@ -318,4 +318,13 @@ export const projects: Project[] = [
     description: "Turns raw market research notes into client-facing briefing documents, writing one house-style .docx per dated markdown note — with drag-and-drop, browse, and paste entry so the morning routine is drop, date, transform.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/email-session-maker",
   },
+    {
+    id: "PROJ-033",
+    title: "LiqLab",
+    category: "AI · ML · Quantitative Research",
+    stack: ["TypeScript", "Node.js", "Binance", "WebApp"],
+    github: "https://github.com/YonathanHH/LiqLab",
+    description: "Liquidation-map research and backtesting for crypto perpetuals, built entirely on free public data. No API key, no exchange account, no paid data feed.",
+    image: "https://opengraph.githubassets.com/1/YonathanHH/LiqLab",
+  },
 ];
