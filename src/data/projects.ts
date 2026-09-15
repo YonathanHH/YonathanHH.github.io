@@ -318,7 +318,7 @@ export const projects: Project[] = [
     description: "Turns raw market research notes into client-facing briefing documents, writing one house-style .docx per dated markdown note — with drag-and-drop, browse, and paste entry so the morning routine is drop, date, transform.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/email-session-maker",
   },
-    {
+  {
     id: "PROJ-033",
     title: "LiqLab",
     category: "AI · ML · Quantitative Research",
