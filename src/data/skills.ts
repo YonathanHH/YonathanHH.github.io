@@ -1,36 +1,51 @@
 export const skills = {
-  "Tools & Platform": [
-    "Python (pandas, numpy, scikit-learn)",
-    "SQL (MySQL, BigQuery)",
-    "Machine Learning",
+  "Programming & Data": [
+    "Python (pandas, numpy, matplotlib, scikit-learn)",
+    "Machine Learning (scikit-learn, PyTorch, Keras)",
     "Deep Learning",
-    "Data Visualization (Tableau, PowerBI)",
-    "ETL pipelines",
-    "Web scraping",
+    "SQL (MySQL, PostgreSQL)",
     "Statistical modelling",
-    "Google Cloud (BigQuery, Colab, Looker)",
-    "Jupyter Notebook",
-    "Docker",
-    "VS Code",
+    "Time-series modelling",
+    "Data analysis & visualization (Tableau, Power BI)",
     "Streamlit",
-    "GitHub"
   ],
-  "Domain Expertise": [
+
+  "Geothermal & Subsurface": [
+    "Geothermal reservoir modelling (TOUGH2, PyTOUGH, AUTOUGH2, Volsung)",
+    "Reservoir characterization",
+    "Numerical modelling",
+    "Geothermal systems analysis",
+    "Geological modelling (Leapfrog Geo)",
+    "Geological interpretation",
+  ],
+
+  "GIS & Scientific Tools": [
     "GIS analysis (QGIS, ArcGIS)",
-    "Geothermal reservoir modelling (AUTOUGH2, Volsung)",
-    "Geological modelling (Leapfrog)",
-    "Energy economics feasibility studies",
-    "Energy financial modelling"
+    "Remote sensing",
+    "Jupyter Notebook",
+    "Scientific computing",
   ],
-  "Soft Skills": [
-    "Stakeholder communication",
-    "Cross-functional team leadership",
+
+  "Cloud & Development": [
+    "Google Cloud (BigQuery, Colab, Looker)",
+    "Docker",
+    "Git",
+    "GitHub",
+    "VS Code",
+    "Web scraping",
+    "ETL pipelines",
+  ],
+
+  "Energy & Research": [
+    "Energy systems analysis",
+    "Energy economics",
+    "Energy financial modelling",
+    "Research design",
     "Technical documentation",
-    "Business analysis",
-    "Research design"
   ],
+
   "Languages": [
     "Indonesian (native)",
-    "English (professional proficiency)"
-  ]
+    "English (professional proficiency)",
+  ],
 };
