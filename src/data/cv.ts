@@ -16,11 +16,29 @@ export const cvSections: CvSection[] = [
     heading: 'Working Experience',
     entries: [
       {
-        title: 'Sustainability Reporting Analyst (Volunteer)',
+        title: 'Junior Global Macro Analyst',
+        meta: 'PT Bali Sunset Capital • Jul 2026 to Present',
+        points: [
+          'Write the daily US Session Opening note used by the trading desk, translating overnight macro and market moves into context traders can act on.',
+          'Research central bank policy and macro data releases to inform the desks investment positioning.',
+		  'Publish weekly US equity outlooks combining technical and fundamental analysis for client decision-making.'
+        ],
+      },
+	  {
+        title: 'AI Presales Solutions & Technical Operations Engineer ',
+        meta: 'Lingkar Solution • Aug 2026 to Sep 2026',
+        points: [
+          'Developed a research-backed report on Indonesia’s e-waste lifecycle, mapping value creation opportunities across the data center ecosystem and identifying a potential annual revenue opportunity of USD 4.3M.',
+          'Built a financial benefit framework showing how sustainable lending structures could support eWasteRJ’s growth, including estimated annual interest savings of IDR 3.75 to 5 billion.',
+		  'Defined a practical KPI roadmap for e-waste diversion, linking operational targets to long-term facility performance and environmental impact.'
+        ],
+      },
+	  {
+        title: 'Junior Project Manager (Volunteer)',
         meta: 'eWasteRJ • Oct 2025 to Present',
         points: [
-          'Quantified e-waste generation and economic recovery potential across the supply chain, then produced a sustainability report aligned to green-linked loan standards, directly informing circular economy policy and financing strategy.',
-          'Green financing institutions required evidence-based sustainability data to structure loan frameworks.',
+          'Worked the technical side of AI presales, turning client requirements into concrete data architecture and solution proposals.',
+          'Built and maintained analytics infrastructure on PostgreSQL, Docker, Kafka, Debezium, and ClickHouse for real-time data pipelines.'
         ],
       },
       {
