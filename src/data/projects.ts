@@ -295,7 +295,7 @@ export const projects: Project[] = [
     category: "ML · Sales Intelligence",
     stack: ["Python", "FastAPI", "React", "TypeScript"],
     github: "https://github.com/YonathanHH/marketplace-intelligence",
-    website: "https://web-487m-6onxdacos-yonathanhhs-projects.vercel.app/deep-dive",
+    website: "https://web-487m.vercel.app/",
     description: "A sales-intelligence platform for a classifieds marketplace that surfaces sellers already earning organic buyer demand, explains why each is an opportunity, estimates account value, and ranks who the ads team should call next — built end-to-end from synthetic data generation and leakage audit through opportunity model, REST API, and React dashboard.",
     featured: true,
     image: "https://opengraph.githubassets.com/1/YonathanHH/marketplace-intelligence",
@@ -326,5 +326,14 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/LiqLab",
     description: "Liquidation-map research and backtesting for crypto perpetuals, built entirely on free public data. No API key, no exchange account, no paid data feed.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/LiqLab",
+  },
+  {
+    id: "PROJ-034",
+    title: "BMKG Disaster Intelligence",
+    category: "AI · ML · Geospatial Analysis",
+    stack: ["TypeScript", "Node.js", "WebApp"],
+    github: "https://github.com/YonathanHH/indonesia-disaster-intelligence",
+    description: "Bloomberg-Terminal-style geospatial intelligence console on top of BMKG authoritative data, with deterministic correlation and explainable intelligence scoring layered on (never replacing facts).",
+    image: "https://opengraph.githubassets.com/1/YonathanHH/indonesia-disaster-intelligence",
   }
 ];
