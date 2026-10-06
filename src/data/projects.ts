@@ -335,5 +335,14 @@ export const projects: Project[] = [
     github: "https://github.com/YonathanHH/indonesia-disaster-intelligence",
     description: "Bloomberg-Terminal-style geospatial intelligence console on top of BMKG authoritative data, with deterministic correlation and explainable intelligence scoring layered on (never replacing facts).",
     image: "https://opengraph.githubassets.com/1/YonathanHH/indonesia-disaster-intelligence",
+  },
+  {
+    id: "PROJ-035",
+    title: "MicroGrid Lens",
+    category: "AI · ML · Geospatial Analysis",
+    stack: ["TypeScript", "Node.js", "WebApp"],
+    github: "https://github.com/YonathanHH/microgrid-lens",
+    description: "An open research platform coupling statistical analysis of multidimensional energy poverty to a deployable decision-support dashboard for microgrid planning — whether, where and how decentralised supply should be deployed.",
+    image: "https://opengraph.githubassets.com/1/YonathanHH/microgrid-lens",
   }
 ];
