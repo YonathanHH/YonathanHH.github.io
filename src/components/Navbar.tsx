@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className="rule sticky top-0 w-full border-b bg-[var(--color-bg-light)]/85 backdrop-blur-md dark:bg-[var(--color-bg-dark)]/85"
+      className="sticky top-0 w-full bg-[var(--color-ink-50)] dark:bg-[var(--color-surface-dark)]"
       style={{ zIndex: 'var(--z-sticky)' }}
     >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -75,7 +75,7 @@ export default function Navbar() {
                 decoding="async"
               />
             </picture>
-            <span className="text-[1.0625rem] font-bold tracking-[-0.015em] text-[var(--color-text-light)] dark:text-[var(--color-text-dark)]">
+            <span className="text-[1rem] font-bold tracking-[-0.015em] text-[var(--color-text-light)] dark:text-[var(--color-text-dark)]">
               Yonathan Hary
             </span>
           </Link>
@@ -93,9 +93,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-            <span aria-hidden="true" className="mx-3 h-5 w-px bg-[var(--color-ink-500)]/30" />
-
-            <div className="flex items-center gap-1">
+            <div className="ml-3 flex items-center gap-1">
               {channels.map(({ href, label, Icon }) => (
                 <a
                   key={label}
@@ -132,7 +130,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           id="mobile-menu"
-          className="rule border-t bg-[var(--color-bg-light)] md:hidden dark:bg-[var(--color-bg-dark)]"
+          className="bg-[var(--color-ink-50)] md:hidden dark:bg-[var(--color-surface-dark)]"
         >
           <div className="mx-auto w-full max-w-7xl px-4 pb-6 pt-2 sm:px-6">
             {navLinks.map((link) => (

@@ -354,14 +354,16 @@
     transform: translateY(1px) scale(0.985);
   }
 
+  /* Flat. A button that sits in the document does not float, so it carries no
+     shadow and no glow; only the fill changes on hover. Elevation is reserved
+     for things that genuinely overlap the page, which here means the assistant
+     overlay and nothing else. */
   .btn-primary {
     background-color: var(--color-primary);
     color: #ffffff;
-    box-shadow: var(--shadow-lift);
   }
   .btn-primary:hover {
     background-color: var(--color-primary-hover);
-    box-shadow: var(--shadow-hover);
   }
 
   /* On the dark ground a solid brand fill is heavy, so the primary action
@@ -541,21 +543,22 @@
     color: #ffffff;
   }
   @media (prefers-color-scheme: dark) {
+    /* The tone step alone separates this band from the page. The rule that
+       used to sit on its top edge was doing nothing the value change does not
+       do, and a lone hairline was the one mark on the page that read as
+       decoration rather than structure. */
     .band-brand {
       background-color: var(--color-surface-dark);
       color: var(--color-text-dark);
-      border-top: 1px solid color-mix(in srgb, var(--color-primary-text) 35%, transparent);
     }
   }
 
   .btn-on-brand {
     background-color: #ffffff;
     color: var(--color-primary);
-    box-shadow: 0 1px 2px rgb(1 60 63 / 0.18);
   }
   .btn-on-brand:hover {
     background-color: var(--color-ink-50);
-    box-shadow: 0 2px 4px rgb(1 60 63 / 0.2), 0 14px 34px -14px rgb(1 60 63 / 0.5);
   }
   @media (prefers-color-scheme: dark) {
     .btn-on-brand {
@@ -567,16 +570,17 @@
     }
   }
 
-  /* Quiet channel list, used under the single contact action. Mono, no pills,
-     no dots: these are destinations, not competing calls to action. */
+  /* Quiet channel list, used under the single contact action. No pills, no
+     rules, no dots: these are destinations, not competing calls to action.
+     Set in the text face at the body size. They were twelve-pixel monospace,
+     which made four plain links look like machine output. */
   .channel-link {
     /* min-height rather than padding: these sit in a wrapping row, and a real
        2rem box keeps the pointer target honest without the row growing. */
     display: inline-flex;
     align-items: center;
     min-height: 2rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: inherit;
     opacity: 0.9;
     text-decoration-line: underline;

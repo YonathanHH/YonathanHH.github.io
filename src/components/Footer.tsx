@@ -10,9 +10,9 @@ const channels = [
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t bg-[var(--color-bg-light)] py-8 dark:bg-[var(--color-bg-dark)] rule">
+    <footer className="mt-auto bg-[var(--color-ink-50)] py-8 dark:bg-[var(--color-surface-dark)]">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
-        <p className="font-mono text-xs text-[var(--color-ink-500)]">
+        <p className="text-[0.8125rem] text-[var(--color-ink-500)]">
           © {new Date().getFullYear()} Yonathan Hary Hutagalung. All rights reserved.
         </p>
         <div className="flex items-center gap-1">

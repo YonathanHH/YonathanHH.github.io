@@ -13,18 +13,67 @@ type Message = {
   routeLabel?: string;
 };
 
-const starterPrompts = [
-  'Tell me about Yonathan',
-  'Show energy projects',
-  'What machine learning projects are here?',
-  'How can I view the CV?',
-];
-
-const welcomeMessage: Message = {
-  id: 'welcome',
-  role: 'bot',
-  text: 'Hi, I can help you explore Yonathan’s background, projects, articles, skills, and CV.',
+/**
+ * The panel speaks the visitor's browser language. Answers follow the language
+ * of the question itself (see askAssistant), so an Indonesian question asked
+ * from an English browser still comes back in Indonesian.
+ */
+const COPY = {
+  en: {
+    panelLabel: 'Portfolio chatbot',
+    title: 'Ask Yonathan',
+    subtitle: 'Explore projects, background, articles, and CV.',
+    welcome: 'Hi, I can help you explore Yonathan’s background, projects, articles, skills, and CV.',
+    reset: 'Reset conversation',
+    close: 'Close chatbot',
+    thinking: 'Thinking',
+    suggestions: 'Suggested prompts',
+    placeholder: 'Ask about projects, skills, or experience...',
+    inputLabel: "Ask about Yonathan's portfolio",
+    send: 'Send message',
+    toggle: 'Toggle portfolio chatbot',
+    ask: 'Ask',
+    prompts: [
+      'Tell me about Yonathan',
+      'Show energy projects',
+      'What machine learning projects are here?',
+      'How can I view the CV?',
+    ],
+  },
+  id: {
+    panelLabel: 'Chatbot portofolio',
+    title: 'Tanya Yonathan',
+    subtitle: 'Jelajahi proyek, latar belakang, artikel, dan CV.',
+    welcome:
+      'Halo, saya bisa membantu Anda menjelajahi latar belakang, proyek, artikel, keterampilan, dan CV Yonathan.',
+    reset: 'Mulai ulang percakapan',
+    close: 'Tutup chat',
+    thinking: 'Sedang menyusun jawaban',
+    suggestions: 'Contoh pertanyaan',
+    placeholder: 'Tanyakan tentang proyek, keterampilan, atau pengalaman...',
+    inputLabel: 'Tanyakan tentang portofolio Yonathan',
+    send: 'Kirim pesan',
+    toggle: 'Buka atau tutup chatbot portofolio',
+    ask: 'Tanya',
+    prompts: [
+      'Ceritakan tentang Yonathan',
+      'Tampilkan proyek energi',
+      'Proyek machine learning apa saja?',
+      'Bagaimana cara melihat CV?',
+    ],
+  },
 };
+
+type Locale = keyof typeof COPY;
+
+function browserLocale(): Locale {
+  if (typeof navigator === 'undefined') return 'en';
+  return navigator.language.toLowerCase().startsWith('id') ? 'id' : 'en';
+}
+
+function makeWelcome(locale: Locale): Message {
+  return { id: 'welcome', role: 'bot', text: COPY[locale].welcome };
+}
 
 /** Long enough to read as a reply rather than a lookup, short enough not to
  *  make the visitor wait for a search that already finished. */
@@ -46,9 +95,12 @@ export default function PortfolioChatbot() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const locale = useMemo(browserLocale, []);
+  const copy = COPY[locale];
+
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState<Message[]>([welcomeMessage]);
+  const [messages, setMessages] = useState<Message[]>(() => [makeWelcome(locale)]);
   const [isThinking, setIsThinking] = useState(false);
 
   const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -56,8 +108,6 @@ export default function PortfolioChatbot() {
   const messagesRef = useRef<HTMLDivElement | null>(null);
   const panelRef = useRef<HTMLElement | null>(null);
   const replyTimerRef = useRef<number | null>(null);
-
-  const suggestionPrompts = useMemo(() => starterPrompts, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -153,7 +203,7 @@ export default function PortfolioChatbot() {
   const resetConversation = () => {
     if (replyTimerRef.current) window.clearTimeout(replyTimerRef.current);
     setIsThinking(false);
-    setMessages([welcomeMessage]);
+    setMessages([makeWelcome(locale)]);
     setInput('');
     inputRef.current?.focus();
   };
@@ -169,16 +219,15 @@ export default function PortfolioChatbot() {
           aria-modal="false"
           aria-labelledby="portfolio-chatbot-title"
           aria-describedby="portfolio-chatbot-subtitle"
-          aria-label="Portfolio chatbot"
+          aria-label={copy.panelLabel}
         >
           <header className="portfolio-chatbot__header">
             <div>
-              <p className="portfolio-chatbot__eyebrow">Portfolio assistant</p>
               <h2 id="portfolio-chatbot-title" className="portfolio-chatbot__title">
-                Ask Yonathan
+                {copy.title}
               </h2>
               <p id="portfolio-chatbot-subtitle" className="portfolio-chatbot__subtitle">
-                Explore projects, background, articles, and CV.
+                {copy.subtitle}
               </p>
             </div>
 
@@ -186,7 +235,7 @@ export default function PortfolioChatbot() {
               <button
                 type="button"
                 className="portfolio-chatbot__icon-button"
-                aria-label="Reset conversation"
+                aria-label={copy.reset}
                 onClick={resetConversation}
               >
                 <RotateCcw size={17} />
@@ -194,7 +243,7 @@ export default function PortfolioChatbot() {
               <button
                 type="button"
                 className="portfolio-chatbot__icon-button"
-                aria-label="Close chatbot"
+                aria-label={copy.close}
                 onClick={() => setIsOpen(false)}
               >
                 <X size={18} />
@@ -241,7 +290,7 @@ export default function PortfolioChatbot() {
 
             {isThinking && (
               <div className="portfolio-chatbot__message portfolio-chatbot__message--bot">
-                <span className="portfolio-chatbot__typing" role="status" aria-label="Thinking">
+                <span className="portfolio-chatbot__typing" role="status" aria-label={copy.thinking}>
                   <span />
                   <span />
                   <span />
@@ -250,8 +299,8 @@ export default function PortfolioChatbot() {
             )}
           </div>
 
-          <div className="portfolio-chatbot__suggestions" aria-label="Suggested prompts">
-            {suggestionPrompts.map((prompt) => (
+          <div className="portfolio-chatbot__suggestions" aria-label={copy.suggestions}>
+            {copy.prompts.map((prompt) => (
               <button
                 key={prompt}
                 type="button"
@@ -272,14 +321,14 @@ export default function PortfolioChatbot() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about projects, skills, or experience..."
-              aria-label="Ask about Yonathan's portfolio"
+              placeholder={copy.placeholder}
+              aria-label={copy.inputLabel}
               disabled={isThinking}
             />
             <button
               type="submit"
               className="portfolio-chatbot__send"
-              aria-label="Send message"
+              aria-label={copy.send}
               disabled={!input.trim() || isThinking}
             >
               <Send size={18} />
@@ -295,10 +344,10 @@ export default function PortfolioChatbot() {
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-controls="portfolio-chatbot-panel"
-        aria-label="Toggle portfolio chatbot"
+        aria-label={copy.toggle}
       >
         <MessageCircle size={20} />
-        <span className="portfolio-chatbot__toggle-label">Ask</span>
+        <span className="portfolio-chatbot__toggle-label">{copy.ask}</span>
       </button>
     </div>
   );
