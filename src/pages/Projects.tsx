@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { motion } from 'motion/react';
 import { Search, X, Rocket } from 'lucide-react';
 import { projects, Project } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
@@ -8,7 +7,7 @@ import { cn } from '../lib/cn';
 
 const ALL = 'All';
 
-/** Categories read like "ML · Energy" — the first segment is the discipline. */
+/** Categories read like "ML · Energy"; the first segment is the discipline. */
 function disciplineOf(project: Project) {
   return project.category.split('·')[0].trim();
 }
@@ -57,44 +56,37 @@ export default function Projects() {
     });
   }, [query, discipline, liveOnly]);
 
-  const chipClass = (active: boolean) =>
-    cn(
-      'px-3 py-1.5 text-sm font-medium rounded-md transition-colors',
-      active
-        ? 'bg-[var(--color-primary)] text-white'
-        : 'bg-[var(--color-primary)]/10 text-[var(--color-primary-text)] hover:bg-[var(--color-primary)]/20'
-    );
-
   return (
-    <div className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-screen">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-10 sm:mb-12"
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">All Projects</h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
+    <div className="mx-auto w-full max-w-7xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <header className="arrive max-w-[62ch]">
+        <h1 className="text-[2rem] font-bold leading-[1.06] tracking-[-0.03em] sm:text-[2.75rem]">
+          All Projects
+        </h1>
+        <p className="mt-5 text-[1.0625rem] leading-[1.65] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
           A comprehensive portfolio of my work spanning machine learning, deep learning, data
-          analysis, and software engineering. {liveCount} of the {projects.length} projects here are
-          deployed and can be opened in the browser.
+          analysis, and software engineering.{' '}
+          <span className="font-mono text-[0.9375rem] text-[var(--color-primary-text)]">
+            {liveCount} of {projects.length}
+          </span>{' '}
+          projects here are deployed and can be opened in the browser.
         </p>
-      </motion.div>
+      </header>
 
-      <section aria-labelledby="filter-heading" className="mb-8">
+      <section aria-labelledby="filter-heading" className="mt-11 sm:mt-14">
         <h2 id="filter-heading" className="sr-only">
           Filter projects
         </h2>
 
-        <div className="flex flex-col lg:flex-row lg:items-center gap-3 mb-4">
-          <div className="relative flex-grow lg:max-w-md">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="relative w-full sm:max-w-md">
             <label htmlFor="project-search" className="sr-only">
               Search projects by name, description, or technology
             </label>
             <Search
-              size={18}
+              size={17}
+              strokeWidth={1.75}
               aria-hidden="true"
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--color-ink-500)]"
             />
             <input
               id="project-search"
@@ -102,16 +94,16 @@ export default function Projects() {
               value={query}
               onChange={(e) => setParam('q', e.target.value)}
               placeholder="Search by name, stack, or topic"
-              className="w-full rounded-lg border border-[var(--color-primary)]/20 bg-white dark:bg-[#22211e] py-2.5 pl-10 pr-10 text-sm text-[var(--color-text-light)] dark:text-[var(--color-text-dark)] placeholder:text-gray-400 hover:border-[var(--color-primary)]/40 transition-colors"
+              className="w-full rounded-[0.625rem] border border-[var(--color-ink-500)]/30 bg-white py-2.5 pl-10 pr-10 text-sm text-[var(--color-text-light)] transition-colors placeholder:text-[var(--color-ink-500)] hover:border-[var(--color-ink-500)]/55 focus:border-[var(--color-primary)] dark:bg-[var(--color-surface-dark)] dark:text-[var(--color-text-dark)]"
             />
             {query && (
               <button
                 type="button"
                 onClick={() => setParam('q', null)}
                 aria-label="Clear search"
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md text-gray-400 hover:text-[var(--color-primary-text)] transition-colors"
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-[0.625rem] p-2 text-[var(--color-ink-500)] transition-colors hover:text-[var(--color-primary-text)]"
               >
-                <X size={16} />
+                <X size={15} strokeWidth={2} />
               </button>
             )}
           </div>
@@ -121,28 +113,24 @@ export default function Projects() {
             onClick={() => setParam('live', liveOnly ? null : '1')}
             aria-pressed={liveOnly}
             className={cn(
-              'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium border transition-colors',
-              liveOnly
-                ? 'bg-[var(--color-primary)] text-white border-[var(--color-primary)]'
-                : 'border-[var(--color-primary)]/20 text-[var(--color-text-light)] dark:text-[var(--color-text-dark)] hover:border-[var(--color-primary)]/40'
+              'chip h-[2.625rem] shrink-0 px-4',
+              liveOnly ? 'chip-active' : 'chip-idle'
             )}
           >
-            <Rocket size={16} aria-hidden="true" />
+            <Rocket size={14} strokeWidth={2} aria-hidden="true" />
             Live demo only
-            <span className={cn('text-xs', liveOnly ? 'text-white/70' : 'text-gray-500')}>
-              ({liveCount})
-            </span>
+            <span>({liveCount})</span>
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter by discipline">
+        <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Filter by discipline">
           <button
             type="button"
             onClick={() => setParam('area', null)}
             aria-pressed={discipline === ALL}
-            className={chipClass(discipline === ALL)}
+            className={cn('chip', discipline === ALL ? 'chip-active' : 'chip-idle')}
           >
-            All <span className="opacity-70">({projects.length})</span>
+            All <span>({projects.length})</span>
           </button>
           {disciplines.map(([name, count]) => (
             <button
@@ -150,48 +138,52 @@ export default function Projects() {
               type="button"
               onClick={() => setParam('area', discipline === name ? null : name)}
               aria-pressed={discipline === name}
-              className={chipClass(discipline === name)}
+              className={cn('chip', discipline === name ? 'chip-active' : 'chip-idle')}
             >
-              {name} <span className="opacity-70">({count})</span>
+              {name} <span>({count})</span>
             </button>
           ))}
         </div>
       </section>
 
-      <p role="status" aria-live="polite" className="mb-6 text-sm text-gray-600 dark:text-gray-400">
+      <p
+        role="status"
+        aria-live="polite"
+        className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-xs text-[var(--color-ink-500)]"
+      >
         Showing {visible.length} of {projects.length} projects
         {isFiltered && (
-          <>
-            {' · '}
-            <button
-              type="button"
-              onClick={clearFilters}
-              className="font-medium text-[var(--color-primary-text)] hover:underline"
-            >
-              Reset filters
-            </button>
-          </>
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="font-medium text-[var(--color-primary-text)] underline decoration-[var(--color-primary-text)]/35 underline-offset-[0.25em] transition-colors hover:decoration-current"
+          >
+            Reset filters
+          </button>
         )}
       </p>
 
       {visible.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {visible.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+        <div className="mt-10 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
+          {visible.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       ) : (
-        <div className="rounded-xl border border-dashed border-[var(--color-primary)]/30 py-16 px-6 text-center">
-          <Search size={32} aria-hidden="true" className="mx-auto text-[var(--color-primary-text)]/50" />
-          <h3 className="mt-4 text-lg font-semibold">No projects match those filters</h3>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        <div className="r-surface mt-10 border border-dashed border-[var(--color-ink-500)]/40 px-6 py-20 text-center">
+          <Search
+            size={28}
+            strokeWidth={1.5}
+            aria-hidden="true"
+            className="mx-auto text-[var(--color-ink-400)]"
+          />
+          <p className="mt-5 text-lg font-bold tracking-[-0.015em]">
+            No projects match those filters
+          </p>
+          <p className="mx-auto mt-2 max-w-[46ch] text-sm leading-[1.65] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
             Try a broader search term, or clear the filters to see all {projects.length} projects.
           </p>
-          <button
-            type="button"
-            onClick={clearFilters}
-            className="mt-6 inline-flex items-center px-5 py-2.5 rounded-lg bg-[var(--color-primary)] text-white text-sm font-medium hover:bg-[var(--color-primary-hover)] transition-colors"
-          >
+          <button type="button" onClick={clearFilters} className="btn btn-primary mt-7">
             Reset filters
           </button>
         </div>

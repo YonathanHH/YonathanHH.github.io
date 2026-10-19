@@ -1,53 +1,77 @@
-import { motion } from 'motion/react';
-import { Briefcase, GraduationCap } from 'lucide-react';
 import { cvSections } from '../data/cv';
 
-const sectionIcons: Record<string, typeof Briefcase> = {
-  experience: Briefcase,
-  education: GraduationCap,
-};
+/**
+ * `meta` is a single authored string of the shape
+ * "Organisation • Period", and one education entry carries a
+ * third segment for the grade. Split on the last separator so the
+ * period sits on its own line and the rest stays together.
+ */
+function splitMeta(meta: string): { body: string; period: string | null } {
+  const cut = meta.lastIndexOf('•');
+  if (cut === -1) return { body: meta.trim(), period: null };
+  return { body: meta.slice(0, cut).trim(), period: meta.slice(cut + 1).trim() };
+}
 
 export default function CV() {
   return (
-    <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full min-h-screen">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center">Curriculum Vitae</h1>
+    <div className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <header className="arrive max-w-[62ch]">
+        <h1 className="text-[2rem] font-bold leading-[1.06] tracking-[-0.03em] sm:text-[2.75rem]">
+          Curriculum Vitae
+        </h1>
+        <p className="mt-5 text-[1.0625rem] leading-[1.65] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
+          Roles, research, and teaching, most recent first.
+        </p>
+      </header>
 
-        {cvSections.map((section) => {
-          const Icon = sectionIcons[section.id] ?? Briefcase;
+      <div className="mt-14 sm:mt-16">
+        {cvSections.map((section) => (
+          <section key={section.id} className="mt-14 first:mt-0 sm:mt-20">
+            <h2 className="text-[1.375rem] font-bold tracking-[-0.02em] sm:text-[1.625rem]">
+              {section.heading}
+            </h2>
 
-          return (
-            <section key={section.id} className="mb-12 sm:mb-16">
-              <div className="flex items-center mb-6 sm:mb-8 pb-2 border-b-2 border-[var(--color-primary)]/20">
-                <Icon className="text-[var(--color-primary-text)] mr-3" size={28} />
-                <h2 className="text-xl sm:text-2xl font-bold">{section.heading}</h2>
-              </div>
+            <ol className="mt-6">
+              {section.entries.map((entry) => {
+                const { body, period } = splitMeta(entry.meta);
 
-              <div className="space-y-8 sm:space-y-10">
-                {section.entries.map((entry) => (
-                  <div
+                return (
+                  <li
                     key={entry.title}
-                    className="relative pl-6 sm:pl-8 border-l-2 border-[var(--color-primary)]/30"
+                    className="grid gap-x-10 gap-y-3 border-t py-7 rule md:grid-cols-[10rem_minmax(0,1fr)] md:py-8"
                   >
-                    <div className="absolute w-4 h-4 bg-[var(--color-primary)] rounded-full -left-[9px] top-1"></div>
-                    <h3 className="text-lg sm:text-xl font-bold">{entry.title}</h3>
-                    <p className="text-[var(--color-primary-text)] font-medium mb-2 text-sm sm:text-base">{entry.meta}</p>
-                    <ul className="list-disc pl-5 space-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
-                      {entry.points.map((point) => (
-                        <li key={point}>{point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </section>
-          );
-        })}
-      </motion.div>
+                    <p className="font-mono text-xs leading-[1.7] text-[var(--color-ink-500)]">
+                      {period ?? body}
+                    </p>
+
+                    <div>
+                      <h3 className="text-[1.0625rem] font-bold leading-snug tracking-[-0.012em] sm:text-[1.1875rem]">
+                        {entry.title.trim()}
+                      </h3>
+                      {period !== null && (
+                        <p className="mt-1 text-[0.9375rem] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
+                          {body}
+                        </p>
+                      )}
+
+                      <ul className="mt-4 space-y-2.5">
+                        {entry.points.map((point) => (
+                          <li
+                            key={point}
+                            className="relative pl-5 text-[0.9375rem] leading-[1.7] text-[var(--color-ink-600)] before:absolute before:left-0 before:top-[0.7em] before:h-px before:w-2.5 before:bg-[var(--color-primary)] dark:text-[var(--color-ink-300)]"
+                          >
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }

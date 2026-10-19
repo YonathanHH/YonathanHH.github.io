@@ -1,64 +1,60 @@
-import { motion, useReducedMotion } from 'motion/react';
 import { Article } from '../data/articles';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
-export default function ArticleCard({ article, index }: { article: Article; index: number }) {
-  const reduceMotion = useReducedMotion();
-  const delay = reduceMotion ? 0 : Math.min(index, 6) * 0.06;
-
+/**
+ * Article index row.
+ *
+ * A full-width row rather than a third card in a grid, on purpose: the
+ * featured-projects grouping on the home page is already an asymmetric grid,
+ * and two card grids on one site is the repetition the reader stops seeing.
+ * The whole row is the link, so the click target is the row and not a word.
+ */
+export default function ArticleCard({ article }: { article: Article }) {
   return (
-    <motion.article
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '0px 0px -80px 0px' }}
-      transition={{ duration: 0.4, delay }}
-      className="flex flex-col h-full bg-white dark:bg-[#22211e] rounded-xl overflow-hidden border border-[var(--color-primary)]/10 hover:border-[var(--color-primary)]/50 transition-all duration-300 shadow-sm hover:shadow-md group"
-    >
-      <div className="relative h-48 w-full overflow-hidden">
-        <img
-          src={article.image}
-          alt=""
-          width={640}
-          height={384}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-      </div>
-      
-      <div className="p-6 flex-grow flex flex-col">
-        <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400 mb-4">
-          <div className="flex items-center">
-            <Calendar size={14} className="mr-1" />
-            {article.date}
-          </div>
-          <div className="flex items-center">
-            <Clock size={14} className="mr-1" />
-            {article.readTime}
-          </div>
+    <article className="reveal group border-t rule">
+      <Link
+        to={`/articles/${article.id}`}
+        className="grid grid-cols-1 items-start gap-5 py-8 md:grid-cols-[minmax(0,1fr)_17rem] md:gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]"
+      >
+        <div className="order-2 md:order-1">
+          <p className="flex items-center gap-3 font-mono text-xs text-[var(--color-ink-500)]">
+            <span>{article.date}</span>
+            <span>{article.readTime}</span>
+          </p>
+
+          <h2 className="mt-3 text-[1.375rem] font-bold leading-[1.25] tracking-[-0.018em] text-balance transition-colors duration-200 group-hover:text-[var(--color-primary-text)] sm:text-[1.625rem]">
+            {article.title}
+          </h2>
+
+          <p className="mt-3 max-w-[62ch] text-[0.9375rem] leading-[1.65] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
+            {article.summary}
+          </p>
+
+          <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-xs font-medium text-[var(--color-primary-text)]">
+            Read article
+            <ArrowRight
+              size={14}
+              strokeWidth={2}
+              aria-hidden="true"
+              className="transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+            />
+          </span>
         </div>
-        
-        <h3 className="text-xl font-bold mb-3 text-[var(--color-text-light)] dark:text-[var(--color-text-dark)] line-clamp-2">
-          {article.title}
-        </h3>
-        
-        <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 flex-grow line-clamp-3">
-          {article.summary}
-        </p>
-        
-        <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
-          <Link
-            to={`/articles/${article.id}`}
-            className="inline-flex items-center text-[var(--color-primary-text)] font-medium hover:underline"
-          >
-            Read Article<span className="sr-only">: {article.title}</span>
-            <ArrowRight className="ml-1" size={16} aria-hidden="true" />
-          </Link>
+
+        <div className="r-frame order-1 aspect-[2/1] w-full overflow-hidden bg-[var(--color-ink-100)] md:order-2 dark:bg-[var(--color-ink-800)]">
+          <img
+            src={article.image}
+            alt=""
+            width={640}
+            height={320}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            referrerPolicy="no-referrer"
+          />
         </div>
-      </div>
-    </motion.article>
+      </Link>
+    </article>
   );
 }

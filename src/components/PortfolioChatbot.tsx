@@ -23,7 +23,7 @@ const starterPrompts = [
 const welcomeMessage: Message = {
   id: 'welcome',
   role: 'bot',
-  text: 'Hi — I can help you explore Yonathan’s background, projects, articles, skills, and CV.',
+  text: 'Hi, I can help you explore Yonathan’s background, projects, articles, skills, and CV.',
 };
 
 /** Long enough to read as a reply rather than a lookup, short enough not to
@@ -163,6 +163,7 @@ export default function PortfolioChatbot() {
       {isOpen && (
         <section
           ref={panelRef}
+          id="portfolio-chatbot-panel"
           className="portfolio-chatbot__panel"
           role="dialog"
           aria-modal="false"

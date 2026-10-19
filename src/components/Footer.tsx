@@ -1,31 +1,33 @@
 import { Github, Linkedin, Mail, PenTool } from 'lucide-react';
 
+/** Channel links, same four, same destinations, same screen-reader labels. */
+const channels = [
+  { href: 'https://github.com/YonathanHH', label: 'GitHub', Icon: Github },
+  { href: 'https://www.linkedin.com/in/yonathanhary/', label: 'LinkedIn', Icon: Linkedin },
+  { href: 'https://medium.com/@yonathanhary1', label: 'Medium', Icon: PenTool },
+  { href: 'mailto:yonathanhary1@gmail.com', label: 'Email', Icon: Mail },
+];
+
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--color-primary)]/20 bg-[var(--color-bg-light)] dark:bg-[var(--color-bg-dark)] py-8 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
-        <div className="mb-4 md:mb-0">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            © {new Date().getFullYear()} Yonathan Hary Hutagalung. All rights reserved.
-          </p>
-        </div>
-        <div className="flex space-x-6">
-          <a href="https://github.com/YonathanHH" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary-text)] transition-colors">
-            <span className="sr-only">GitHub</span>
-            <Github size={20} />
-          </a>
-          <a href="https://www.linkedin.com/in/yonathanhary/" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary-text)] transition-colors">
-            <span className="sr-only">LinkedIn</span>
-            <Linkedin size={20} />
-          </a>
-          <a href="https://medium.com/@yonathanhary1" target="_blank" rel="noreferrer" className="text-gray-500 hover:text-[var(--color-primary-text)] transition-colors">
-            <span className="sr-only">Medium</span>
-            <PenTool size={20} />
-          </a>
-          <a href="mailto:yonathanhary1@gmail.com" className="text-gray-500 hover:text-[var(--color-primary-text)] transition-colors">
-            <span className="sr-only">Email</span>
-            <Mail size={20} />
-          </a>
+    <footer className="mt-auto border-t bg-[var(--color-bg-light)] py-8 dark:bg-[var(--color-bg-dark)] rule">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-start justify-between gap-6 px-4 sm:px-6 md:flex-row md:items-center lg:px-8">
+        <p className="font-mono text-xs text-[var(--color-ink-500)]">
+          © {new Date().getFullYear()} Yonathan Hary Hutagalung. All rights reserved.
+        </p>
+        <div className="flex items-center gap-1">
+          {channels.map(({ href, label, Icon }) => (
+            <a
+              key={label}
+              href={href}
+              {...(label === 'Email' ? {} : { target: '_blank', rel: 'noreferrer' })}
+              title={label}
+              className="rounded-[0.625rem] p-2 text-[var(--color-ink-500)] transition-colors duration-200 hover:text-[var(--color-primary-text)]"
+            >
+              <span className="sr-only">{label}</span>
+              <Icon size={18} strokeWidth={1.75} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>

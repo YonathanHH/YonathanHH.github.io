@@ -33,12 +33,12 @@ export const projects: Project[] = [
   },
   {
     id: "PROJ-003",
-    title: "Bank Marketing Campaign — Term Deposits Prediction",
+    title: "Bank Marketing Campaign: Term Deposits Prediction",
     category: "ML · Business Intelligence",
     stack: ["Python", "XGBoost", "Scikit-Learn", "Streamlit", "Tableau"],
     github: "https://github.com/jcdspurwadhika/JCDSJKTPM-34_Alpha",
     website: "https://bank-marketing-campaign.vercel.app",
-    description: "Built a complete, team-based data science solution — including EDA, BI dashboard, classification model, and deployable Streamlit application — to predict term deposit subscription probability.",
+    description: "Built a complete, team-based data science solution, including EDA, BI dashboard, classification model, and deployable Streamlit application, to predict term deposit subscription probability.",
     image: "/image/bank.png",
   },
   {
@@ -107,7 +107,7 @@ export const projects: Project[] = [
   },
   {
     id: "PROJ-011",
-    title: "WaveThesis — Permeable Aquifers",
+    title: "WaveThesis: Permeable Aquifers",
     category: "Research · MSc Thesis",
     stack: ["Python", "AUTOUGH2", "Leapfrog Geo"],
     github: "https://github.com/YonathanHH/WaveThesis",
@@ -116,7 +116,7 @@ export const projects: Project[] = [
   },
   {
     id: "PROJ-012",
-    title: "Toyota Kijang Innova Market Transition Analysis (2017–2026)",
+    title: "Toyota Kijang Innova Market Transition Analysis (2017-2026)",
     category: "ML · Energy Transition",
     stack: ["Python", "Scikit-Learn", "Streamlit"],
     github: "https://github.com/YonathanHH/Innova_Market_Transition_Analysis",
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     stack: ["Python", "Streamlit", "Pandas", "scikit-learn"],
     github: "https://github.com/YonathanHH/ESG_and_Financial_Relationship",
     website: "https://esgfin-relation.streamlit.app/",
-    description: "analyzing ESG (Environmental, Social, Governance) metrics against financial performance across 1,000 global companies from 2015–2025, featuring multi-class classification, regression modeling, time series forecasting, and an interactive Streamlit dashboard.",
+    description: "analyzing ESG (Environmental, Social, Governance) metrics against financial performance across 1,000 global companies from 2015-2025, featuring multi-class classification, regression modeling, time series forecasting, and an interactive Streamlit dashboard.",
     image: "/image/esg.png",
   },
   {
@@ -265,18 +265,18 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Monte Carlo", "Next.js", "Vercel"],
     github: "https://github.com/YonathanHH/Geothermal-Reservoir-Digital-Twin",
     website: "https://geothermal-reservoir-digital-twin-w.vercel.app",
-    description: "Physics-informed probabilistic modelling of geothermal generation capacity — a USGS volumetric heat-in-place assessment with Monte Carlo uncertainty propagation, delivered as an interactive dashboard.",
+    description: "Physics-informed probabilistic modelling of geothermal generation capacity, a USGS volumetric heat-in-place assessment with Monte Carlo uncertainty propagation, delivered as an interactive dashboard.",
     featured: true,
     image: "https://opengraph.githubassets.com/1/YonathanHH/Geothermal-Reservoir-Digital-Twin",
   },
   {
     id: "PROJ-028",
-    title: "AERO-INTEL — SFO Air Traffic & Fleet Intelligence",
+    title: "AERO-INTEL: SFO Air Traffic & Fleet Intelligence",
     category: "Business Intelligence · Aviation Analytics",
     stack: ["TypeScript", "React", "Vite", "Vercel"],
     github: "https://github.com/YonathanHH/SFO-business-dashboard",
     website: "https://sfo-business-dashboard.vercel.app",
-    description: "An interactive business intelligence dashboard for San Francisco International Airport landing operations (2005–2018), covering traffic trends, the Boeing/Airbus duopoly, carrier fleets, route geography, and executive insights — all computed client-side.",
+    description: "An interactive business intelligence dashboard for San Francisco International Airport landing operations (2005-2018), covering traffic trends, the Boeing/Airbus duopoly, carrier fleets, route geography, and executive insights, all computed client-side.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/SFO-business-dashboard",
   },
   {
@@ -296,7 +296,7 @@ export const projects: Project[] = [
     stack: ["Python", "FastAPI", "React", "TypeScript"],
     github: "https://github.com/YonathanHH/marketplace-intelligence",
     website: "https://web-487m.vercel.app/",
-    description: "A sales-intelligence platform for a classifieds marketplace that surfaces sellers already earning organic buyer demand, explains why each is an opportunity, estimates account value, and ranks who the ads team should call next — built end-to-end from synthetic data generation and leakage audit through opportunity model, REST API, and React dashboard.",
+    description: "A sales-intelligence platform for a classifieds marketplace that surfaces sellers already earning organic buyer demand, explains why each is an opportunity, estimates account value, and ranks who the ads team should call next. Built end-to-end from synthetic data generation and leakage audit through opportunity model, REST API, and React dashboard.",
     featured: true,
     image: "https://opengraph.githubassets.com/1/YonathanHH/marketplace-intelligence",
   },
@@ -306,7 +306,7 @@ export const projects: Project[] = [
     category: "AI · Automation · Financial Analytics",
     stack: ["JavaScript", "Slack API", "OpenRouter", "LLM"],
     github: "https://github.com/YonathanHH/Macro_Economic_Analyzer",
-    description: "A Slack bot that reads financial headlines from a channel and replies in-thread with a global-macro assessment: an importance score, an analyst write-up, likely market direction, and symbols to watch — with single and bulk ranking modes.",
+    description: "A Slack bot that reads financial headlines from a channel and replies in-thread with a global-macro assessment: an importance score, an analyst write-up, likely market direction, and symbols to watch, with single and bulk ranking modes.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/Macro_Economic_Analyzer",
   },
   {
@@ -315,7 +315,7 @@ export const projects: Project[] = [
     category: "AI · Document Automation",
     stack: ["TypeScript", "Node.js", "OpenRouter", "docx"],
     github: "https://github.com/YonathanHH/email-session-maker",
-    description: "Turns raw market research notes into client-facing briefing documents, writing one house-style .docx per dated markdown note — with drag-and-drop, browse, and paste entry so the morning routine is drop, date, transform.",
+    description: "Turns raw market research notes into client-facing briefing documents, writing one house-style .docx per dated markdown note, with drag-and-drop, browse, and paste entry so the morning routine is drop, date, transform.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/email-session-maker",
   },
   {
@@ -342,7 +342,7 @@ export const projects: Project[] = [
     category: "AI · ML · Geospatial Analysis",
     stack: ["TypeScript", "Node.js", "WebApp"],
     github: "https://github.com/YonathanHH/microgrid-lens",
-    description: "An open research platform coupling statistical analysis of multidimensional energy poverty to a deployable decision-support dashboard for microgrid planning — whether, where and how decentralised supply should be deployed.",
+    description: "An open research platform coupling statistical analysis of multidimensional energy poverty to a deployable decision-support dashboard for microgrid planning: whether, where and how decentralised supply should be deployed.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/microgrid-lens",
   }
 ];

@@ -1,25 +1,25 @@
-import { motion } from 'motion/react';
 import { articles } from '../data/articles';
 import ArticleCard from '../components/ArticleCard';
 
 export default function Articles() {
   return (
-    <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full min-h-screen">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mb-12 sm:mb-16"
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Articles & Insights</h1>
-        <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-3xl">
-          Thoughts, tutorials, and insights on data science, machine learning, and sustainable energy.
+    <div className="mx-auto w-full max-w-5xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <header className="arrive max-w-[62ch]">
+        <h1 className="text-[2rem] font-bold leading-[1.06] tracking-[-0.03em] sm:text-[2.75rem]">
+          Articles &amp; Insights
+        </h1>
+        <p className="mt-5 text-[1.0625rem] leading-[1.65] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
+          Thoughts, tutorials, and insights on data science, machine learning, and sustainable
+          energy.
         </p>
-      </motion.div>
+      </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {articles.map((article, index) => (
-          <ArticleCard key={article.id} article={article} index={index} />
+      {/* Rows, not a third card grid. The home page already runs an asymmetric
+          grid for featured work; repeating that shape here is the repetition a
+          reader stops registering. */}
+      <div className="mt-12 sm:mt-16">
+        {articles.map((article) => (
+          <ArticleCard key={article.id} article={article} />
         ))}
       </div>
     </div>

@@ -1,45 +1,48 @@
-import { motion } from 'motion/react';
 import { biography } from '../data/biography';
 
+/**
+ * Prose, not a panel.
+ *
+ * The previous build wrapped this in a white card with a border and a shadow,
+ * which is elevation doing no work: nothing is stacked on top of the text, so
+ * the card only added a second rectangle for the eye to parse. Reading
+ * measure, rhythm, and one hairline before the summary carry it instead.
+ */
 export default function Biography() {
   const [lead, ...rest] = biography.intro;
 
   return (
-    <div className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full min-h-screen">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center">Biography</h1>
+    <div className="mx-auto w-full max-w-3xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
+      <header className="arrive">
+        <h1 className="text-[2rem] font-bold leading-[1.06] tracking-[-0.03em] sm:text-[2.75rem]">
+          Biography
+        </h1>
+      </header>
 
-        <div className="bg-white dark:bg-[#22211e] rounded-2xl p-6 sm:p-8 md:p-12 shadow-sm border border-[var(--color-primary)]/10">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-lg sm:text-xl leading-relaxed text-gray-700 dark:text-gray-300 mb-6">
-              <strong>Yonathan Hary Hutagalung</strong>
-              {lead.replace('Yonathan Hary Hutagalung', '')}
-            </p>
+      <div className="mt-10 sm:mt-12">
+        <p className="text-[1.125rem] leading-[1.7] tracking-[-0.008em] sm:text-[1.25rem]">
+          <strong className="font-bold">Yonathan Hary Hutagalung</strong>
+          {lead.replace('Yonathan Hary Hutagalung', '')}
+        </p>
 
-            {rest.map((paragraph) => (
-              <p
-                key={paragraph}
-                className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400 mb-6"
-              >
-                {paragraph}
-              </p>
-            ))}
+        {rest.map((paragraph) => (
+          <p
+            key={paragraph}
+            className="mt-6 text-[1.0625rem] leading-[1.75] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]"
+          >
+            {paragraph}
+          </p>
+        ))}
 
-            <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-[var(--color-primary)]/20">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[var(--color-primary-text)]">
-                {biography.profileSummaryHeading}
-              </h3>
-              <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                {biography.profileSummary}
-              </p>
-            </div>
-          </div>
-        </div>
-      </motion.div>
+        <section className="mt-14 border-t pt-10 rule sm:mt-16">
+          <h2 className="text-[1.375rem] font-bold tracking-[-0.02em] text-[var(--color-primary-text)] sm:text-[1.5rem]">
+            {biography.profileSummaryHeading}
+          </h2>
+          <p className="mt-4 text-[1.0625rem] leading-[1.75] text-[var(--color-ink-600)] dark:text-[var(--color-ink-300)]">
+            {biography.profileSummary}
+          </p>
+        </section>
+      </div>
     </div>
   );
 }

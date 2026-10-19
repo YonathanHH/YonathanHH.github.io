@@ -3,32 +3,154 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Yonathan Hary Hutagalung — Data Scientist &amp; Geothermal Energy Researcher</title>
+    <title>Yonathan Hary Hutagalung | Data Scientist and Geothermal Energy Researcher</title>
     <meta
       name="description"
-      content="Portfolio of Yonathan Hary Hutagalung — data scientist and geothermal energy researcher. End-to-end machine learning, deep learning and energy analytics projects, most of them deployed and open source."
+      content="Portfolio of Yonathan Hary Hutagalung, data scientist and geothermal energy researcher. End-to-end machine learning, deep learning and energy analytics projects, most of them deployed and open source."
     />
     <meta name="author" content="Yonathan Hary Hutagalung" />
     <meta name="theme-color" content="#01696f" />
     <link rel="canonical" href="https://yonathanhh.github.io/" />
 
-    <!-- Link previews (LinkedIn, Slack, WhatsApp, X) -->
+    <!-- The two faces the first paint needs. Satoshi carries the hero headline,
+         so it goes on the critical path. The mono face does not: it is only
+         used at label sizes, and swapping it in costs no layout shift because
+         the fallback is advance-matched. -->
+    <link
+      rel="preload"
+      href="/fonts/satoshi-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- The hero is the LCP element and is referenced from a <picture>, where
+         the browser cannot discover the right candidate until it has the DOM.
+         Preload the exact candidate sets the <picture> declares, described with
+         imagesrcset/imagesizes so the browser picks the same file it would have
+         picked anyway. A plain href here would fetch a file the phone never
+         uses, which is a wasted high-priority request plus a console warning. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      media="(min-width: 1024px)"
+      imagesrcset="/hero-bg-828.webp 828w, /hero-bg-1280.webp 1280w, /hero-bg-1920.webp 1920w, /hero-bg-2560.webp 2560w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      media="(max-width: 1023px)"
+      imagesrcset="/hero-bg-portrait-640.webp 640w, /hero-bg-portrait-900.webp 900w, /hero-bg-portrait-1200.webp 1200w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
+
+    <!-- Link previews (LinkedIn, Slack, WhatsApp, X). The card is a dedicated
+         1200x630 render: the previous og:image pointed at the 8.3 MB camera
+         original, which exceeds every scraper's fetch budget and would have
+         been dropped rather than cropped. -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Yonathan Hary Hutagalung" />
     <meta
       property="og:title"
-      content="Yonathan Hary Hutagalung — Data Scientist &amp; Geothermal Energy Researcher"
+      content="Yonathan Hary Hutagalung | Data Scientist and Geothermal Energy Researcher"
     />
     <meta
       property="og:description"
-      content="End-to-end machine learning, deep learning and energy analytics projects — most of them deployed and open source."
+      content="End-to-end machine learning, deep learning and energy analytics projects, most of them deployed and open source."
     />
     <meta property="og:url" content="https://yonathanhh.github.io/" />
-    <meta property="og:image" content="https://yonathanhh.github.io/hero-bg.jpg" />
+    <meta property="og:image" content="https://yonathanhh.github.io/og-card.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Yonathan Hary Hutagalung standing on a geothermal field in Iceland."
+    />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Yonathan Hary Hutagalung | Data Scientist and Geothermal Energy Researcher"
+    />
+    <meta
+      name="twitter:description"
+      content="End-to-end machine learning, deep learning and energy analytics projects, most of them deployed and open source."
+    />
+    <meta name="twitter:image" content="https://yonathanhh.github.io/og-card.jpg" />
 
     <link rel="preconnect" href="https://opengraph.githubassets.com" crossorigin />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='%2301696f'><rect width='100' height='100' rx='20' fill='%2301696f'/><text x='50' y='68' font-family='Arial' font-size='52' font-weight='bold' fill='white' text-anchor='middle'>YH</text></svg>">
+
+    <!-- Structured data. The routes live behind a hash, so search engines see
+         one URL; describing the person and the page explicitly is what makes
+         that single URL legible as a professional profile. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://yonathanhh.github.io/#person",
+            "name": "Yonathan Hary Hutagalung",
+            "givenName": "Yonathan",
+            "familyName": "Hutagalung",
+            "jobTitle": "Data Scientist and Geothermal Energy Researcher",
+            "description": "Data scientist and geothermal energy researcher working across machine learning, deep learning, data engineering and energy analytics.",
+            "url": "https://yonathanhh.github.io/",
+            "image": "https://yonathanhh.github.io/og-card.jpg",
+            "email": "mailto:yonathanhary1@gmail.com",
+            "knowsAbout": [
+              "Machine Learning",
+              "Deep Learning",
+              "Data Engineering",
+              "Geothermal Reservoir Modelling",
+              "Energy Analytics",
+              "Retrieval-Augmented Generation"
+            ],
+            "alumniOf": [
+              {
+                "@type": "CollegeOrUniversity",
+                "name": "Reykjavik University"
+              }
+            ],
+            "sameAs": [
+              "https://github.com/YonathanHH",
+              "https://www.linkedin.com/in/yonathanhary/",
+              "https://medium.com/@yonathanhary1"
+            ]
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://yonathanhh.github.io/#page",
+            "url": "https://yonathanhh.github.io/",
+            "name": "Yonathan Hary Hutagalung | Data Scientist and Geothermal Energy Researcher",
+            "about": { "@id": "https://yonathanhh.github.io/#person" },
+            "mainEntity": { "@id": "https://yonathanhh.github.io/#person" }
+          }
+        ]
+      }
+    </script>
+
+    <!-- The site mark, built from public/icon-logo.jpeg.
+
+         The previous icon was an inline SVG drawing the letters "YH" on a teal
+         square, which had the advantage of being hand-authored vector but only
+         ever approximated the real logo. These are cut from the logo itself.
+
+         The mark is thin-stroked and carries ink at both ends of the luminance
+         range, an almost-black navy and a bright cyan, so at tab sizes it
+         collapses to a single ink and sits on an opaque plate. That keeps the
+         tab icon legible over light and dark browser chrome alike instead of
+         depending on which one the user has. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/icon-16.png" sizes="16x16" type="image/png" />
+    <link rel="icon" href="/icon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
     <div id="root"></div>

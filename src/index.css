@@ -1,28 +1,238 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
+/* ============================================================================
+   TYPE
+   Self-hosted, preloaded from index.html, swap-displayed. Nothing is fetched
+   from a third-party font CDN at runtime.
+
+   Satoshi (300-900, variable) carries display and prose. JetBrains Mono
+   carries the machine register: project ids, counts, dates, stack tags,
+   filter values. On a portfolio whose subject matter is numerical work, a
+   mono for metadata is the honest choice, not decoration.
+
+   Licences: Satoshi (Indian Type Foundry, via Fontshare) is free for personal
+   and commercial use. JetBrains Mono is SIL OFL 1.1. See public/fonts/README.md.
+   ========================================================================= */
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/satoshi-variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/jetbrains-mono-variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched stand-ins, so the swap from the local fallback to the real
+   face does not change where lines break or where the baseline sits.
+
+   Every number below is measured, not derived. Rendering a 74-character Latin
+   sample at 100px in Chrome:
+
+     Satoshi 400  3814.875px     Arial 400  3896.594px
+     Satoshi 500  3912.469px     Arial 700  4084.328px
+     Satoshi 700  4022.250px
+
+   so the size-adjust that equalises advance width is 95.61% at light, 97.90% at
+   regular, 100.41% at medium and 98.48% at bold. Those four are the only weights
+   the site uses anywhere, and each gets its own face so that all four land
+   within 0.03% rather than only the middle of the range.
+
+   The first version of this derived the value from x-height instead, which is
+   the wrong target: an x-height mismatch makes the fallback look slightly the
+   wrong size for one frame, while an advance-width mismatch reflows the whole
+   paragraph. The x-height ratio gave 94.6% and left the fallback 8.4% narrow.
+
+   Several faces are needed, not one. A fallback face declared without a weight
+   range is reused for every weight and synthesises the bolder ones, so regular
+   and bold advances come out identical (measured: 3685.938px at both). And
+   Satoshi's own weight axis moves its advance widths apart, light being 7.4%
+   narrower than bold, while Arial offers only two skeletons to map onto. One
+   scale factor therefore cannot serve the range.
+
+   The override descriptors are then divided by size-adjust, because
+   size-adjust scales the overridden metrics too. Satoshi's own tables are
+   ascent 101%, descent 24%, line-gap 10%, and the product has to land back on
+   those. Verified after writing: all three faces measure a 135px line box at
+   100px, exactly matching the real face.
+
+   The bold face names its local faces explicitly. This matters: asking for
+   local("Arial") at weight 700 does not return a bold face, it returns Arial
+   Regular and the browser synthesises the weight on top, which is what made
+   bold text come out 4.6% narrow. local("Liberation Sans Bold") does return the
+   real thing, and the named bold faces resolve on Windows and macOS as well, so
+   all three platforms get a genuine bold skeleton.
+
+   Known limitation, left in deliberately: the mono chain lists Consolas, which
+   Windows would pick ahead of DejaVu Sans Mono, and Consolas runs about 8%
+   narrower than JetBrains Mono. It is kept because it is a far closer visual
+   match than the metric-exact Courier New alternative, and because a monospace
+   run cannot reflow around a missing glyph without the whole block moving
+   anyway. Both fonts are preloaded, so the swap window is short. */
+@font-face {
+  font-family: "Satoshi Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Roboto"), local("Liberation Sans");
+  font-weight: 300 340;
+  size-adjust: 95.61%;
+  ascent-override: 105.64%;
+  descent-override: 25.1%;
+  line-gap-override: 10.46%;
+}
+
+@font-face {
+  font-family: "Satoshi Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Roboto"), local("Liberation Sans");
+  font-weight: 341 450;
+  size-adjust: 97.9%;
+  ascent-override: 103.17%;
+  descent-override: 24.51%;
+  line-gap-override: 10.21%;
+}
+
+@font-face {
+  font-family: "Satoshi Fallback";
+  src: local("Arial"), local("Helvetica Neue"), local("Roboto"), local("Liberation Sans");
+  font-weight: 451 600;
+  size-adjust: 100.41%;
+  ascent-override: 100.59%;
+  descent-override: 23.9%;
+  line-gap-override: 9.96%;
+}
+
+@font-face {
+  font-family: "Satoshi Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Neue Bold"),
+    local("Liberation Sans Bold"), local("Arial"), local("Helvetica Neue"),
+    local("Liberation Sans");
+  font-weight: 601 900;
+  size-adjust: 98.48%;
+  ascent-override: 102.56%;
+  descent-override: 24.37%;
+  line-gap-override: 10.15%;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Fallback";
+  src: local("Menlo"), local("Consolas"), local("DejaVu Sans Mono"),
+    local("Liberation Mono"), local("Courier New");
+  size-adjust: 99.66%;
+  ascent-override: 102.35%;
+  descent-override: 30.1%;
+  line-gap-override: 0%;
+}
+
+/* ============================================================================
+   TOKENS
+
+   The brand teal is unchanged. It was never the problem: it is dense,
+   specific, and reads as a decision rather than a default. What changed is
+   everything around it. The old build paired warm brand tokens with Tailwind's
+   cool gray scale, so a warm bone page was full of blue-grey text. The ramp
+   below is the single neutral family the whole site now draws from.
+   ========================================================================= */
 @theme {
+  /* Brand. Unchanged. Also the favicon fill and the theme-color meta. */
   --color-primary: #01696f;
   --color-primary-hover: #015257;
-  --color-bg-light: #f7f6f2;
-  --color-bg-dark: #171614;
-  --color-surface-dark: #22211e;
-  --color-text-light: #28251d;
-  --color-text-dark: #f7f6f2;
 
   /* Text and icons only. The brand teal is dense enough to read on the light
-     ground (6.1:1) but only reaches 2.7:1 on the dark one, so the dark scheme
+     ground (5.8:1) but only reaches 2.7:1 on the dark one, so the dark scheme
      gets a lighter tint of the same hue. Backgrounds keep --color-primary,
      which is what white text is contrast-checked against. */
   --color-primary-text: #01696f;
+
+  /* One warm neutral ramp, hue held at ~42 degrees. Replaces every gray-*. */
+  --color-ink-950: #171614; /* --color-bg-dark, darkest ground */
+  --color-ink-900: #22211e; /* --color-surface-dark, raised dark surface */
+  --color-ink-800: #2f2c27;
+  --color-ink-700: #3d3933;
+  --color-ink-600: #565046; /* 7.2:1 on bone, secondary text */
+  --color-ink-500: #6f685c; /* 4.9:1 on bone, tertiary text */
+  --color-ink-400: #8f8779; /* 3.2:1 on bone, large text and icons only */
+  --color-ink-300: #b5ada0;
+  --color-ink-200: #d5cfc4;
+  --color-ink-100: #ebe7df;
+  --color-ink-50: #f2efe9;
+
+  --color-bg-light: #f7f6f2; /* warm bone. The light ground. */
+  --color-bg-dark: #171614;
+  --color-surface-dark: #22211e;
+  --color-text-light: #28251d; /* 13.9:1 on bone */
+  --color-text-dark: #f7f6f2;
+
+  /* Type stacks. */
+  --font-sans: "Satoshi", "Satoshi Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Display sizes. Tightened tracking as size grows, which is where a
+     grotesque stops looking like a default and starts looking set. */
+  --text-display-sm: 1.75rem;
+  --text-display-sm--line-height: 1.1;
+  --text-display-sm--letter-spacing: -0.022em;
+  --text-display: 2.5rem;
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.028em;
+  --text-display-lg: 3.5rem;
+  --text-display-lg--line-height: 1;
+  --text-display-lg--letter-spacing: -0.034em;
+  --text-display-xl: 4.5rem;
+  --text-display-xl--line-height: 0.96;
+  --text-display-xl--letter-spacing: -0.038em;
+
+  /* One easing curve for the whole site. */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Shadows are tinted toward the ground hue rather than pure black, so
+     elevation reads as warmth leaving the page instead of soot on top of it. */
+  --shadow-lift: 0 1px 2px rgb(40 37 29 / 0.05), 0 8px 24px -12px rgb(40 37 29 / 0.18);
+  --shadow-hover: 0 2px 4px rgb(40 37 29 / 0.06), 0 16px 40px -16px rgb(40 37 29 / 0.26);
+
+  /* Documented z scale. Do not add ad-hoc values.
+     10 raised card | 40 sticky nav | 60 floating assistant
+     80 overlay | 90 fixed pointer-events-none layer */
+  --z-raised: 10;
+  --z-sticky: 40;
+  --z-floating: 60;
+  --z-overlay: 80;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* The ink ramp runs light to dark, but the tokens that carry *text* have to
+     invert when the ground inverts. Measured: ink-500's own value is 3.32:1 on
+     ink-950 and 4.53:1 on the raised dark surface, so it fails AA as tertiary
+     body copy in dark mode even though it clears it comfortably on bone. This
+     one step is re-pointed at a value interpolated between the ramp's ink-400
+     and ink-300 steps, which measures 6.17:1 and 5.45:1 respectively.
+
+     It is safe to flip the token rather than every call site because the token
+     is only used two ways: as muted text, and as a low-alpha neutral for rules,
+     borders and skeleton fills via color-mix. In a dark theme those neutrals
+     are supposed to read as light-on-dark, so both uses move the same way.
+
+     ink-600 is not flipped: every call site already pairs it with an explicit
+     dark: value, and flipping it too would double the correction. */
+  :root {
+    --color-ink-500: #9d9587;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --color-primary-text: #58b8bd;
+    --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -12px rgb(0 0 0 / 0.55);
+    --shadow-hover: 0 2px 4px rgb(0 0 0 / 0.36), 0 16px 40px -16px rgb(0 0 0 / 0.7);
   }
 }
 
+/* ============================================================================
+   BASE
+   ========================================================================= */
 @layer base {
   /* Tell the browser the page handles both schemes itself. Without this Chrome
      applies its own auto-dark transform over the palette, and native controls
@@ -34,6 +244,9 @@
   body {
     background-color: var(--color-bg-light);
     color: var(--color-text-light);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
     @apply antialiased transition-colors duration-300;
   }
   @media (prefers-color-scheme: dark) {
@@ -43,12 +256,26 @@
     }
   }
 
+  /* Numerals and ids line up when they are in the mono face. Killing kerning
+     on mono runs keeps a stack of figures from looking hand-spaced. */
+  .font-mono,
+  code,
+  kbd {
+    font-variant-ligatures: none;
+    font-feature-settings: "tnum" 1;
+  }
+
   /* A single, consistent focus ring for every interactive element. Keyboard
      users get a visible target; pointer users are not shown an outline. */
   :focus-visible {
     outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline-offset: 3px;
     border-radius: 0.25rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    :focus-visible {
+      outline-color: var(--color-primary-text);
+    }
   }
 
   ::selection {
@@ -59,6 +286,549 @@
      tinted placeholder instead of a broken-icon on white. */
   img {
     background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+}
+
+/* ============================================================================
+   PRIMITIVES
+   Small, shared, used across pages so a radius or a rule is decided once.
+   ========================================================================= */
+@layer components {
+  /* ---- Shape system. One documented scale, applied everywhere: ------------
+     interactive (button, chip, field, tag, icon button) = 10px
+     surface     (card, panel)                           = 14px
+     frame       (media, plate)                          = 14px
+     pill        (badge, round control, skeleton bar)     = full
+     Nothing else. No 6px next to 8px next to 12px next to 16px.
+
+     The one value outside this list is the focus ring's own 4px corner above,
+     which rounds the outline rather than any element. */
+  .r-interactive {
+    border-radius: 0.625rem;
+  }
+  .r-surface,
+  .r-frame {
+    border-radius: 0.875rem;
+  }
+  .r-pill {
+    border-radius: 9999px;
+  }
+
+  /* ---- Vertical rhythm. Two widths, both explicit. ---------------------- */
+  .section {
+    @apply py-16 md:py-24;
+  }
+  .section-tight {
+    @apply py-12 md:py-16;
+  }
+
+  /* ---- Mono label. Used sparingly: see the eyebrow budget in the notes. -- */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ---- Hairline. One weight, one colour, both schemes. ------------------ */
+  .rule {
+    border-color: color-mix(in srgb, var(--color-ink-500) 28%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .rule {
+      border-color: color-mix(in srgb, var(--color-ink-300) 22%, transparent);
+    }
+  }
+
+  /* ---- Buttons ----------------------------------------------------------- */
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 whitespace-nowrap px-5 py-2.5 text-sm font-medium;
+    border-radius: 0.625rem;
+    transition: background-color 200ms var(--ease-out-expo),
+      border-color 200ms var(--ease-out-expo), color 200ms var(--ease-out-expo),
+      transform 200ms var(--ease-out-expo), box-shadow 200ms var(--ease-out-expo);
+  }
+  .btn:active {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    box-shadow: var(--shadow-lift);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* On the dark ground a solid brand fill is heavy, so the primary action
+     inverts: bone plate, ink label, brand rule. Same hierarchy, no glare. */
+  @media (prefers-color-scheme: dark) {
+    .btn-primary {
+      background-color: var(--color-bg-light);
+      color: var(--color-text-light);
+    }
+    .btn-primary:hover {
+      background-color: #ffffff;
+    }
+  }
+
+  .btn-ghost {
+    border: 1px solid color-mix(in srgb, var(--color-ink-500) 40%, transparent);
+    color: inherit;
+    background-color: transparent;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 7%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn-ghost {
+      border-color: color-mix(in srgb, var(--color-ink-300) 34%, transparent);
+    }
+  }
+
+  /* ---- Chips (filter controls) ------------------------------------------ */
+  .chip {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 text-sm font-medium;
+    border-radius: 0.625rem;
+    border: 1px solid transparent;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+    transition: background-color 180ms var(--ease-out-expo),
+      border-color 180ms var(--ease-out-expo), color 180ms var(--ease-out-expo);
+  }
+  .chip-idle {
+    border-color: color-mix(in srgb, var(--color-ink-500) 26%, transparent);
+    color: var(--color-ink-600);
+  }
+  .chip-idle:hover {
+    border-color: color-mix(in srgb, var(--color-primary) 55%, transparent);
+    color: var(--color-primary-text);
+    background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .chip-idle {
+      border-color: color-mix(in srgb, var(--color-ink-300) 24%, transparent);
+      color: var(--color-ink-300);
+    }
+  }
+  .chip-active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    .chip-active {
+      background-color: var(--color-primary-text);
+      border-color: var(--color-primary-text);
+      color: #10100e;
+    }
+  }
+
+  /* ---- Nav item ---------------------------------------------------------
+     The page marker is driven off [aria-current="page"] rather than a class,
+     so the semantics and the styling cannot drift apart. It grows from the
+     centre of the item instead of being drawn in each item's own colour.
+
+     This replaced a Motion layoutId indicator. The animation runtime cost
+     40.6 kB gzipped on the critical path for one underline; the same state
+     change is four declarations of CSS, needs no layout measurement, and
+     inherits the global reduced-motion rule for free. */
+  .nav-link {
+    position: relative;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-ink-600);
+    transition: color 200ms var(--ease-out-expo);
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: -1px;
+    height: 2px;
+    border-radius: 9999px;
+    background-color: var(--color-ink-400);
+    transform: scaleX(0);
+    transition: transform 300ms var(--ease-out-expo),
+      background-color 200ms var(--ease-out-expo);
+  }
+  .nav-link:hover {
+    color: var(--color-text-light);
+  }
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+  .nav-link[aria-current='page'] {
+    color: var(--color-primary-text);
+  }
+  .nav-link[aria-current='page']::after {
+    transform: scaleX(1);
+    background-color: var(--color-primary);
+  }
+  @media (prefers-color-scheme: dark) {
+    .nav-link {
+      color: var(--color-ink-300);
+    }
+    .nav-link:hover {
+      color: var(--color-text-dark);
+    }
+    .nav-link::after {
+      background-color: var(--color-ink-600);
+    }
+    .nav-link[aria-current='page']::after {
+      background-color: var(--color-primary-text);
+    }
+  }
+
+  /* ---- Tag (stack pills, read-only) ------------------------------------- */  .tag {
+    @apply inline-flex items-center whitespace-nowrap px-2 py-1;
+    border-radius: 0.625rem;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    line-height: 1.3;
+    color: var(--color-ink-600);
+    background-color: color-mix(in srgb, var(--color-ink-500) 10%, transparent);
+  }
+  @media (prefers-color-scheme: dark) {
+    .tag {
+      color: var(--color-ink-300);
+      background-color: color-mix(in srgb, var(--color-ink-300) 12%, transparent);
+    }
+  }
+
+  /* ---- Surfaces --------------------------------------------------------- */
+  .plate {
+    background-color: #ffffff;
+    border: 1px solid color-mix(in srgb, var(--color-ink-500) 16%, transparent);
+    border-radius: 0.875rem;
+  }
+  @media (prefers-color-scheme: dark) {
+    .plate {
+      background-color: var(--color-surface-dark);
+      border-color: color-mix(in srgb, var(--color-ink-300) 14%, transparent);
+    }
+  }
+
+  /* ---- Underlined link with a rule that grows from the left ------------- */
+  .link {
+    color: var(--color-primary-text);
+    font-weight: 500;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: color-mix(in srgb, var(--color-primary-text) 35%, transparent);
+    transition: text-decoration-color 180ms var(--ease-out-expo);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+  }
+
+  /* ---- The one full-bleed brand block --------------------------------
+     Light scheme: solid brand teal, white type. Dark scheme: a raised warm
+     surface with a teal rule, because a full-bleed saturated teal in dark
+     mode glares and reads as a theme flip rather than a brand moment. */
+  .band-brand {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    .band-brand {
+      background-color: var(--color-surface-dark);
+      color: var(--color-text-dark);
+      border-top: 1px solid color-mix(in srgb, var(--color-primary-text) 35%, transparent);
+    }
+  }
+
+  .btn-on-brand {
+    background-color: #ffffff;
+    color: var(--color-primary);
+    box-shadow: 0 1px 2px rgb(1 60 63 / 0.18);
+  }
+  .btn-on-brand:hover {
+    background-color: var(--color-ink-50);
+    box-shadow: 0 2px 4px rgb(1 60 63 / 0.2), 0 14px 34px -14px rgb(1 60 63 / 0.5);
+  }
+  @media (prefers-color-scheme: dark) {
+    .btn-on-brand {
+      background-color: var(--color-bg-light);
+      color: var(--color-text-light);
+    }
+    .btn-on-brand:hover {
+      background-color: #ffffff;
+    }
+  }
+
+  /* Quiet channel list, used under the single contact action. Mono, no pills,
+     no dots: these are destinations, not competing calls to action. */
+  .channel-link {
+    /* min-height rather than padding: these sit in a wrapping row, and a real
+       2rem box keeps the pointer target honest without the row growing. */
+    display: inline-flex;
+    align-items: center;
+    min-height: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: inherit;
+    opacity: 0.9;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.3em;
+    text-decoration-color: transparent;
+    transition: opacity 180ms var(--ease-out-expo), text-decoration-color 180ms var(--ease-out-expo);
+  }
+  .channel-link:hover {
+    opacity: 1;
+    text-decoration-color: currentColor;
+  }
+
+  /* ---- Rendered markdown -------------------------------------------------
+     Article bodies arrive as markdown through react-markdown. These rules
+     write the typography directly instead of layering the typography plugin on
+     top, so every heading, quote and rule lands in the same palette as the
+     rest of the page rather than in the plugin's own two grays. */
+  .article-body {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-600);
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body {
+      color: var(--color-ink-300);
+    }
+  }
+
+  .article-body > * + * {
+    margin-top: 1.4em;
+  }
+
+  .article-body h2,
+  .article-body h3,
+  .article-body h4 {
+    color: var(--color-text-light);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body h2,
+    .article-body h3,
+    .article-body h4 {
+      color: var(--color-text-dark);
+    }
+  }
+  .article-body h2 {
+    margin-top: 2.2em;
+    font-size: 1.5rem;
+  }
+  .article-body h3 {
+    margin-top: 1.9em;
+    font-size: 1.1875rem;
+  }
+  .article-body h4 {
+    margin-top: 1.7em;
+    font-size: 1.0625rem;
+  }
+
+  .article-body strong {
+    color: var(--color-text-light);
+    font-weight: 700;
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body strong {
+      color: var(--color-text-dark);
+    }
+  }
+
+  .article-body a {
+    color: var(--color-primary-text);
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    text-decoration-color: color-mix(in srgb, var(--color-primary-text) 35%, transparent);
+    transition: text-decoration-color 180ms var(--ease-out-expo);
+  }
+  .article-body a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .article-body ul,
+  .article-body ol {
+    padding-left: 1.35em;
+  }
+  .article-body ul {
+    list-style: disc;
+  }
+  .article-body ol {
+    list-style: decimal;
+  }
+  .article-body li + li {
+    margin-top: 0.5em;
+  }
+  .article-body li::marker {
+    color: var(--color-primary-text);
+  }
+
+  .article-body blockquote {
+    border-left: 2px solid var(--color-primary);
+    padding-left: 1.15em;
+    color: var(--color-text-light);
+    font-style: italic;
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body blockquote {
+      color: var(--color-text-dark);
+    }
+  }
+
+  .article-body code {
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+    padding: 0.15em 0.4em;
+    border-radius: 0.625rem;
+    background-color: color-mix(in srgb, var(--color-ink-500) 12%, transparent);
+  }
+
+  .article-body pre {
+    overflow-x: auto;
+    padding: 1.1em 1.25em;
+    border-radius: 0.875rem;
+    background-color: var(--color-ink-100);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body pre {
+      background-color: var(--color-ink-900);
+      border: 1px solid var(--color-ink-800);
+    }
+  }
+  .article-body pre code {
+    padding: 0;
+    background: none;
+    font-size: inherit;
+  }
+
+  .article-body img {
+    border-radius: 0.875rem;
+    width: 100%;
+  }
+
+  .article-body hr {
+    border: 0;
+    border-top: 1px solid color-mix(in srgb, var(--color-ink-500) 28%, transparent);
+    margin: 2.5em 0;
+  }
+
+  .article-body table {
+    width: 100%;
+    font-size: 0.9375rem;
+    border-collapse: collapse;
+  }
+  .article-body th,
+  .article-body td {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-ink-500) 24%, transparent);
+    padding: 0.6em 0.5em;
+    text-align: left;
+  }
+  .article-body th {
+    color: var(--color-text-light);
+    font-weight: 700;
+  }
+  @media (prefers-color-scheme: dark) {
+    .article-body th {
+      color: var(--color-text-dark);
+    }
+  }
+}
+
+/* ============================================================================
+   MOTION
+
+   MOTION_INTENSITY 5. Everything here is transform/opacity only, and every
+   rule is inside prefers-reduced-motion: no-preference, so the reduced case is
+   the untouched, fully visible document.
+
+   Two hard constraints shaped what is below.
+
+   ONE. No rule may leave content invisible in a state the browser can paint.
+   The previous build set opacity:0 in a React initial prop and lifted it from
+   an IntersectionObserver, which left whole sections blank in any render path
+   where the observer never fired. The scroll settle here is therefore
+   TRANSFORM ONLY. Off screen it holds a 16px offset, which is indistinguishable
+   from ordinary section padding, and it is never transparent. That matters for
+   more than screenshots: printing to PDF and "save as PDF" both lay the page
+   out past the viewport, so an opacity-based reveal prints an empty document.
+
+   TWO. No animation runtime. The reveal is a CSS view() timeline: it runs off
+   the main thread, so it costs no INP, and it needs no JavaScript at all.
+   ========================================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 6% entry 42%;
+    }
+  }
+
+  /* Hero and page-header entrance. Load-triggered, not scroll-triggered,
+     because this content is already in view when the page arrives. Short and
+     front-loaded so a capture taken right after load catches it settled. */
+  .arrive {
+    animation: arrive-fade 520ms var(--ease-out-expo) both;
+  }
+  .arrive-1 {
+    animation-delay: 40ms;
+  }
+  .arrive-2 {
+    animation-delay: 110ms;
+  }
+  .arrive-3 {
+    animation-delay: 180ms;
+  }
+  .arrive-4 {
+    animation-delay: 240ms;
+  }
+}
+
+@keyframes reveal-settle {
+  from {
+    transform: translate3d(0, 1rem, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes arrive-fade {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Print and PDF export lay the page out past the viewport, so nothing may be
+   left mid-animation. Belt and braces on top of the transform-only rule. */
+@media print {
+  .reveal,
+  .arrive {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

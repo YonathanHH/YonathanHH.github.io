@@ -4,7 +4,7 @@
  * Every fact it can state is derived from the same data modules the pages
  * render, so an answer can never drift from what the site shows. Add a
  * project, an article, or a CV entry and the assistant knows about it on the
- * next build — there is no index to regenerate and no service to redeploy.
+ * next build - there is no index to regenerate and no service to redeploy.
  */
 import { articles } from '../data/articles';
 import { biography } from '../data/biography';
@@ -20,7 +20,7 @@ export type Doc = {
   title: string;
   /** Prose the answer composer quotes sentences from. Kept clean: no labels. */
   body: string;
-  /** Searchable terms that would read badly if quoted — stack, category, meta. */
+  /** Searchable terms that would read badly if quoted - stack, category, meta. */
   tags: string[];
   /** Key back into the source data, so composers can use the structured form. */
   refId?: string;

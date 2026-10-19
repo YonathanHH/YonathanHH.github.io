@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The app uses HashRouter, so every route lives behind a fragment on the same
+  URL. Search engines do not treat fragments as distinct pages, which means
+  this genuinely is a single-URL site. Listing one URL is the honest sitemap.
+  If the router is ever moved to path-based history routing with an SPA
+  fallback on Pages, this file should grow to the five routes below:
+    /projects  /cv  /biography  /articles  /articles/:id
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://yonathanhh.github.io/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

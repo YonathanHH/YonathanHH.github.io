@@ -1,0 +1,13 @@
+{
+  "name": "Yonathan Hary Hutagalung",
+  "short_name": "Yonathan Hary",
+  "description": "Data scientist and geothermal energy researcher. Machine learning, deep learning and energy analytics projects.",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#01696f",
+  "background_color": "#f7f6f2",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

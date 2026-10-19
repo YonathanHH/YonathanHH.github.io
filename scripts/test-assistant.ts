@@ -2,7 +2,7 @@
  * Smoke test for the portfolio assistant. Runs the same code the browser
  * runs, so the answers printed here are exactly what a visitor would see.
  *
- * No key, no network, no service — just: npm run test:chat
+ * No key, no network, no service: just `npm run test:chat`
  */
 import { askAssistant } from '../src/lib/assistant';
 

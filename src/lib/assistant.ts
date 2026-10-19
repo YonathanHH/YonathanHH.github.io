@@ -3,7 +3,7 @@
  * browser: no API key, no proxy, no request leaves the page.
  *
  * It works in two stages, the way a person answering from a folder of notes
- * would. First it *finds* the relevant material — BM25 over the site's own
+ * would. First it *finds* the relevant material - BM25 over the site's own
  * data modules, with a small synonym layer so "energy work" reaches the
  * geothermal projects and "where did he study" reaches the CV. Then it
  * *composes* a short answer from what it found: structured lists when the
@@ -23,7 +23,7 @@ import { skills } from '../data/skills';
 import { getDocs, type Doc, type DocKind } from './knowledge';
 
 export type AssistantReply = {
-  /** Markdown — the chat panel renders it. */
+  /** Markdown - the chat panel renders it. */
   text: string;
   route?: string;
   routeLabel?: string;
@@ -43,7 +43,7 @@ const MAX_LIST_ITEMS = 4;
 const MAX_ANSWER_CHARS = 560;
 
 const FALLBACK_TEXT =
-  'I only know what is on this site — Yonathan’s background, projects, articles, skills, and CV. Try asking about geothermal work, machine learning projects, forecasting, education, or how to get in touch.';
+  'I only know what is on this site: Yonathan’s background, projects, articles, skills, and CV. Try asking about geothermal work, machine learning projects, forecasting, education, or how to get in touch.';
 
 /**
  * Words carrying no topic. Dropping them is not just tidiness: a word the
@@ -59,7 +59,7 @@ const STOP_WORDS = new Set([
   'can', 'could', 'would', 'show', 'any', 'some', 'there', 'from', 'at', 'by',
   'be', 'been', 'as', 'or', 'if', 'so', 'give', 'know', 'anything', 'more',
   'much', 'many', 'please', 'here', 'like', 'want', 'us', 'we',
-  // Relational filler — the connective tissue of a question, never its subject.
+  // Relational filler - the connective tissue of a question, never its subject.
   'related', 'relating', 'relate', 'regarding', 'concerning', 'involving',
   'involve', 'involved', 'using', 'use', 'used', 'kind', 'type', 'sort',
   'similar', 'area', 'areas', 'field', 'topic', 'topics', 'thing', 'things',
@@ -70,7 +70,7 @@ const STOP_WORDS = new Set([
 
 /**
  * Terms that mean the same thing to a visitor but not to a string match.
- * Each group expands in every direction, at a reduced weight — this is what
+ * Each group expands in every direction, at a reduced weight - this is what
  * stands in for the embedding model, and for a corpus this size it is enough.
  */
 const SYNONYM_GROUPS: string[][] = [
@@ -117,7 +117,7 @@ const INTENT_WORDS = [
   'stack', 'cv', 'resume', 'list', 'show', 'case', 'work', 'working', 'works',
 ];
 
-/** Naming Yonathan is not a topic — every document on this site is about him. */
+/** Naming Yonathan is not a topic - every document on this site is about him. */
 const PERSON_WORDS = [
   'yonathan', 'hary', 'hutagalung', 'himself', 'background', 'biography', 'bio',
   'profile', 'introduce',
@@ -130,7 +130,7 @@ const INFLECTIONAL = ['ings', 'ing', 'ers', 'er', 'ed', 'es', 's'];
  * Word-family endings: "finance", "financing", and "financial" all reach
  * "financ". Without this pass they are three unrelated tokens, and asking for
  * "finance projects" finds only whichever one the page happens to spell that
- * way — the exact bug this fixes.
+ * way - the exact bug this fixes.
  */
 const DERIVATIONAL = [
   'ization', 'ational', 'ations', 'ation', 'ically', 'ality', 'ially', 'ical',
@@ -250,8 +250,8 @@ function getIndex(): SearchIndex {
   return searchIndex;
 }
 
-/** Builds the index ahead of the first question, so opening the panel — not
- *  answering — pays for it. */
+/** Builds the index ahead of the first question, so opening the panel - not
+ *  answering - pays for it. */
 export function warmAssistant(): void {
   getIndex();
 }
@@ -281,7 +281,7 @@ function bm25(index: SearchIndex, terms: QueryTerm[], position: number): number 
 /**
  * How much of what the visitor actually asked this document accounts for.
  *
- * BM25 alone cannot tell "no good match" from "best of a bad lot" — it always
+ * BM25 alone cannot tell "no good match" from "best of a bad lot" - it always
  * ranks something first. Coverage is the guard: a document answers the
  * question only if it contains the question's rarer terms. Synonym matches
  * count half, since they are our substitution, not the visitor's word.
@@ -351,8 +351,8 @@ function relevantHits(hits: Hit[], kind: DocKind): Hit[] {
 }
 
 /**
- * Detects a question about one thing by name — "tell me about the Geothermal
- * Asset Transition Tool" — by asking how much of the *title* the visitor
+ * Detects a question about one thing by name - "tell me about the Geothermal
+ * Asset Transition Tool" - by asking how much of the *title* the visitor
  * typed, rather than how much of the question the document matched.
  */
 function namedEntity(hits: Hit[], topicTokens: string[]): Hit | null {
@@ -375,7 +375,7 @@ function namedEntity(hits: Hit[], topicTokens: string[]): Hit | null {
 
 /**
  * Picks the navigation target by summing scores per route across the top
- * hits rather than trusting the single best document — one long article chunk
+ * hits rather than trusting the single best document - one long article chunk
  * should not outvote two CV entries that agree.
  */
 function pickRoute(hits: Hit[]): Pick<AssistantReply, 'route' | 'routeLabel'> {
@@ -420,7 +420,7 @@ function firstSentence(text: string): string {
 /**
  * Extractive summary: keeps the sentences that carry the query's terms, in
  * their original order, and stops at MAX_ANSWER_CHARS. This is why answers
- * read as quotes rather than paraphrase — nothing here can invent a fact.
+ * read as quotes rather than paraphrase - nothing here can invent a fact.
  */
 function summarize(body: string, terms: QueryTerm[], limit: number): string {
   const index = getIndex();
@@ -463,12 +463,12 @@ function articleById(id?: string): Article | undefined {
 }
 
 function projectBullet(project: Project): string {
-  return `**${project.title}** — ${truncate(firstSentence(project.description), 150)}`;
+  return `**${project.title}**: ${truncate(firstSentence(project.description), 150)}`;
 }
 
 /**
  * The themes the portfolio actually covers, counted from the category field
- * rather than written down here — so this stays true as projects are added.
+ * rather than written down here - so this stays true as projects are added.
  */
 function projectThemes(limit: number): { label: string; count: number }[] {
   const counts = new Map<string, number>();
@@ -550,7 +550,7 @@ function listProjects(terms: QueryTerm[], hits: Hit[], hasTopic: boolean): Assis
         `I don’t see a project on that. The ${projects.length} projects here cluster around:`,
         bullets(
           projectThemes(6).map(
-            ({ label, count }) => `**${label}** — ${count} project${count === 1 ? '' : 's'}`,
+            ({ label, count }) => `**${label}**: ${count} project${count === 1 ? '' : 's'}`,
           ),
         ),
       ].join('\n\n'),
@@ -566,7 +566,7 @@ function listProjects(terms: QueryTerm[], hits: Hit[], hasTopic: boolean): Assis
     text: [
       `Yonathan has ${projects.length} projects in the portfolio, mostly ${themes.join(', ')}. Three he features:`,
       bullets(featured.map(projectBullet)),
-      'Ask about a theme — geothermal, forecasting, financial analytics, recommenders — to narrow it down.',
+      'Ask about a theme, for example geothermal, forecasting, financial analytics, or recommenders.',
     ].join('\n\n'),
     route: '/projects',
     routeLabel: 'Browse projects',
@@ -588,7 +588,7 @@ function listArticles(terms: QueryTerm[], hits: Hit[]): AssistantReply {
       `Yonathan has written ${articles.length} articles on this site:`,
       bullets(
         articles.map(
-          (article) => `**${article.title}** — ${truncate(article.summary, 140)} (${article.readTime})`,
+          (article) => `**${article.title}**: ${truncate(article.summary, 140)} (${article.readTime})`,
         ),
       ),
     ].join('\n\n'),
@@ -609,7 +609,7 @@ function answerSkills(terms: QueryTerm[]): AssistantReply {
 
       const matched = tokens.filter((token) => asked.has(token));
 
-      // Judged from the question's side first — "SQL" is a complete question
+      // Judged from the question's side first - "SQL" is a complete question
       // about "SQL (MySQL, BigQuery)" even though it is a third of the entry.
       // The entry's own density only breaks ties, which is what stops
       // "deep learning" from landing on "Python (…scikit-learn)".
@@ -624,7 +624,7 @@ function answerSkills(terms: QueryTerm[]): AssistantReply {
   if (best) {
     return {
       text: [
-        `Yes — ${best.item} sits in Yonathan’s **${best.group}** toolkit.`,
+        `Yes, ${best.item} sits in Yonathan’s **${best.group}** toolkit.`,
         `The full group: ${best.items.join(', ')}.`,
       ].join('\n\n'),
       route: '/',
@@ -637,7 +637,7 @@ function answerSkills(terms: QueryTerm[]): AssistantReply {
       'Yonathan’s toolkit, as listed on the site:',
       bullets(
         Object.entries(skills).map(
-          ([group, items]) => `**${group}** — ${truncate(items.join(', '), 180)}`,
+          ([group, items]) => `**${group}**: ${truncate(items.join(', '), 180)}`,
         ),
       ),
     ].join('\n\n'),
@@ -653,7 +653,7 @@ function answerFromCv(sectionId: string, terms: QueryTerm[]): AssistantReply {
   const index = getIndex();
 
   // Every entry is listed, but the one the question is really about gets its
-  // detail line — that is the difference between a CV dump and an answer.
+  // detail line - that is the difference between a CV dump and an answer.
   const ranked = section.entries.map((entry) => {
     const tokens = new Set(tokenize(`${entry.title} ${entry.meta} ${entry.points.join(' ')}`));
 
@@ -673,8 +673,8 @@ function answerFromCv(sectionId: string, terms: QueryTerm[]): AssistantReply {
       bullets(
         ranked.map(({ entry }) =>
           entry === detailed.entry && detailed.relevance > 0
-            ? `**${entry.title}** — ${entry.meta}. ${truncate(firstSentence(entry.points[0]), 180)}`
-            : `**${entry.title}** — ${entry.meta}`,
+            ? `**${entry.title}**: ${entry.meta}. ${truncate(firstSentence(entry.points[0]), 180)}`
+            : `**${entry.title}**: ${entry.meta}`,
         ),
       ),
     ].join('\n\n'),
@@ -689,7 +689,7 @@ function answerCv(): AssistantReply {
   );
 
   return {
-    text: `The CV page has ${counts.join(' and ')} — roles, dates, and what each one involved.`,
+    text: `The CV page has ${counts.join(' and ')}: roles, dates, and what each one involved.`,
     route: '/cv',
     routeLabel: 'Open CV',
   };
@@ -710,11 +710,11 @@ function answerContact(): AssistantReply {
     text: [
       `${profile.shortName} is open to opportunities in ${profile.openTo}.`,
       bullets([
-        `Email — [${email}](mailto:${email})`,
-        `LinkedIn — [linkedin.com/in/yonathanhary](${linkedin})`,
-        `GitHub — [YonathanHH](${github})`,
-        `Medium — [@yonathanhary1](${medium})`,
-        `WhatsApp — [message directly](${whatsapp})`,
+        `Email: [${email}](mailto:${email})`,
+        `LinkedIn: [linkedin.com/in/yonathanhary](${linkedin})`,
+        `GitHub: [YonathanHH](${github})`,
+        `Medium: [@yonathanhary1](${medium})`,
+        `WhatsApp: [message directly](${whatsapp})`,
       ]),
     ].join('\n\n'),
     route: '/biography',
@@ -725,14 +725,14 @@ function answerContact(): AssistantReply {
 function answerCapabilities(): AssistantReply {
   return {
     text: [
-      'I answer from this site’s own content — nothing I say is generated, and nothing you type leaves your browser. I can cover:',
+      'I answer from this site’s own content. Nothing I say is generated, and nothing you type leaves your browser. I can cover:',
       bullets([
-        `**Projects** — all ${projects.length} of them, by topic or by name`,
-        '**Background** — biography and profile summary',
-        '**CV** — working experience and education',
-        '**Skills** — tools, platforms, and domain expertise',
-        `**Articles** — the ${articles.length} pieces published here`,
-        '**Contact** — how to reach Yonathan',
+        `**Projects**: all ${projects.length} of them, by topic or by name`,
+        '**Background**: biography and profile summary',
+        '**CV**: working experience and education',
+        '**Skills**: tools, platforms, and domain expertise',
+        `**Articles**: the ${articles.length} pieces published here`,
+        '**Contact**: how to reach Yonathan',
       ]),
     ].join('\n\n'),
   };
@@ -801,7 +801,7 @@ export function askAssistant(query: string): AssistantReply {
   const topics = topicTokens.length ? expand(topicTokens) : terms;
 
   const hits = search(terms);
-  // No topic left after the scaffolding — "what projects does he have?" — so
+  // No topic left after the scaffolding - "what projects does he have?" - so
   // there is nothing to rank, and the list answers fall back to highlights.
   // The window is wide here: a list answer must see every project that fits,
   // and synonyms alone can fill a narrow one with near misses.
@@ -814,7 +814,7 @@ export function askAssistant(query: string): AssistantReply {
 
   if (GREETING.test(normalized)) {
     return {
-      text: `Hi — ask me anything about ${profile.shortName}: his projects, background, CV, skills, or articles.`,
+      text: `Hi, ask me anything about ${profile.shortName}: his projects, background, CV, skills, or articles.`,
     };
   }
 
