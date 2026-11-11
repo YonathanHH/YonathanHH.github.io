@@ -343,6 +343,7 @@ export const projects: Project[] = [
     category: "AI · ML · Geospatial Analysis",
     stack: ["TypeScript", "Node.js", "WebApp"],
     github: "https://github.com/YonathanHH/microgrid-lens",
+	website: "https://microgrid-lens.vercel.app/",
     description: "An open research platform coupling statistical analysis of multidimensional energy poverty to a deployable decision-support dashboard for microgrid planning: whether, where and how decentralised supply should be deployed.",
     image: "https://opengraph.githubassets.com/1/YonathanHH/microgrid-lens",
   }
