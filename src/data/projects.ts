@@ -333,6 +333,7 @@ export const projects: Project[] = [
     category: "AI · ML · Geospatial Analysis",
     stack: ["TypeScript", "Node.js", "WebApp"],
     github: "https://github.com/YonathanHH/indonesia-disaster-intelligence",
+	website: "https://indonesia-disaster-intelligence.vercel.app/",
     description: "Bloomberg-Terminal-style geospatial intelligence console on top of BMKG authoritative data, with deterministic correlation and explainable intelligence scoring layered on (never replacing facts).",
     image: "https://opengraph.githubassets.com/1/YonathanHH/indonesia-disaster-intelligence",
   },
